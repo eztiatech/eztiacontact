@@ -28,7 +28,7 @@ const translations = {
     fName: '姓名或稱呼',
     fCountry: '所在國家 / Country',
     fSelectCountry: '請選擇國家 Select Country',
-    fContact: 'Email 或 LINE ID',
+    fContact: 'Email',
     fProducts: '感興趣的產品 (可複選)',
     fProd1: '機能內衣',
     fProd2: '運動袖套',
@@ -65,11 +65,11 @@ const translations = {
     fName: 'Name',
     fCountry: 'Country',
     fSelectCountry: 'Select Country',
-    fContact: 'Email or LINE ID',
+    fContact: ' Email',
     fProducts: 'Interested Products (Multiple)',
-    fProd1: 'Cooling Innerwear',
+    fProd1: 'Inner Shirt',
     fProd2: 'Arm Sleeves',
-    fProd3: 'Cooling Bandana',
+    fProd3: 'Bandana',
     fMessage: 'Other Needs or Questions',
     fMessagePlaceholder: 'e.g., Launch dates, size suggestions, or bulk orders...',
     fSubmit: 'Submit to Get Notifications',
@@ -102,12 +102,11 @@ const translations = {
     fName: 'お名前',
     fCountry: '国 / Country',
     fSelectCountry: '国を選択',
-    fContact: 'メール または LINE ID',
+    fContact: 'メールアドレス', // 改成只留 Email
     fProducts: '興味のある製品 (複数選択可)',
-    fProd1: 'クーリングインナー',
-    fProd2: 'アームカバー',
-    fProd3: 'クーリングバンダナ',
-    fMessage: 'その他のご要望・ご質問',
+    fProd1: 'インナー',        // 內衣 (Innerwear)
+    fProd2: 'アームカバー',      // 袖套 (Arm Cover)
+    fProd3: 'バンダナ',         // 頭巾 (Bandana)問',
     fMessagePlaceholder: '例：発売予定時期、サイズのアドバイスなど...',
     fSubmit: '送信して通知を受け取る',
     fSubmitting: '送信中...',
@@ -275,15 +274,13 @@ export default function EztiaB2CLandingPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-bold mb-2 text-neutral-700">{t.fCountry}</label>
-                    <select name="country" defaultValue="" className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:ring-2 focus:ring-blue-500 transition bg-white" required>
-                      <option value="" disabled>{t.fSelectCountry}</option>
-                      <option value="Taiwan">Taiwan (台灣)</option>
-                      <option value="Japan">Japan (日本)</option>
-                      <option value="United States">United States</option>
-                      <option value="Hong Kong">Hong Kong (香港)</option>
-                      <option value="Singapore">Singapore</option>
-                      <option value="Other">Other</option>
-                    </select>
+                    <input 
+                      type="text" 
+                      name="country" 
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:ring-2 focus:ring-blue-500 transition" 
+                      placeholder={lang === 'zh' ? '請輸入國家 / Enter Country' : lang === 'en' ? 'Enter your country' : '国を入力してください'}
+                      required 
+                    />
                   </div>
                 </div>
 
