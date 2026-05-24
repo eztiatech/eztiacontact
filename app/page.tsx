@@ -120,7 +120,7 @@ const translations = {
 type Language = 'zh' | 'en' | 'ja';
 
 export default function EztiaB2CLandingPage() {
-  const [lang, setLang] = useState<Language>('zh'); // 預設語言為繁體中文
+  const [lang, setLang] = useState<Language>('en'); // 預設語言為英文
   const t = translations[lang]; // 根據目前的 lang 取得對應的翻譯包
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -160,9 +160,9 @@ export default function EztiaB2CLandingPage() {
 
   // 切換語言的函式
   const toggleLanguage = () => {
-    if (lang === 'zh') setLang('en');
-    else if (lang === 'en') setLang('ja');
-    else setLang('zh');
+    if (lang === 'en') setLang('ja');
+    else if (lang === 'ja') setLang('zh');
+    else setLang('en');
   };
 
   return (
