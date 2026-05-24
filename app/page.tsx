@@ -168,6 +168,18 @@ export default function EztiaB2CLandingPage() {
   return (
     <div className="min-h-screen bg-neutral-50 font-sans text-neutral-900 leading-relaxed relative">
       
+      {/* 🌟 新增的 Logo 區塊 (固定在左上角) */}
+      <div className="absolute top-6 left-6 z-50">
+        {/* 如果你的 Logo 是深色，可以考慮在 class 裡面加上 bg-white/50 讓它在深色背景更清楚 */}
+        <Image 
+          src="/logo.svg" 
+          alt="Eztia Logo" 
+          width={150} 
+          height={50} 
+          className="object-contain"
+        />
+      </div>
+
       {/* 語言切換按鈕 (固定在右上角) */}
       <div className="absolute top-6 right-6 z-50">
         <button 
@@ -225,7 +237,7 @@ export default function EztiaB2CLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
               <div className="h-72 bg-neutral-200 flex items-center justify-center relative overflow-hidden">
-                <Image src="/images/Shirt.jpg" alt='' fill style={{ objectFit: 'cover' }} className="group-hover:scale-105 transition-transform duration-500"/>
+                <Image src="/images/Shirt.JPG" alt='' fill style={{ objectFit: 'cover' }} className="group-hover:scale-105 transition-transform duration-500"/>
               </div>
               <div className="p-8">
                 <h3 className="text-xl font-bold mb-3">{t.prod1Title}</h3>
