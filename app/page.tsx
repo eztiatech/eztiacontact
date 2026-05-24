@@ -270,19 +270,15 @@ export default function EztiaB2CLandingPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold mb-2 text-neutral-700">{t.fName}</label>
-                    <input type="text" name="customerName" className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:ring-2 focus:ring-blue-500 transition" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold mb-2 text-neutral-700">{t.fCountry}</label>
-                    <input 
-                      type="text" 
-                      name="country" 
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:ring-2 focus:ring-blue-500 transition" 
-                      placeholder={lang === 'zh' ? '請輸入國家 / Enter Country' : lang === 'en' ? 'Enter your country' : '国を入力してください'}
-                      required 
-                    />
-                  </div>
+  <label className="block text-sm font-bold mb-2 text-neutral-700">{t.fCountry}</label>
+  <input 
+    type="text" 
+    name="country" 
+    className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:ring-2 focus:ring-blue-500 transition" 
+    placeholder={lang === 'zh' ? '請輸入國家 / Enter Country' : lang === 'en' ? 'Enter your country' : '国を入力してください'}
+    required 
+  />
+</div>
                 </div>
 
                 <div>
