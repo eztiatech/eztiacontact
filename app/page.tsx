@@ -168,18 +168,6 @@ export default function EztiaB2CLandingPage() {
   return (
     <div className="min-h-screen bg-neutral-50 font-sans text-neutral-900 leading-relaxed relative">
       
-      {/* 🌟 新增的 Logo 區塊 (固定在左上角) */}
-      <div className="absolute top-6 left-6 z-50">
-        {/* 如果你的 Logo 是深色，可以考慮在 class 裡面加上 bg-white/50 讓它在深色背景更清楚 */}
-        <Image 
-          src="/logo.svg" 
-          alt="Eztia Logo" 
-          width={150} 
-          height={50} 
-          className="object-contain"
-        />
-      </div>
-
       {/* 語言切換按鈕 (固定在右上角) */}
       <div className="absolute top-6 right-6 z-50">
         <button 
