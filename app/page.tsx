@@ -107,6 +107,7 @@ const translations = {
     fProd1: 'インナー',        // 內衣 (Innerwear)
     fProd2: 'アームカバー',      // 袖套 (Arm Cover)
     fProd3: 'バンダナ',         // 頭巾 (Bandana)問',
+    fMessage: 'その他のご要望・ご質問',
     fMessagePlaceholder: '例：発売予定時期、サイズのアドバイスなど...',
     fSubmit: '送信して通知を受け取る',
     fSubmitting: '送信中...',
