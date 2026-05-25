@@ -61,7 +61,7 @@ const translations = {
     prod3Title: 'Multi-functional Cooling Bandana',
     prod3Desc: 'Flexible styling to protect your head and neck from the sun, instantly activated by water.',
     formTitle: 'Experience the Future of Wear',
-    formSubtitle: 'Get launch updates and exclusive offers, or inquire about custom orders.',
+    formSubtitle: 'Sign up for launch updates and exclusive offers, or inquire about custom orders.',
     fName: 'Name',
     fCountry: 'Country',
     fSelectCountry: 'Select Country',
