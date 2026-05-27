@@ -21,7 +21,7 @@ const translations = {
     prod1Desc: '無痕貼合設計，將實驗室級的控溫材料穿在最貼近肌膚的地方，全天候乾爽舒適，告別傳統縫線摩擦。',
     prod2Title: '高透氣降溫運動袖套',
     prod2Desc: '專為高強度戶外運動設計，極輕量且具備完美彈性，讓汗水轉化為驅動涼感的動力。',
-    prod3Title: '全天候多功能涼感頭巾',
+    prod3Title: '全天候多功能涼感毛巾',
     prod3Desc: '靈活變換造型，保護頭頸免受烈日侵襲，只需浸水即可瞬間啟動極致涼感。',
     formTitle: '搶先體驗未來穿著',
     formSubtitle: '留下您的資訊，獲得最新產品上市通知、專屬折扣與客製化諮詢服務。',
@@ -58,7 +58,7 @@ const translations = {
     prod1Desc: 'Seamless design puts lab-grade temperature control right next to your skin for all-day comfort.',
     prod2Title: 'High-Breathability Arm Sleeves',
     prod2Desc: 'Designed for extreme outdoor sports, extremely lightweight with perfect elasticity.',
-    prod3Title: 'Multi-functional Cooling Bandana',
+    prod3Title: 'Multi-functional Cooling Towel',
     prod3Desc: 'Flexible styling to protect your head and neck from the sun, instantly activated by water.',
     formTitle: 'Experience the Future of Wear',
     formSubtitle: 'Sign up for launch updates and exclusive offers, or inquire about custom orders.',
@@ -69,7 +69,7 @@ const translations = {
     fProducts: 'Interested Products (Multiple)',
     fProd1: 'Inner Shirt',
     fProd2: 'Arm Sleeves',
-    fProd3: 'Bandana',
+    fProd3: 'Towel',
     fMessage: 'Comments',
     fMessagePlaceholder: 'e.g., Launch dates, size suggestions, or bulk orders...',
     fSubmit: 'Submit',
@@ -95,7 +95,7 @@ const translations = {
     prod1Desc: 'シームレス設計で、ラボレベルの温度制御素材を肌に最も近い場所に配置。一日中快適です。',
     prod2Title: '高通気性アームカバー',
     prod2Desc: '高強度の過酷なアウトドアスポーツ向けに設計。超軽量で完璧な伸縮性を備えています。',
-    prod3Title: '多機能クーリングバンダナ',
+    prod3Title: 'クーリングタオル',
     prod3Desc: '自由なスタイリングで頭や首を日差しから守り、水に浸すだけで瞬時に冷却を開始します。',
     formTitle: '未来の着用感を体験',
     formSubtitle: '最新の発売情報、限定割引、カスタマイズ相談をご希望の方は情報を入力してください。',
@@ -106,7 +106,7 @@ const translations = {
     fProducts: '興味のある製品 (複数選択可)',
     fProd1: 'インナー',        // 內衣 (Innerwear)
     fProd2: 'アームカバー',      // 袖套 (Arm Cover)
-    fProd3: 'バンダナ',         // 頭巾 (Bandana)問',
+    fProd3: 'タオル',         //毛巾 (Towel)問',
     fMessage: 'その他のご要望・ご質問',
     fMessagePlaceholder: '例：発売予定時期、サイズのアドバイスなど...',
     fSubmit: '送信して通知を受け取る',
@@ -243,7 +243,7 @@ export default function EztiaB2CLandingPage() {
             </div>
             <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
               <div className="h-72 bg-neutral-200 flex items-center justify-center relative overflow-hidden">
-                <Image src="/images/Bandana.png" alt='' fill style={{ objectFit: 'cover' }} className="group-hover:scale-105 transition-transform duration-500"/>
+                <Image src="/images/Towel.png" alt='' fill style={{ objectFit: 'cover' }} className="group-hover:scale-105 transition-transform duration-500"/>
               </div>
               <div className="p-8">
                 <h3 className="text-xl font-bold mb-3">{t.prod3Title}</h3>
