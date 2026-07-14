@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eztia | Body Cooling Technology for Every Environment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── CSS Custom Properties ─── */
+    :root {
+      --deep-navy:     #1B2D3E;
+      --deep-teal:     #1E4D5C;
+      --cool-slate:    #4A6FA5;
+      --ocean-blue:    #2E7BB8;
+      --arctic-white:  #F2F6F9;
+      --glacier-ice:   #E3EDF4;
+      --misty-gray:    #CDD6DF;
+      --pale-lavender: #B8C0D4;
+      --slate-mist:    #6B8FA8;
+
+      --gradient-arctic-mist:  linear-gradient(135deg, #F2F6F9 0%, #A8C5D8 100%);
+      --gradient-still-water:  linear-gradient(135deg, #2E7BB8 0%, #1B2D3E 100%);
+      --gradient-glacial-dusk: linear-gradient(135deg, #4A6FA5 0%, #B8C0D4 100%);
+
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--arctic-white);
+      color: var(--deep-navy);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+
+    /* ─── Utility ─── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-pad    { padding: 96px 0; }
+    .section-pad-sm { padding: 72px 0; }
+
+    /* ─── Fade-in animation ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible        { opacity: 1; transform: translateY(0); }
+    .fade-up-delay-1        { transition-delay: 0.1s; }
+    .fade-up-delay-2        { transition-delay: 0.2s; }
+    .fade-up-delay-3        { transition-delay: 0.3s; }
+    .fade-up-delay-4        { transition-delay: 0.4s; }
+
+    /* ─── Shared section typography ─── */
+    .section-label {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      color: var(--cool-slate);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .section-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--deep-navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .section-subtext {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--slate-mist);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    /* ─── Dot grid pattern ─── */
+    .dot-bg {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%234A6FA5'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 24px 24px;
+    }
+
+    /* ══════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--arctic-white);
+      border-bottom: 1px solid transparent;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 2px 16px rgba(27,45,62,0.1);
+      border-color: var(--misty-gray);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 24px;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: var(--deep-navy);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ocean-blue); }
+    .btn-nav-cta {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--arctic-white);
+      background: var(--cool-slate);
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-nav-cta:hover { background: var(--ocean-blue); transform: translateY(-1px); }
+
+    /* Mobile hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--deep-navy);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--gradient-still-water);
+      overflow: hidden;
+      padding-top: 68px;
+    }
+    .hero-hex-overlay {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 56px 64px;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 24px 48px;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ocean-blue);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      color: var(--arctic-white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--glacier-ice);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    /* Brightened primary CTA */
+    .btn-primary {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--deep-navy);
+      background: #FFFFFF;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--glacier-ice);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,255,255,0.25);
+    }
+    .btn-text-link {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--arctic-white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid rgba(242,246,249,0.4);
+      padding: 13px 28px;
+      border-radius: 999px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-text-link:hover {
+      border-color: rgba(242,246,249,0.8);
+      background: rgba(242,246,249,0.08);
+    }
+
+    /* ── Value prop tile strip (replaces triad) ── */
+    .hero-value-strip {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: auto;
+    }
+    .value-tile {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .value-tile:nth-child(1) { background: var(--deep-navy); }
+    .value-tile:nth-child(2) { background: var(--deep-teal); }
+    .value-tile:nth-child(3) { background: var(--cool-slate); }
+    .value-tile-headline {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--arctic-white);
+      line-height: 1.3;
+    }
+    .value-tile-desc {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--pale-lavender);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════
+       THE CHALLENGE
+    ══════════════════════════════════ */
+    #challenge {
+      background: var(--arctic-white);
+      position: relative;
+      overflow: hidden;
+    }
+    #challenge .dot-overlay {
+      position: absolute; inset: 0;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      background: var(--arctic-white);
+      border: 1px solid var(--misty-gray);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-still-water);
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(27,45,62,0.1);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 3rem;
+      color: var(--ocean-blue);
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+    .stat-desc {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--deep-navy);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════
+       TECHNOLOGY OVERVIEW
+    ══════════════════════════════════ */
+    #solution {
+      background: var(--deep-teal);
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-hex-bg {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 56px 64px;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .solution-text .section-headline { color: var(--arctic-white); }
+    .solution-text .section-label    { color: var(--ocean-blue); }
+    .solution-body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--glacier-ice);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .feature-list { display: flex; flex-direction: column; gap: 20px; }
+    .feature-item { display: flex; gap: 16px; align-items: flex-start; }
+    .feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(46,123,184,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-icon svg { width: 20px; height: 20px; }
+    .feature-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--arctic-white);
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--pale-lavender);
+      line-height: 1.55;
+    }
+
+    /* Photo placeholders */
+    .photo-placeholder-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .photo-placeholder {
+      border: 2px dashed rgba(242,246,249,0.4);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .photo-placeholder-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(46,123,184,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-placeholder-icon svg { width: 24px; height: 24px; }
+    .photo-placeholder-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--arctic-white);
+    }
+    .photo-placeholder-sublabel {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--pale-lavender);
+    }
+    .photo-caption {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--pale-lavender);
+      opacity: 0.7;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════ */
+    #howto {
+      background: var(--arctic-white);
+      position: relative;
+      overflow: hidden;
+    }
+    #howto .dot-overlay {
+      position: absolute; inset: 0;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    #howto .section-headline { color: var(--deep-navy); }
+    .howto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 52px auto 0;
+      max-width: 960px;
+    }
+    .step-card {
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    /* Alternating card backgrounds for strong contrast */
+    .step-card:nth-child(1) { background: var(--deep-navy); }
+    .step-card:nth-child(2) { background: var(--deep-teal); }
+    .step-card:nth-child(3) { background: var(--ocean-blue); }
+    .step-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 4rem;
+      color: rgba(242,246,249,0.2);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
+    .step-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--ocean-blue);
+      border-radius: 50%;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--arctic-white);
+      margin: 0 auto 16px;
+    }
+    .step-card:nth-child(3) .step-indicator { background: rgba(255,255,255,0.25); }
+    .step-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--arctic-white);
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--glacier-ice);
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    /* ══════════════════════════════════
+       WHO WE SERVE
+    ══════════════════════════════════ */
+    #audience {
+      background: var(--glacier-ice);
+      position: relative;
+      overflow: hidden;
+    }
+    .audience-hex-bg {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%231B2D3E' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 56px 64px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .industry-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+    .industry-card {
+      background: white;
+      border: 1.5px solid var(--misty-gray);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .industry-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(27,45,62,0.12);
+    }
+    .industry-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .industry-icon-wrap {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--glacier-ice);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .industry-icon-wrap svg { width: 22px; height: 22px; }
+    .industry-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--deep-navy);
+    }
+    .industry-title::after {
+      content: '';
+      display: block;
+      width: 28px; height: 3px;
+      background: var(--cool-slate);
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+    .industry-desc {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--slate-mist);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════
+       COMPANY
+    ══════════════════════════════════ */
+    #company {
+      background: var(--arctic-white);
+      position: relative;
+      overflow: hidden;
+    }
+    #company .dot-overlay {
+      position: absolute; inset: 0;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .company-intro {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+    .company-sub {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--slate-mist);
+      line-height: 1.75;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .team-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(27,45,62,0.07);
+      border: 1px solid var(--glacier-ice);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .team-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(27,45,62,0.1);
+    }
+    .team-photo-placeholder {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--glacier-ice);
+      border: 2px solid var(--misty-gray);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .team-photo-placeholder svg { width: 32px; height: 32px; opacity: 0.4; }
+    .team-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--deep-navy);
+      margin-bottom: 4px;
+    }
+    .team-title {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--cool-slate);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .team-bio {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--slate-mist);
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .team-coming-soon {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--slate-mist);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════
+       CONTACT FORM
+    ══════════════════════════════════ */
+    #contact {
+      background: var(--deep-navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact .dot-overlay {
+      position: absolute; inset: 0;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .contact-intro .section-headline { color: var(--arctic-white); margin-bottom: 16px; }
+    #contact .section-label { color: var(--ocean-blue); }
+    .contact-intro-sub {
+      font-family: var(--font-body);
+      font-size: 0.97rem;
+      color: var(--pale-lavender);
+      line-height: 1.75;
+    }
+    .contact-details { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .contact-detail-item {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--arctic-white);
+    }
+    .contact-detail-item a {
+      color: var(--glacier-ice);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail-item a:hover { color: var(--ocean-blue); }
+
+    /* Form card */
+    .form-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 4px 32px rgba(27,45,62,0.08);
+      border: 1px solid var(--misty-gray);
+    }
+    .toggle-group { display: flex; gap: 8px; margin-bottom: 20px; }
+    .toggle-btn {
+      flex: 1;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1.5px solid var(--misty-gray);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      background: var(--glacier-ice);
+      color: var(--cool-slate);
+    }
+    .toggle-btn.active {
+      background: var(--ocean-blue);
+      color: var(--arctic-white);
+      border-color: var(--ocean-blue);
+    }
+    .toggle-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--slate-mist);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: var(--deep-navy);
+      margin-bottom: 7px;
+    }
+    .form-label .optional { font-weight: 400; color: var(--slate-mist); font-size: 0.8rem; margin-left: 4px; }
+    .form-input, .form-textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--deep-navy);
+      background: var(--arctic-white);
+      border: 1.5px solid var(--misty-gray);
+      border-radius: 10px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--ocean-blue);
+      box-shadow: 0 0 0 3px rgba(46,123,184,0.12);
+    }
+    .form-textarea { resize: vertical; min-height: 108px; }
+    /* Company name slide-in */
+    .company-field-wrap {
+      overflow: hidden;
+      max-height: 0; opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.35s ease, margin-bottom 0.35s ease;
+      margin-bottom: 0;
+    }
+    .company-field-wrap.visible { max-height: 90px; opacity: 1; margin-bottom: 20px; }
+    /* Brightened submit button */
+    .btn-submit {
+      width: 100%;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--arctic-white);
+      background: var(--ocean-blue);
+      border: none;
+      border-radius: 999px;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover {
+      background: #2370a8;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(46,123,184,0.4);
+    }
+    .btn-submit:focus { outline: 3px solid var(--ocean-blue); outline-offset: 3px; }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      background: var(--deep-navy);
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(242,246,249,0.1);
+    }
+    .footer-brand .footer-logo-img { height: 28px; width: auto; margin-bottom: 14px; }
+    .footer-tagline {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--pale-lavender);
+      line-height: 1.65;
+    }
+    .footer-nav-heading {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--pale-lavender);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--arctic-white);
+      text-decoration: none;
+      opacity: 0.82;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .footer-nav-links a:hover { color: var(--ocean-blue); opacity: 1; }
+    .footer-contact-link {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--arctic-white);
+      text-decoration: none;
+      opacity: 0.82;
+      transition: color 0.2s, opacity 0.2s;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer-contact-link:hover { color: var(--ocean-blue); opacity: 1; }
+    .footer-bottom { padding: 20px 0; text-align: center; }
+    .footer-legal {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--pale-lavender);
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .solution-grid   { grid-template-columns: 1fr; gap: 48px; }
+      .contact-grid    { grid-template-columns: 1fr; gap: 48px; }
+      .footer-grid     { grid-template-columns: 1fr 1fr; }
+      .footer-brand    { grid-column: 1 / -1; }
+      .team-grid       { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .section-pad { padding: 72px 0; }
+      .nav-links, .btn-nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 68px; left: 0; right: 0;
+        background: var(--arctic-white);
+        padding: 24px; gap: 16px;
+        box-shadow: 0 8px 24px rgba(27,45,62,0.12);
+        z-index: 999;
+        border-top: 1px solid var(--misty-gray);
+      }
+      .stat-cards      { grid-template-columns: 1fr; }
+      .industry-cards  { grid-template-columns: repeat(2, 1fr); }
+      .howto-grid      { grid-template-columns: 1fr; }
+      .form-row        { grid-template-columns: 1fr; }
+      .footer-grid     { grid-template-columns: 1fr; }
+      .team-grid       { grid-template-columns: repeat(2, 1fr); }
+      .hero-value-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-headline   { font-size: 2rem; }
+      .hero-ctas       { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-text-link { text-align: center; justify-content: center; }
+      .form-card       { padding: 28px 20px; }
+      .team-grid       { grid-template-columns: 1fr; }
+    }
+
+    /* ── Animated hero background ── */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes floatHex1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.06; }
+      50%       { transform: translateY(-40px) rotate(8deg); opacity: 0.12; }
+    }
+    @keyframes floatHex2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.05; }
+      50%       { transform: translateY(30px) rotate(-6deg) scale(1.08); opacity: 0.1; }
+    }
+    @keyframes floatHex3 {
+      0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.04; }
+      33%       { transform: translateY(-20px) translateX(15px); opacity: 0.09; }
+      66%       { transform: translateY(15px) translateX(-10px); opacity: 0.07; }
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.08; }
+      50%       { opacity: 0.18; }
+    }
+    #hero {
+      background: #1B2D3E !important;
+      background-size: 400% 400% !important;
+      animation: none;
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(27,45,62,0.62) 0%,
+        rgba(27,45,62,0.42) 55%,
+        rgba(27,45,62,0.78) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-float-1 {
+      position: absolute; width: 420px; height: 480px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-size: 56px 64px;
+      top: 5%; right: 5%;
+      animation: floatHex1 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-float-2 {
+      position: absolute; width: 360px; height: 400px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 56px 64px;
+      bottom: 20%; left: 2%;
+      animation: floatHex2 13s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-float-3 {
+      position: absolute; width: 280px; height: 320px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%232E7BB8' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-size: 56px 64px;
+      top: 40%; right: 30%;
+      animation: floatHex3 17s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-shimmer {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(46,123,184,0.25) 0%, transparent 70%);
+      animation: shimmer 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+<header id="navbar" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="#" class="nav-logo" aria-label="eztia home">
+        <img src="wordmark/blue.png" alt="eztia" />
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#solution">Technology</a></li>
+        <li><a href="#challenge">Performance</a></li>
+        <li><a href="#audience">Who We Serve</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="btn-nav-cta">Learn More</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-headline">
+  <video class="hero-video-bg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="Running%20Video.MP4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay" aria-hidden="true"></div>
+  <div class="hero-hex-overlay" aria-hidden="true"></div>
+  <div class="hero-float-1" aria-hidden="true"></div>
+  <div class="hero-float-2" aria-hidden="true"></div>
+  <div class="hero-float-3" aria-hidden="true"></div>
+  <div class="hero-shimmer" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-eyebrow" aria-label="HydraVolt technology">EZTIA</span>
+      <h1 class="hero-headline" id="hero-headline">Cooling,<br>reimagined.</h1>
+      <p class="hero-sub">HydraVolt™ turns apparel into cooling technology.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Learn More</a>
+        <a href="#solution" class="btn-text-link">See How It Works <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Value prop tile strip -->
+  <div class="hero-value-strip" aria-label="Key benefits">
+    <div class="value-tile">
+      <span class="value-tile-headline">Cools on contact</span>
+      <span class="value-tile-desc">Cooling gel activates the moment temperature rises</span>
+    </div>
+    <div class="value-tile">
+      <span class="value-tile-headline">Worn in, not added on</span>
+      <span class="value-tile-desc">Built into the fabric. No vests, no packs, no setup</span>
+    </div>
+    <div class="value-tile">
+      <span class="value-tile-headline">All-shift durability</span>
+      <span class="value-tile-desc">Washable, durable, and effective across full work days</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ THE CHALLENGE ══════════════════════════════════ -->
+<section id="challenge" class="section-pad" aria-labelledby="challenge-headline">
+  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="fade-up">
+      <span class="section-label">The Challenge</span>
+      <h2 class="section-headline" id="challenge-headline">Heat is the leading weather-related cause of death.</h2>
+      <p class="section-subtext">Heat affects everyone - from construction crews and industrial teams to athletes, commuters, and anyone working or moving in the heat. The research is clear: heat impairs performance and raises risk.</p>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card fade-up fade-up-delay-1">
+        <div class="stat-number">10°C</div>
+        <p class="stat-desc">HydraVolt™ is proven to reduce skin temperature by up to 10°C, providing measurable cooling from the moment it activates.</p>
+      </div>
+      <div class="stat-card fade-up fade-up-delay-2">
+        <div class="stat-number">H<sub>2</sub>O</div>
+        <p class="stat-desc">No batteries, refrigeration, or electricity needed. HydraVolt™ recharges with water, nothing else.</p>
+      </div>
+      <div class="stat-card fade-up fade-up-delay-3">
+        <div class="stat-number">8 hrs</div>
+        <p class="stat-desc">Up to 8 hours of effective cooling during strenuous physical activity - built for full shifts and long days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ TECHNOLOGY OVERVIEW ══════════════════════════════════ -->
+<section id="solution" class="section-pad" aria-labelledby="solution-headline">
+  <div class="solution-hex-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="solution-grid">
+
+      <div class="solution-text fade-up">
+        <span class="section-label">HydraVolt™ Technology</span>
+        <h2 class="section-headline" id="solution-headline">Cooling built into every thread.</h2>
+        <p class="solution-body">HydraVolt™ is a proprietary cooling gel that bonds directly to performance fabric. When body temperature rises, it activates, drawing heat away from the skin and dispersing it through the fabric's microstructure. The result: meaningfully lower skin surface temperature, improving performance and recovery.</p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="7" stroke="#2E7BB8" stroke-width="1.5"/>
+                <path d="M10 6v4l3 2" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="feature-title">Activates at body temperature</p>
+              <p class="feature-desc">No triggers, no switches. HydraVolt™ automatically responds to heat.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 3v14M3 10h14" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="10" cy="10" r="7" stroke="#2E7BB8" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="feature-title">No batteries needed</p>
+              <p class="feature-desc">Simply activate with water and wear.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10l4 4 8-8" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="feature-title">Washable and built to last</p>
+              <p class="feature-desc">Engineered for everyday performance, wash after wash, wear after wear.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo placeholders -->
+      <div class="fade-up fade-up-delay-2" style="position:relative; z-index:1;">
+        <div class="photo-placeholder-grid">
+          <div class="photo-real">
+            <img src="Eztia Arm Sleeves.JPG" alt="HydraVolt™ performance garment" style="width:100%; border-radius:14px; display:block; object-fit:cover; max-height:260px;" />
+          </div>
+          <div class="photo-real">
+            <img src="Dot Detail.jpeg" alt="HydraVolt™ gel microstructure detail" style="width:100%; border-radius:14px; display:block; object-fit:cover; max-height:260px;" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ HOW IT WORKS ══════════════════════════════════ -->
+<section id="howto" class="section-pad" aria-labelledby="howto-headline">
+  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="fade-up" style="text-align:center; max-width:580px; margin:0 auto;">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-headline" id="howto-headline">Simple. Durable. Effective.</h2>
+    </div>
+    <div class="howto-grid">
+      <div class="step-card fade-up fade-up-delay-1">
+        <div class="step-indicator" aria-hidden="true">1</div>
+        <h3 class="step-title">Wear it</h3>
+        <p class="step-desc">Pull it on like any base layer or shirt. Cooling is built right in.</p>
+      </div>
+      <div class="step-card fade-up fade-up-delay-2">
+        <div class="step-indicator" aria-hidden="true">2</div>
+        <h3 class="step-title">Move in it</h3>
+        <p class="step-desc">HydraVolt™ activates when body temperature rises. The harder the conditions, the harder it works.</p>
+      </div>
+      <div class="step-card fade-up fade-up-delay-3">
+        <div class="step-indicator" aria-hidden="true">3</div>
+        <h3 class="step-title">Stay cool</h3>
+        <p class="step-desc">Cooling that works with your body, whenever you need it most.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ WHO WE SERVE ══════════════════════════════════ -->
+<section id="audience" class="section-pad" aria-labelledby="audience-headline">
+  <div class="audience-hex-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="fade-up" style="max-width:580px;">
+      <span class="section-label">Who It's For</span>
+      <h2 class="section-headline" id="audience-headline">Built for everyone heat hits hardest.</h2>
+    </div>
+    <div class="industry-cards" style="grid-template-columns: repeat(3,1fr);">
+
+      <article class="industry-card fade-up fade-up-delay-1">
+        <div class="industry-card-top">
+          <div class="industry-icon-wrap" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 10 L20 22" stroke="#1B2D3E" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 22 L28 22" stroke="#1B2D3E" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 26 C10 23.8 11.8 22 14 22 H26 C28.2 22 30 23.8 30 26 V28 H10 V26Z" fill="#2E7BB8"/>
+              <path d="M15 22 L12 14" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M25 22 L28 14" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="18" y="28" width="4" height="4" rx="1" fill="#1B2D3E"/>
+            </svg>
+          </div>
+          <h3 class="industry-title">Construction</h3>
+        </div>
+        <p class="industry-desc">The job doesn't stop when the temperature spikes. HydraVolt™ keeps your crew performing — shift after shift, season after season.</p>
+      </article>
+
+      <article class="industry-card fade-up fade-up-delay-2">
+        <div class="industry-card-top">
+          <div class="industry-icon-wrap" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 10 C20 10 14 16 14 22 C14 25.3 16.7 28 20 28 C23.3 28 26 25.3 26 22 C26 16 20 10 20 10Z" stroke="#2E7BB8" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M16 34 L20 28 L24 34" stroke="#1B2D3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 20 C10 19 9 17 10 15" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M28 20 C30 19 31 17 30 15" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="industry-title">Athletes</h3>
+        </div>
+        <p class="industry-desc">Heat is the enemy of performance. HydraVolt™ activates when your body needs it most, so you can push harder, for longer, without the fade.</p>
+      </article>
+
+      <article class="industry-card fade-up fade-up-delay-3">
+        <div class="industry-card-top">
+          <div class="industry-icon-wrap" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 10 L29 14 V21 C29 25.97 25.08 30.56 20 32 C14.92 30.56 11 25.97 11 21 V14 L20 10Z" fill="#2E7BB8" fill-opacity="0.15" stroke="#2E7BB8" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M20 16 V24 M16 20 H24" stroke="#1B2D3E" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="industry-title">Public Safety</h3>
+        </div>
+        <p class="industry-desc">When the gear can't come off, the cooling has to come from within. HydraVolt™ is built in, working quietly while you focus on the job.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CONTACT ══════════════════════════════════ -->
+<section id="contact" class="section-pad" aria-labelledby="contact-headline">
+  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="contact-grid">
+
+      <div class="contact-intro fade-up">
+        <span class="section-label">Contact Us</span>
+        <h2 class="section-headline" id="contact-headline">Get in touch.</h2>
+        <p class="contact-intro-sub">Whether you're outfitting a crew, gearing up personally, or just curious about what HydraVolt™ can do — we're here. Fill in the form and we'll get back to you.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="6.5" stroke="#4A6FA5" stroke-width="1.4"/>
+              <path d="M8 4v4l3 2" stroke="#4A6FA5" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span style="font-size:0.88rem; color:var(--slate-mist);">We aim to respond within 1–3 business days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card fade-up fade-up-delay-1">
+        <form id="contact-form" novalidate>
+
+          <div class="form-group">
+            <div class="toggle-group" role="group" aria-labelledby="type-label">
+              <button type="button" class="toggle-btn active" id="btn-individual" aria-pressed="true">Individual</button>
+              <button type="button" class="toggle-btn" id="btn-business" aria-pressed="false">Business</button>
+            </div>
+          </div>
+
+          <div class="company-field-wrap" id="company-wrap">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" for="company-name">Company Name</label>
+              <input class="form-input" type="text" id="company-name" name="company" placeholder="Your company name" autocomplete="organization" tabindex="-1" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="first-name">First Name</label>
+              <input class="form-input" type="text" id="first-name" name="first_name" placeholder="First name" autocomplete="given-name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last-name">Last Name</label>
+              <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Last name" autocomplete="family-name" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">How can we help?</label>
+            <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Tell us about yourself, your team, your use case, or what you're looking for..."></textarea>
+          </div>
+
+          <input type="hidden" id="contact-type" name="contact_type" value="individual" />
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="wordmark/light.png" alt="eztia" class="footer-logo-img" />
+        <p class="footer-tagline">Stay cool. Move freely. Feel everything.<br>HydraVolt™ Performance Cooling: engineered for extreme heat.</p>
+      </div>
+      <div>
+        <p class="footer-nav-heading">Navigation</p>
+        <ul class="footer-nav-links" role="list">
+          <li><a href="#solution">Technology</a></li>
+          <li><a href="#challenge">Performance</a></li>
+          <li><a href="#audience">Who We Serve</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-nav-heading">Find Us</p>
+        <a href="https://www.eztiamaterials.com" class="footer-contact-link" target="_blank" rel="noopener">www.eztiamaterials.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">© 2026 eztia Ltd. All rights reserved. HydraVolt™ is a trademark of eztia Ltd.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════ SCRIPTS ══════════════════════════════════ -->
+<script>
+  // Navbar scroll shadow
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Intersection Observer — fade-up
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
+  fadeEls.forEach(el => observer.observe(el));
+
+// Individual / Business toggle
+  const btnIndividual  = document.getElementById('btn-individual');
+  const btnBusiness    = document.getElementById('btn-business');
+  const companyWrap    = document.getElementById('company-wrap');
+  const companyInput   = document.getElementById('company-name');
+  const contactTypeVal = document.getElementById('contact-type');
+
+  function setType(type) {
+    const isBusiness = type === 'business';
+    btnIndividual.classList.toggle('active', !isBusiness);
+    btnBusiness.classList.toggle('active', isBusiness);
+    btnIndividual.setAttribute('aria-pressed', String(!isBusiness));
+    btnBusiness.setAttribute('aria-pressed', String(isBusiness));
+    companyWrap.classList.toggle('visible', isBusiness);
+    companyInput.setAttribute('tabindex', isBusiness ? '0' : '-1');
+    contactTypeVal.value = type;
+  }
+  btnIndividual.addEventListener('click', () => setType('individual'));
+  btnBusiness.addEventListener('click', () => setType('business'));
+
+  // Form submit → Google Sheet
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const payload = {
+      contact_type: document.getElementById('contact-type').value,
+      company:      document.getElementById('company-name').value,
+      first_name:   document.getElementById('first-name').value,
+      last_name:    document.getElementById('last-name').value,
+      email:        document.getElementById('email').value,
+      message:      document.getElementById('message').value
+    };
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+      btn.textContent = 'Message sent ✓';
+      btn.style.background = '#1E4D5C';
+      this.reset();
+    } catch (err) {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  });
+  
+</script>
+</body>
+</html>
