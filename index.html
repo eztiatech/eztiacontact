@@ -775,7 +775,7 @@ footer {
           </div>
           <div class="stat-card">
             <div class="stat-num">8 hrs</div>
-            <div class="stat-lbl">Effective cooling during strenuous activity</div>
+            <div class="stat-lbl">Effective cooling</div>
           </div>
         </div>
       </div>
@@ -844,7 +844,7 @@ footer {
       <div>
         <div class="step-num">03</div>
         <div class="step-title">Stay cool</div>
-        <div class="step-body">Continuous cooling for up to 8 hours of strenuous activity, when you need it most.</div>
+        <div class="step-body">Continuous cooling for up to 8 hours, when you need it most.</div>
       </div>
     </div>
   </div>
@@ -895,6 +895,7 @@ footer {
           <button class="toggle-btn" onclick="setType('business')">Business</button>
         </div>
         <form onsubmit="submitForm(event)">
+          <input type="hidden" id="contact-type" name="contact_type" value="individual">
           <div class="form-field" id="company-field">
             <label>Company Name</label>
             <input type="text" name="company" placeholder="Acme Corp">
@@ -902,16 +903,16 @@ footer {
           <div class="form-row-2">
             <div>
               <label>First Name</label>
-              <input type="text" name="first" placeholder="Jane">
+              <input type="text" name="first_name" placeholder="Jane" autocomplete="given-name" required>
             </div>
             <div>
               <label>Last Name</label>
-              <input type="text" name="last" placeholder="Smith">
+              <input type="text" name="last_name" placeholder="Smith" autocomplete="family-name" required>
             </div>
           </div>
           <div class="form-field">
             <label>Email Address</label>
-            <input type="email" name="email" placeholder="jane@company.com">
+            <input type="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
           </div>
           <div class="form-field">
             <label>How can we help?</label>
@@ -1067,19 +1068,46 @@ footer {
 
 /* ── Contact form ── */
 function setType(type) {
+  document.getElementById('contact-type').value = type;
   document.getElementById('company-field').style.display = type === 'business' ? 'block' : 'none';
   document.querySelectorAll('.toggle-btn').forEach((b, i) => {
     b.classList.toggle('active', (i === 0 && type === 'individual') || (i === 1 && type === 'business'));
   });
 }
 
-function submitForm(e) {
+/* Form submit → Google Sheet */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
+
+async function submitForm(e) {
   e.preventDefault();
+  const form = e.target;
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
-  // TODO: wire to your Google Sheets Apps Script endpoint
-  setTimeout(() => { btn.textContent = 'Sent ✓'; }, 1200);
+
+  const payload = {
+    contact_type: form.contact_type.value,
+    company:      form.company.value,
+    first_name:   form.first_name.value,
+    last_name:    form.last_name.value,
+    email:        form.email.value,
+    message:      form.message.value
+  };
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+    btn.textContent = 'Message sent ✓';
+    form.reset();
+    setType('individual');
+  } catch (err) {
+    btn.textContent = 'Something went wrong — try again';
+    btn.disabled = false;
+  }
 }
 </script>
 </body>
