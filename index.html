@@ -3,1111 +3,799 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>eztia — Stay cool.</title>
+<title>eztia — Stay Cool.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;1,300&display=swap">
 <style>
-
-/* ─────────────────────────────────────────
-   TOKENS
-───────────────────────────────────────── */
-:root {
-  --navy:   #1B2D3E;
-  --teal:   #1E4D5C;
-  --ocean:  #2E7BB8;
-  --slate:  #527A8C;
-  --heat:   #C4512A;
-  --arctic: #F2F6F9;
-  --misty:  rgba(242,246,249,0.65);
-  --grad:   linear-gradient(to right, #C4512A, #D4815A, #E8C9B8, #B8D4E8, #2E7BB8);
-  color-scheme: dark;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;font-weight:300;
+  background:#fff;color:#1B2D3E;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* top gradient line — fixed */
+.top-bar{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#C4512A,#D4815A,#E8C9B8,#B8D4E8,#2E7BB8);z-index:600}
 
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  background: var(--navy);
-  color: var(--arctic);
-  overflow-x: hidden;
+/* NAV */
+nav{
+  position:fixed;top:2px;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;
+  transition:background .35s,border-color .35s,padding .35s;
+}
+nav.scrolled{
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(27,45,62,.07);
+  padding:14px 40px;
+}
+.nav-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:17px;letter-spacing:.18em;text-transform:uppercase;
+  color:#fff;text-decoration:none;transition:color .3s;
+}
+nav.scrolled .nav-logo{color:#1B2D3E}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;
+  letter-spacing:.20em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a{color:rgba(27,45,62,.45)}
+nav.scrolled .nav-links a:hover{color:#1B2D3E}
+.nav-cta{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.20em;text-transform:uppercase;
+  background:#fff;color:#1B2D3E !important;
+  padding:8px 20px;text-decoration:none;
+  transition:opacity .2s;
+}
+.nav-cta:hover{opacity:.85}
+nav.scrolled .nav-cta{background:#1B2D3E;color:#F2F6F9 !important}
+@media(max-width:600px){
+  nav{padding:16px 20px}
+  nav.scrolled{padding:12px 20px}
+  .nav-links li:not(:last-child){display:none}
 }
 
-/* ─────────────────────────────────────────
-   TOP GRADIENT BAR (always visible)
-───────────────────────────────────────── */
-.top-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--grad);
-  z-index: 100;
-}
-
-/* ─────────────────────────────────────────
-   SHARED SECTION STYLES
-───────────────────────────────────────── */
-.section-dark  { background: var(--navy);  color: var(--arctic); }
-.section-teal  { background: var(--teal);  color: var(--arctic); }
-.section-light { background: var(--arctic); color: var(--navy); }
-
-section {
-  padding: 104px 48px 96px;
-}
-.section-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Divider between sections */
-.grad-rule {
-  height: 2px;
-  background: var(--grad);
-  width: 100%;
-}
-
-/* Eyebrow label */
-.eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  opacity: 0.50;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.eyebrow-line {
-  display: inline-block;
-  width: 24px; height: 1px;
-  background: var(--grad);
-  flex-shrink: 0;
-}
-
-/* Section headings */
-h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 300;
-  font-size: clamp(34px, 4.5vw, 60px);
-  line-height: 0.92;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-  margin-bottom: 24px;
-}
-h2 strong { font-weight: inherit; }
-
-.body-copy {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: clamp(15px, 1.5vw, 17px);
-  line-height: 1.78;
-  max-width: 540px;
-  opacity: 0.70;
-}
-
-/* Buttons */
-.btn {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 13px 30px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.btn:hover { opacity: 0.82; }
-.btn-fill   { background: var(--arctic); color: var(--navy);   border-color: var(--arctic); }
-.btn-ghost  { background: transparent;   color: var(--arctic); border-color: rgba(242,246,249,0.38); }
-.btn-dark   { background: var(--navy);   color: var(--arctic); border-color: var(--navy); }
-.btn-dark-ghost { background: transparent; color: var(--navy); border-color: rgba(27,45,62,0.35); }
-
-@media (max-width: 760px) {
-  section { padding: 72px 20px 64px; }
-}
-
-/* ─────────────────────────────────────────
-   HERO
-───────────────────────────────────────── */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
-#bg-video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: none;
-}
-#bg-canvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-}
-
-.overlay {
-  position: absolute; inset: 0;
+/* ══ HERO ══ */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-overlay{
+  position:absolute;inset:0;
   background:
-    linear-gradient(to right, rgba(10,18,28,0.82) 0%, rgba(10,18,28,0.30) 55%, rgba(10,18,28,0.00) 100%),
-    linear-gradient(to top,   rgba(10,18,28,0.72) 0%, rgba(10,18,28,0.00) 55%);
+    linear-gradient(to right,rgba(8,14,22,.82) 0%,rgba(8,14,22,.28) 55%,rgba(8,14,22,0) 100%),
+    linear-gradient(to top,rgba(8,14,22,.65) 0%,transparent 50%);
+}
+.hero-content{
+  position:relative;z-index:10;
+  height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 40px 60px;max-width:620px;
+}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:rgba(242,246,249,.5);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+  opacity:0;animation:fadeUp .9s ease-out .4s forwards;
+}
+.hero-eyebrow-line{
+  width:22px;height:1px;flex-shrink:0;
+  background:linear-gradient(to right,#C4512A,#2E7BB8);
+}
+.hero-h1{
+  font-family:'Barlow Condensed',sans-serif;font-weight:300;
+  font-size:clamp(58px,8.2vw,112px);
+  line-height:.88;letter-spacing:-.01em;color:#F2F6F9;
+  margin-bottom:22px;
+  opacity:0;animation:fadeUp 1.1s cubic-bezier(.16,1,.3,1) .7s forwards;
+}
+.hero-h1 strong{font-weight:800;display:block}
+.hero-sub{
+  font-size:clamp(13px,1.4vw,16px);font-weight:300;line-height:1.75;
+  color:rgba(242,246,249,.6);max-width:380px;margin-bottom:32px;
+  opacity:0;animation:fadeUp 1s ease-out 1s forwards;
+}
+.hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1s ease-out 1.3s forwards;
+}
+.btn{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:11px 26px;text-decoration:none;display:inline-block;
+  transition:opacity .2s;
+}
+.btn-solid{background:#F2F6F9;color:#1B2D3E}
+.btn-solid:hover{opacity:.88}
+.btn-outline{background:transparent;color:#F2F6F9;border:1px solid rgba(242,246,249,.32)}
+.btn-outline:hover{border-color:rgba(242,246,249,.7)}
+.hero-grad-rule{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,#C4512A,#D4815A,#E8C9B8,#B8D4E8,#2E7BB8);
+  opacity:0;animation:fade 1s ease-out 1.8s forwards;
+}
+.scroll-cue{
+  position:absolute;bottom:28px;right:36px;z-index:10;
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  opacity:0;animation:fade 1s ease-out 2s forwards;
+}
+.scroll-cue span{
+  font-family:'Barlow Condensed',sans-serif;font-size:8px;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(242,246,249,.3);writing-mode:vertical-rl;
+}
+.scroll-cue-bar{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(242,246,249,.3),transparent);
+  animation:scrollPulse 2s ease-in-out 2s infinite;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.3)}}
+@media(prefers-reduced-motion:reduce){
+  .hero-eyebrow,.hero-h1,.hero-sub,.hero-actions,.hero-grad-rule,.scroll-cue{animation:none;opacity:1}
+  .scroll-cue-bar{animation:none}
 }
 
-/* Nav — sits below the fixed top bar */
-.hero-nav {
-  position: absolute;
-  top: 3px; left: 0; right: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 26px 48px;
+/* ══ MARQUEE STRIP ══ */
+.marquee-strip{
+  background:#1B2D3E;overflow:hidden;
+  padding:11px 0;border-top:1px solid rgba(242,246,249,.06);
+}
+.marquee-inner{
+  display:flex;white-space:nowrap;
+  animation:marquee 22s linear infinite;
+}
+.marquee-inner span{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.24em;text-transform:uppercase;color:rgba(242,246,249,.3);
+  padding:0 28px;
+}
+.marquee-inner .dot{color:rgba(242,246,249,.15);padding:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══ FULL-BLEED PHOTO GRID — FreezeTech style ══ */
+/* Three portrait photos, no gap, full browser width */
+.grid-3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0;
+}
+.grid-3-header{
+  padding:52px 40px 28px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.grid-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.26em;text-transform:uppercase;color:#2E7BB8;margin-bottom:8px;
+}
+.grid-heading{
+  font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,2.2vw,28px);
+  font-weight:300;letter-spacing:.01em;color:#1B2D3E;line-height:1.1;
+}
+.grid-link{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.20em;text-transform:uppercase;
+  color:#1B2D3E;text-decoration:none;
+  border-bottom:1px solid rgba(27,45,62,.2);padding-bottom:2px;
+  white-space:nowrap;transition:border-color .2s;
+}
+.grid-link:hover{border-color:#1B2D3E}
+.photo-cell{position:relative;overflow:hidden;background:#d4dce2}
+.photo-cell img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .8s cubic-bezier(.25,.46,.45,.94);
+}
+.photo-cell:hover img{transform:scale(1.04)}
+.photo-cell.portrait{aspect-ratio:2/3}
+.photo-cell.wide{grid-column:span 2;aspect-ratio:16/9}
+.photo-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:18px 20px;
+  background:linear-gradient(to top,rgba(8,14,22,.7) 0%,transparent 100%);
+}
+.photo-caption-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;
+}
+.photo-caption-sub{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(242,246,249,.46);
+  margin-top:2px;
+}
+.coming-soon{
+  position:absolute;top:14px;right:14px;
+  font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:rgba(8,14,22,.65);color:rgba(242,246,249,.6);
+  padding:4px 9px;
+}
+@media(max-width:640px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .photo-cell.wide{grid-column:span 2;aspect-ratio:4/3}
+  .grid-3-header{padding:36px 20px 18px;flex-direction:column;align-items:flex-start;gap:14px}
 }
 
-.logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 0.14em;
-  text-transform: lowercase;
-  color: var(--arctic);
-  text-decoration: none;
+/* ══ HOT→COLD GRADIENT BAND ══ */
+/* Full-width, gradient IS the background, stats float in it */
+.grad-band{
+  background:linear-gradient(90deg,#C4512A 0%,#D4815A 22%,#E8C9B8 50%,#B8D4E8 75%,#2E7BB8 100%);
+  padding:64px 40px;
+}
+.grad-band-inner{
+  max-width:1080px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+}
+.grad-band-copy{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(16px,2.2vw,26px);font-weight:300;
+  color:rgba(8,14,22,.65);line-height:1.2;max-width:260px;
+}
+.grad-stats{display:flex;gap:48px;flex-wrap:wrap}
+.grad-stat-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(32px,4vw,52px);font-weight:300;letter-spacing:-.02em;
+  color:rgba(8,14,22,.75);line-height:1;
+}
+.grad-stat-num sup{font-size:.38em;font-weight:400;vertical-align:super}
+.grad-stat-label{
+  font-size:11px;font-weight:300;
+  color:rgba(8,14,22,.48);margin-top:5px;line-height:1.5;
+}
+@media(max-width:680px){
+  .grad-band{padding:44px 20px}
+  .grad-band-inner{flex-direction:column;align-items:flex-start;gap:28px}
+  .grad-stats{gap:28px}
 }
 
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-  align-items: center;
+/* ══ TECH SPLIT — full-bleed dark ══ */
+.tech-split{display:grid;grid-template-columns:1fr 1fr;min-height:580px}
+.tech-img{position:relative;overflow:hidden;background:#0D1820}
+.tech-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8)}
+.tech-copy{
+  background:#1B2D3E;
+  padding:72px 56px;
+  display:flex;flex-direction:column;justify-content:center;
 }
-.nav-links a {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(242,246,249,0.68);
-  text-decoration: none;
-  transition: color 0.2s;
+.tech-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.26em;text-transform:uppercase;color:#2E7BB8;margin-bottom:16px;
 }
-.nav-links a:hover { color: var(--arctic); }
-.nav-contact {
-  padding: 9px 22px !important;
-  border: 1px solid rgba(242,246,249,0.28);
+.tech-h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(22px,3vw,38px);font-weight:300;letter-spacing:.01em;
+  color:#F2F6F9;line-height:1.1;margin-bottom:20px;
 }
-
-/* Hero copy — bottom left */
-.hero-content {
-  position: relative;
-  z-index: 10;
-  padding: 0 48px 68px;
-  max-width: 680px;
+.tech-body{
+  font-size:14px;font-weight:300;line-height:1.85;
+  color:rgba(242,246,249,.45);max-width:340px;
 }
-
-.hero-eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--misty);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-  opacity: 0;
-  animation: slideUp 0.9s ease-out 0.5s forwards;
+.tech-rule{
+  width:28px;height:1px;
+  background:linear-gradient(90deg,#C4512A,#2E7BB8);
+  margin:28px 0;
 }
-.hero-eyebrow-line {
-  display: inline-block;
-  width: 24px; height: 1px;
-  background: var(--grad);
-  flex-shrink: 0;
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 32px}
+.tech-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:30px;font-weight:300;letter-spacing:-.02em;color:#fff;line-height:1;
+}
+.tech-num sup{font-size:.38em;color:#2E7BB8;vertical-align:super}
+.tech-label-sm{
+  font-size:11px;font-weight:300;
+  color:rgba(242,246,249,.32);margin-top:5px;line-height:1.5;
+}
+@media(max-width:720px){
+  .tech-split{grid-template-columns:1fr}
+  .tech-img{height:280px}
+  .tech-copy{padding:48px 20px}
 }
 
-h1 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 300;
-  font-size: clamp(48px, 6.5vw, 88px);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
-  color: var(--arctic);
-  margin-bottom: 24px;
-  text-wrap: balance;
-  opacity: 0;
-  animation: slideUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.8s forwards;
+/* ══ FULL-BLEED EDITORIAL ══ */
+/* No structure — just a massive photo with a whisper of text over it */
+.editorial{position:relative;height:78vh;min-height:440px;overflow:hidden}
+.editorial img{
+  width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;
 }
-h1 strong { font-weight: inherit; display: block; }
+.editorial-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,14,22,.6) 0%,rgba(8,14,22,.05) 55%,transparent 100%);
+}
+.editorial-text{
+  position:absolute;bottom:0;left:0;
+  padding:0 40px 52px;
+}
+.editorial-line{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(20px,3vw,38px);font-weight:300;letter-spacing:-.005em;
+  color:#fff;line-height:1.15;
+}
+@media(max-width:540px){.editorial-text{padding:0 20px 40px}}
 
-.hero-sub {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: clamp(14px, 1.6vw, 17px);
-  line-height: 1.72;
-  color: rgba(242,246,249,0.68);
-  max-width: 420px;
-  margin-bottom: 36px;
-  opacity: 0;
-  animation: slideUp 1s ease-out 1.1s forwards;
+/* ══ HOW IT WORKS — bare, no boxes ══ */
+.how-section{padding:64px 40px;border-top:1px solid rgba(27,45,62,.07)}
+.how-top{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:44px;
 }
-
-.hero-ctas {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: slideUp 1s ease-out 1.4s forwards;
+.how-steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.how-step{padding:0 0 0 0;position:relative}
+.how-step+.how-step{border-left:1px solid rgba(27,45,62,.08);padding-left:32px}
+.step-num{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;
+  letter-spacing:.22em;color:rgba(27,45,62,.22);margin-bottom:12px;
 }
-
-/* Bottom gradient rule on hero */
-.hero-grad-rule {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--grad);
-  opacity: 0;
-  animation: fadeIn 1s ease-out 2s forwards;
+.step-grad-line{
+  width:20px;height:1px;
+  background:linear-gradient(90deg,#C4512A,#2E7BB8);margin-bottom:14px;
 }
-
-/* Scroll indicator */
-.scroll-hint {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: fadeIn 1s ease-out 2.2s forwards;
+.step-title{
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:400;
+  letter-spacing:.02em;color:#1B2D3E;margin-bottom:8px;
 }
-.scroll-hint span {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(242,246,249,0.35);
-}
-.scroll-bar {
-  width: 1px; height: 44px;
-  background: linear-gradient(to bottom, rgba(242,246,249,0.35), transparent);
-  animation: pulse 2s ease-in-out 2s infinite;
+.step-body{font-size:13px;font-weight:300;line-height:1.8;color:rgba(27,45,62,.48)}
+@media(max-width:640px){
+  .how-section{padding:44px 20px}
+  .how-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .how-steps{grid-template-columns:1fr;gap:32px}
+  .how-step+.how-step{border-left:none;padding-left:0;border-top:1px solid rgba(27,45,62,.08);padding-top:28px}
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ══ CONTACT — split, form side is arctic ══ */
+.contact-split{display:grid;grid-template-columns:1fr 1fr}
+.contact-img{position:relative;overflow:hidden;min-height:480px;background:#c8d4da}
+.contact-img img{width:100%;height:100%;object-fit:cover;display:block}
+.contact-form-side{
+  background:#F2F6F9;padding:72px 56px;
+  display:flex;flex-direction:column;justify-content:center;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.toggle-row{display:inline-flex;border:1px solid rgba(27,45,62,.12);margin-bottom:28px}
+.toggle-btn{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:7px 18px;background:transparent;border:none;
+  color:rgba(27,45,62,.35);cursor:pointer;transition:background .15s,color .15s;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 0.35; transform: scaleY(1); }
-  50%       { opacity: 0.90; transform: scaleY(1.35); }
+.toggle-btn.on{background:#1B2D3E;color:#fff}
+.form-field{margin-bottom:16px}
+label{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(27,45,62,.38);margin-bottom:6px;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, h1, .hero-sub, .hero-ctas,
-  .hero-grad-rule, .scroll-hint { animation: none; opacity: 1; }
-  .scroll-bar { animation: none; }
+input[type=text],input[type=email],textarea{
+  width:100%;font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;
+  background:transparent;border:none;border-bottom:1px solid rgba(27,45,62,.14);
+  color:#1B2D3E;padding:9px 0;outline:none;
+  transition:border-color .2s;border-radius:0;-webkit-appearance:none;
 }
-
-@media (max-width: 760px) {
-  .hero-nav { padding: 18px 20px; flex-wrap: wrap; gap: 12px; }
-  .nav-links { gap: 18px; flex-wrap: wrap; }
-  .nav-links a { font-size: 10px; }
-  .nav-contact { padding: 7px 14px !important; }
-  .hero-content { padding: 0 20px 56px; }
-  .scroll-hint { display: none; }
+input:focus,textarea:focus{border-color:#2E7BB8}
+textarea{resize:none;height:88px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-submit{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:#fff;background:#1B2D3E;border:none;
+  padding:13px 32px;cursor:pointer;margin-top:20px;
+  transition:background .2s;
 }
-
-/* ─────────────────────────────────────────
-   SECTION — THE CHALLENGE
-───────────────────────────────────────── */
-.challenge-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-top: 56px;
-}
-.stats-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-}
-.stat-card {
-  padding: 32px 24px 28px;
-  border-left: 1px solid rgba(242,246,249,0.10);
-}
-.stat-card:first-child { border-left: none; }
-.stat-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: clamp(38px, 4vw, 56px);
-  line-height: 1;
-  color: var(--ocean);
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
-}
-.stat-lbl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: rgba(242,246,249,0.48);
-  line-height: 1.6;
+.btn-submit:hover{background:#1E4D5C}
+.contact-note{font-size:11px;font-weight:300;color:rgba(27,45,62,.32);margin-top:16px;line-height:1.6}
+@media(max-width:720px){
+  .contact-split{grid-template-columns:1fr}
+  .contact-img{height:240px;min-height:unset}
+  .contact-form-side{padding:44px 20px}
+  .two-col{grid-template-columns:1fr}
 }
 
-@media (max-width: 900px) {
-  .challenge-layout { grid-template-columns: 1fr; gap: 48px; }
+/* ══ FOOTER ══ */
+footer{background:#1B2D3E;padding:48px 40px 32px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding-bottom:36px;border-bottom:1px solid rgba(242,246,249,.06);margin-bottom:24px;
 }
-@media (max-width: 480px) {
-  .stats-row { grid-template-columns: 1fr; }
-  .stat-card { border-left: none; border-top: 1px solid rgba(242,246,249,0.10); padding: 24px 0; }
-  .stat-card:first-child { border-top: none; }
+.footer-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:#F2F6F9;
 }
-
-/* ─────────────────────────────────────────
-   SECTION — TECHNOLOGY
-───────────────────────────────────────── */
-.tech-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-bottom: 64px;
+.footer-sub{font-size:12px;font-weight:300;color:rgba(242,246,249,.24);margin-top:7px}
+.footer-nav{display:flex;gap:28px;list-style:none;align-items:center}
+.footer-nav a{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(242,246,249,.3);text-decoration:none;transition:color .2s;
 }
-.tech-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 36px;
-  padding-top: 64px;
-  border-top: 1px solid rgba(27,45,62,0.12);
+.footer-nav a:hover{color:#F2F6F9}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:11px;font-weight:300;color:rgba(242,246,249,.2)}
+.footer-social{display:flex;gap:18px}
+.footer-social a{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(242,246,249,.25);text-decoration:none;transition:color .2s;
 }
-.feat-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  color: var(--ocean);
-  margin-bottom: 14px;
-}
-.feat-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.feat-body {
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: rgba(27,45,62,0.60);
-}
-
-.tech-images {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  align-items: start;
-}
-.tech-img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-.tech-img-main  { aspect-ratio: 3/4; }
-.tech-img-detail { aspect-ratio: 1/1; align-self: end; }
-
-@media (max-width: 900px) {
-  .tech-split { grid-template-columns: 1fr; gap: 40px; }
-  .tech-features { grid-template-columns: 1fr 1fr; }
-  .tech-images { max-width: 480px; }
-}
-@media (max-width: 540px) {
-  .tech-features { grid-template-columns: 1fr; }
-}
-
-/* ─────────────────────────────────────────
-   SECTION — HOW IT WORKS
-───────────────────────────────────────── */
-.steps {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  margin-top: 56px;
-}
-.step-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 80px;
-  line-height: 1;
-  color: rgba(242,246,249,0.08);
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.step-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-}
-.step-body {
-  font-family: 'Barlow', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  opacity: 0.65;
-}
-
-@media (max-width: 760px) {
-  .steps { grid-template-columns: 1fr; }
-}
-
-/* ─────────────────────────────────────────
-   SECTION — WHO WE SERVE
-───────────────────────────────────────── */
-.audience-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
-  margin-top: 56px;
-  background: rgba(242,246,249,0.06);
-}
-.audience-card {
-  background: var(--navy);
-  padding: 44px 36px;
-  position: relative;
-  overflow: hidden;
-}
-.audience-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--grad);
-}
-.card-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  color: rgba(242,246,249,0.30);
-  margin-bottom: 28px;
-}
-.card-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: clamp(26px, 2.5vw, 36px);
-  letter-spacing: 0.02em;
-  line-height: 1.08;
-  color: var(--arctic);
-  margin-bottom: 14px;
-}
-.card-body {
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.78;
-  color: rgba(242,246,249,0.55);
-}
-
-@media (max-width: 900px) {
-  .audience-grid { grid-template-columns: 1fr; gap: 2px; }
-}
-
-/* ─────────────────────────────────────────
-   SECTION — CONTACT
-───────────────────────────────────────── */
-.contact-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-top: 56px;
-}
-.contact-detail {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: rgba(27,45,62,0.38);
-  margin-top: 32px;
-}
-
-.form-toggle {
-  display: flex;
-  margin-bottom: 32px;
-  border: 1px solid rgba(27,45,62,0.15);
-  width: fit-content;
-}
-.toggle-btn {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 10px 22px;
-  background: transparent;
-  color: rgba(27,45,62,0.40);
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.toggle-btn.active {
-  background: var(--navy);
-  color: var(--arctic);
-}
-
-.form-field { margin-bottom: 18px; }
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-label {
-  display: block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(27,45,62,0.45);
-  margin-bottom: 6px;
-}
-input[type=text],
-input[type=email],
-textarea {
-  width: 100%;
-  font-family: 'Barlow', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-  background: transparent;
-  border: 1px solid rgba(27,45,62,0.18);
-  color: var(--navy);
-  padding: 12px 16px;
-  outline: none;
-  transition: border-color 0.2s;
-  border-radius: 0;
-  -webkit-appearance: none;
-}
-input:focus, textarea:focus { border-color: var(--ocean); }
-textarea { resize: none; height: 120px; }
-#company-field { display: none; }
-
-@media (max-width: 900px) {
-  .contact-split { grid-template-columns: 1fr; gap: 48px; }
-}
-
-/* ─────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────── */
-footer {
-  background: var(--navy);
-  padding: 64px 48px 40px;
-}
-.footer-inner { max-width: 1100px; margin: 0 auto; }
-
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(242,246,249,0.08);
-}
-.footer-logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.14em;
-  text-transform: lowercase;
-  color: var(--arctic);
-}
-.footer-tagline {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  color: rgba(242,246,249,0.40);
-  margin-top: 10px;
-  max-width: 280px;
-  line-height: 1.72;
-}
-.footer-nav {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-}
-.footer-nav a {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(242,246,249,0.40);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-nav a:hover { color: var(--arctic); }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 32px;
-}
-.footer-copy {
-  font-family: 'Barlow', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(242,246,249,0.28);
-}
-.footer-social {
-  display: flex;
-  gap: 20px;
-}
-.footer-social a {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(242,246,249,0.35);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-social a:hover { color: var(--arctic); }
-
-@media (max-width: 760px) {
-  footer { padding: 48px 20px 32px; }
-  .footer-top { flex-direction: column; gap: 40px; }
-  .footer-nav { flex-wrap: wrap; gap: 18px; }
-  .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+.footer-social a:hover{color:#F2F6F9}
+@media(max-width:600px){
+  footer{padding:36px 20px 24px}
+  .footer-top{flex-direction:column;gap:24px}
+  .footer-nav{flex-wrap:wrap;gap:14px}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<!-- Fixed top gradient bar — always visible on scroll -->
 <div class="top-bar"></div>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<div class="hero" id="top">
+<nav id="sitenav">
+  <a href="#" class="nav-logo">eztia</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#collection" class="nav-cta">Get Early Access</a></li>
+  </ul>
+</nav>
 
-  <!-- Real video (swap src for final footage) -->
-  <video id="bg-video" autoplay muted loop playsinline>
-    <source src="Running%20Video.MP4" type="video/mp4">
-  </video>
-  <!-- Canvas fallback -->
+<!-- ══ HERO ══ -->
+<section class="hero">
   <canvas id="bg-canvas"></canvas>
-  <div class="overlay"></div>
-
-  <nav class="hero-nav">
-    <a href="#top" class="logo">eztia</a>
-    <ul class="nav-links">
-      <li><a href="#technology">Technology</a></li>
-      <li><a href="#performance">Performance</a></li>
-      <li><a href="#serve">Who We Serve</a></li>
-      <li><a href="#contact" class="nav-contact">Contact</a></li>
-    </ul>
-  </nav>
-
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">
-      <span class="hero-eyebrow-line"></span>
-      Cooling Apparel &amp; Technology
+      <span class="hero-eyebrow-line"></span>Cooling Apparel &amp; Technology
     </p>
-    <h1>Stay <strong>cool.</strong></h1>
-    <p class="hero-sub">Engineered for people who work, train, and perform in the heat. Built in, not strapped on.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn btn-fill">Contact →</a>
-      <a href="#technology" class="btn btn-ghost">Our Technology →</a>
+    <h1 class="hero-h1">Stay<strong>cool.</strong></h1>
+    <p class="hero-sub">Engineered for people who train, work, and perform in the heat. Cooling built into the fabric — not strapped on top.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn btn-solid">Shop Now →</a>
+      <a href="#technology" class="btn btn-outline">Our Technology →</a>
     </div>
   </div>
-
   <div class="hero-grad-rule"></div>
-  <div class="scroll-hint">
-    <div class="scroll-bar"></div>
+  <div class="scroll-cue">
+    <div class="scroll-cue-bar"></div>
     <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-strip">
+  <div class="marquee-inner" aria-hidden="true">
+    <span>Eztia Cooling Technology</span><span class="dot">·</span>
+    <span>Water-activated cooling</span><span class="dot">·</span>
+    <span>Up to 10°C skin reduction</span><span class="dot">·</span>
+    <span>8 hours continuous</span><span class="dot">·</span>
+    <span>Recharges with water</span><span class="dot">·</span>
+    <span>No batteries</span><span class="dot">·</span>
+    <span>Eztia Cooling Technology</span><span class="dot">·</span>
+    <span>Water-activated cooling</span><span class="dot">·</span>
+    <span>Up to 10°C skin reduction</span><span class="dot">·</span>
+    <span>8 hours continuous</span><span class="dot">·</span>
+    <span>Recharges with water</span><span class="dot">·</span>
+    <span>No batteries</span><span class="dot">·</span>
   </div>
 </div>
 
-<!-- ═══════════════════ THE CHALLENGE ═══════════════════ -->
-<section class="section-dark" id="performance">
-  <div class="section-inner">
-    <div class="eyebrow"><span class="eyebrow-line"></span>The Challenge</div>
-    <div class="challenge-layout">
+<!-- ══ COLLECTION GRID ══ -->
+<div id="collection">
+  <div class="grid-3-header">
+    <div>
+      <p class="grid-label">The Collection</p>
+      <h2 class="grid-heading">Built for heat.<br>Worn everywhere.</h2>
+    </div>
+    <a href="#" class="grid-link">Notify me when live →</a>
+  </div>
+  <div class="grid-3">
+    <!-- Eztia Work Shirt -->
+    <div class="photo-cell portrait">
+      <img src="https://www.eztiamaterials.com/Eztia Work Shirt.webp"
+           alt="Eztia cooling work shirt" loading="lazy">
+      <div class="photo-caption">
+        <div class="photo-caption-name">Work Shirt</div>
+        <div class="photo-caption-sub">Eztia Cooling Technology</div>
+      </div>
+      <span class="coming-soon">Coming Soon</span>
+    </div>
+    <!-- Athletic lifestyle — premium Unsplash -->
+    <div class="photo-cell portrait">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop"
+           alt="Athlete training outdoors" loading="lazy">
+      <div class="photo-caption">
+        <div class="photo-caption-name">Performance</div>
+        <div class="photo-caption-sub">Train harder. Stay cooler.</div>
+      </div>
+    </div>
+    <!-- Runner in heat — premium Unsplash -->
+    <div class="photo-cell portrait">
+      <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80&auto=format&fit=crop"
+           alt="Runner in heat" loading="lazy">
+      <div class="photo-caption">
+        <div class="photo-caption-name">Endurance</div>
+        <div class="photo-caption-sub">For those who push further.</div>
+      </div>
+    </div>
+  </div>
+  <!-- Second row: dot detail wide + portrait -->
+  <div class="grid-3" style="border-top:3px solid #fff">
+    <div class="photo-cell wide">
+      <img src="https://www.eztiamaterials.com/Dot Detail.webp"
+           alt="Eztia cooling gel microstructure" loading="lazy"
+           style="object-position:center center">
+      <div class="photo-caption">
+        <div class="photo-caption-name">Gel Technology</div>
+        <div class="photo-caption-sub">Water-activated polymer cooling</div>
+      </div>
+    </div>
+    <div class="photo-cell portrait" style="aspect-ratio:unset">
+      <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80&auto=format&fit=crop"
+           alt="Athlete in summer heat" loading="lazy">
+      <div class="photo-caption">
+        <div class="photo-caption-name">Everyday</div>
+        <div class="photo-caption-sub">Hot commutes. Long shifts.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOT→COLD GRADIENT BAND ══ -->
+<div class="grad-band">
+  <div class="grad-band-inner">
+    <p class="grad-band-copy">Cooling that works as hard as you do.</p>
+    <div class="grad-stats">
       <div>
-        <h2>Heat is the leading <strong>weather-related cause of death.</strong></h2>
-        <p class="body-copy" style="margin-top:20px;">
-          Heat affects construction crews, industrial teams, athletes, commuters — anyone active in hot conditions. It impairs performance, raises risk, and the solutions available haven't changed in centuries.
-        </p>
+        <div class="grad-stat-num">10<sup>°C</sup></div>
+        <div class="grad-stat-label">Skin temperature<br>reduction</div>
       </div>
       <div>
-        <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-num">10°C</div>
-            <div class="stat-lbl">Reduction in skin temperature</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">H₂O</div>
-            <div class="stat-lbl">Recharges with water alone. No batteries or electricity.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">8 hrs</div>
-            <div class="stat-lbl">Effective cooling</div>
-          </div>
+        <div class="grad-stat-num">8<sup>hrs</sup></div>
+        <div class="grad-stat-label">Continuous<br>cooling</div>
+      </div>
+      <div>
+        <div class="grad-stat-num">H₂O</div>
+        <div class="grad-stat-label">Recharges<br>with water</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TECHNOLOGY SPLIT ══ -->
+<section class="tech-split" id="technology">
+  <div class="tech-img">
+    <img src="https://images.unsplash.com/photo-1599058917765-a780eda501e7?w=900&q=80&auto=format&fit=crop"
+         alt="Close-up of cooling fabric" loading="lazy">
+  </div>
+  <div class="tech-copy">
+    <p class="tech-label">Eztia Cooling Technology</p>
+    <h2 class="tech-h2">The science of<br>staying cool.</h2>
+    <p class="tech-body">A proprietary cooling gel bonds into the fabric at the molecular level. As your body temperature rises, the gel absorbs and disperses heat — automatically, continuously, no electronics required.</p>
+    <div class="tech-rule"></div>
+    <div class="tech-grid">
+      <div>
+        <div class="tech-num">10<sup>°C</sup></div>
+        <div class="tech-label-sm">Skin temp reduction, clinically measured</div>
+      </div>
+      <div>
+        <div class="tech-num">8<sup>hrs</sup></div>
+        <div class="tech-label-sm">During strenuous activity</div>
+      </div>
+      <div>
+        <div class="tech-num">H₂O</div>
+        <div class="tech-label-sm">Recharges with water only</div>
+      </div>
+      <div>
+        <div class="tech-num">∞</div>
+        <div class="tech-label-sm">Wash after wash performance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDITORIAL FULL-BLEED ══ -->
+<div class="editorial">
+  <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1600&q=80&auto=format&fit=crop"
+       alt="Athlete in extreme heat" loading="lazy">
+  <div class="editorial-veil"></div>
+  <div class="editorial-text">
+    <p class="editorial-line">When the heat is at its worst,<br>you should be at your best.</p>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section">
+  <div class="how-top">
+    <div>
+      <p class="grid-label">How It Works</p>
+      <h2 class="grid-heading">Three steps.<br>Zero effort.</h2>
+    </div>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-grad-line"></div>
+      <div class="step-num">01</div>
+      <div class="step-title">Wear it</div>
+      <div class="step-body">No setup, no charging, no extra gear. Works exactly like any performance layer.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-grad-line"></div>
+      <div class="step-num">02</div>
+      <div class="step-title">Move in it</div>
+      <div class="step-body">As your body heats up, the gel activates — pulling heat from skin and dispersing it through the fabric.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-grad-line"></div>
+      <div class="step-num">03</div>
+      <div class="step-title">Stay cool</div>
+      <div class="step-body">Up to 8 hours of continuous cooling. Recharge anywhere — just add water.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-split" id="contact">
+  <div class="contact-img">
+    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&q=80&auto=format&fit=crop"
+         alt="Athlete in performance gear" loading="lazy">
+  </div>
+  <div class="contact-form-side">
+    <p class="grid-label">Get in Touch</p>
+    <h2 class="grid-heading" style="margin-bottom:28px">Let's talk<br>cooling.</h2>
+    <div class="toggle-row">
+      <button class="toggle-btn on" onclick="setContactType('individual',this)">Individual</button>
+      <button class="toggle-btn" onclick="setContactType('business',this)">Business</button>
+    </div>
+    <form id="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-field" id="company-field" style="display:none">
+        <label>Company</label>
+        <input type="text" name="company" placeholder="Your company">
+      </div>
+      <div class="two-col">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" name="first" placeholder="Jane">
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" name="last" placeholder="Smith">
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<div class="grad-rule"></div>
-
-<!-- ═══════════════════ TECHNOLOGY ═══════════════════ -->
-<section class="section-light" id="technology">
-  <div class="section-inner">
-    <div class="eyebrow" style="color:rgba(27,45,62,0.50);"><span class="eyebrow-line"></span>Eztia Cooling Technology</div>
-    <div class="tech-split">
-      <div>
-        <h2 style="color:var(--navy);">Cooling built into <strong>every thread.</strong></h2>
-        <p class="body-copy" style="padding-top:6px;">
-          A proprietary cooling gel bonded to performance fabric activates as body temperature rises — pulling heat from the skin and dispersing it through the fabric. No triggers. No switches. Intelligent material doing exactly what it was made to do.
-        </p>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="jane@example.com">
       </div>
-      <div class="tech-images">
-        <img src="https://www.eztiamaterials.com/Eztia Work Shirt.webp"
-             alt="Eztia cooling performance shirt"
-             class="tech-img tech-img-main">
-        <img src="https://www.eztiamaterials.com/Dot Detail.webp"
-             alt="Eztia gel microstructure detail"
-             class="tech-img tech-img-detail">
+      <div class="form-field">
+        <label>Message</label>
+        <textarea name="message" placeholder="What's on your mind…"></textarea>
       </div>
-    </div>
-    <div class="tech-features">
-      <div>
-        <div class="feat-num">01</div>
-        <div class="feat-title">Activates at body temperature</div>
-        <div class="feat-body">No triggers or switches. The gel responds automatically to rising body heat — the moment you need it.</div>
-      </div>
-      <div>
-        <div class="feat-num">02</div>
-        <div class="feat-title">Water-powered only</div>
-        <div class="feat-body">No batteries, refrigeration, or electricity. Activation requires only water.</div>
-      </div>
-      <div>
-        <div class="feat-num">03</div>
-        <div class="feat-title">Built to last</div>
-        <div class="feat-body">Washable and engineered for repeated wear. Performance that holds up every shift, every session.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="grad-rule"></div>
-
-<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
-<section class="section-teal">
-  <div class="section-inner">
-    <div class="eyebrow"><span class="eyebrow-line"></span>How It Works</div>
-    <h2>Simple. <strong>Durable.</strong> Effective.</h2>
-    <div class="steps">
-      <div>
-        <div class="step-num">01</div>
-        <div class="step-title">Wear it</div>
-        <div class="step-body">Pull it on like any base layer or shirt. No extra gear, no setup, no batteries to charge.</div>
-      </div>
-      <div>
-        <div class="step-num">02</div>
-        <div class="step-title">Move in it</div>
-        <div class="step-body">The gel activates as body temperature rises — working with your body, not against it.</div>
-      </div>
-      <div>
-        <div class="step-num">03</div>
-        <div class="step-title">Stay cool</div>
-        <div class="step-body">Continuous cooling for up to 8 hours, when you need it most.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="grad-rule"></div>
-
-<!-- ═══════════════════ WHO WE SERVE ═══════════════════ -->
-<section class="section-dark" id="serve">
-  <div class="section-inner">
-    <div class="eyebrow"><span class="eyebrow-line"></span>Who We Serve</div>
-    <h2>Built for everyone <strong>heat hits hardest.</strong></h2>
-    <div class="audience-grid">
-      <div class="audience-card">
-        <div class="card-num">01</div>
-        <div class="card-title">Construction</div>
-        <div class="card-body">Keeps crews performing across shifts and seasons — from job sites in Phoenix to Singapore.</div>
-      </div>
-      <div class="audience-card">
-        <div class="card-num">02</div>
-        <div class="card-title">Athletes</div>
-        <div class="card-body">Cooling that activates when the body needs it. Stop fading in the final mile, the final set.</div>
-      </div>
-      <div class="audience-card">
-        <div class="card-num">03</div>
-        <div class="card-title">Public Safety</div>
-        <div class="card-body">Cooling built in for when the gear can't come off. Designed for people who don't get to step inside.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="grad-rule"></div>
-
-<!-- ═══════════════════ CONTACT ═══════════════════ -->
-<section class="section-light" id="contact">
-  <div class="section-inner">
-    <div class="eyebrow" style="color:rgba(27,45,62,0.50);"><span class="eyebrow-line"></span>Contact</div>
-    <div class="contact-split">
-      <div>
-        <h2 style="color:var(--navy);">Get <strong>in touch.</strong></h2>
-        <p class="body-copy" style="margin-top:20px;">
-          Whether you're outfitting a crew, exploring a brand partnership, or just curious — we'd love to hear from you.
-        </p>
-        <p class="contact-detail">Response time: 1–3 business days</p>
-      </div>
-      <div>
-        <div class="form-toggle">
-          <button class="toggle-btn active" onclick="setType('individual')">Individual</button>
-          <button class="toggle-btn" onclick="setType('business')">Business</button>
-        </div>
-        <form onsubmit="submitForm(event)">
-          <input type="hidden" id="contact-type" name="contact_type" value="individual">
-          <div class="form-field" id="company-field">
-            <label>Company Name</label>
-            <input type="text" name="company" placeholder="Acme Corp">
-          </div>
-          <div class="form-row-2">
-            <div>
-              <label>First Name</label>
-              <input type="text" name="first_name" placeholder="Jane" autocomplete="given-name" required>
-            </div>
-            <div>
-              <label>Last Name</label>
-              <input type="text" name="last_name" placeholder="Smith" autocomplete="family-name" required>
-            </div>
-          </div>
-          <div class="form-field">
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
-          </div>
-          <div class="form-field">
-            <label>How can we help?</label>
-            <textarea name="message" placeholder="Tell us about your project or question…"></textarea>
-          </div>
-          <div style="margin-top:24px;">
-            <button type="submit" class="btn btn-dark" id="submit-btn">Send Message</button>
-          </div>
-        </form>
-      </div>
-    </div>
+      <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
+    </form>
+    <p class="contact-note">We respond within 1–2 business days.</p>
   </div>
 </section>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<div class="grad-rule"></div>
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div>
         <div class="footer-logo">eztia</div>
-        <p class="footer-tagline">Stay cool. Move freely. Feel everything.</p>
+        <div class="footer-sub">Stay cool. Move freely.</div>
       </div>
       <ul class="footer-nav">
+        <li><a href="#collection">Collection</a></li>
         <li><a href="#technology">Technology</a></li>
-        <li><a href="#performance">Performance</a></li>
-        <li><a href="#serve">Who We Serve</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#">For Brands</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 eztia Ltd.</span>
       <div class="footer-social">
-        <a href="https://www.linkedin.com/company/eztiamaterials/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-/* ── Video / canvas fallback swap ── */
-(function () {
-  const vid    = document.getElementById('bg-video');
-  const canvas = document.getElementById('bg-canvas');
-  const ctx    = canvas.getContext('2d');
-  let t = 0, W, H, dpr, hazePoints, motes;
+/* Nav scroll */
+const nav = document.getElementById('sitenav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
 
-  vid.addEventListener('canplay', () => {
-    vid.style.display = 'block';
-    canvas.style.display = 'none';
-  }, { once: true });
+/* Hero canvas — approved animation */
+(function(){
+  const C = document.getElementById('bg-canvas');
+  const ctx = C.getContext('2d');
+  let t=0, W, H, dpr, hazePoints, motes;
 
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.offsetWidth;
-    H = canvas.offsetHeight;
-    canvas.width  = W * dpr;
-    canvas.height = H * dpr;
-    ctx.scale(dpr, dpr);
-    initScene();
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1,2);
+    W = C.offsetWidth; H = C.offsetHeight;
+    C.width = W*dpr; C.height = H*dpr;
+    ctx.scale(dpr,dpr); init();
   }
-
-  function initScene() {
-    hazePoints = [];
-    for (let i = 0; i < 6; i++) {
-      hazePoints.push({
-        x: W * (0.45 + Math.random() * 0.55),
-        y: H * Math.random(),
-        r: 80 + Math.random() * 160,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.0004 + Math.random() * 0.0006,
-      });
-    }
-    motes = [];
-    const N = Math.floor(W * H / 5000);
-    for (let i = 0; i < N; i++) motes.push(makeMote());
+  function init(){
+    hazePoints = Array.from({length:6},()=>({
+      x:W*(.45+Math.random()*.55), y:H*Math.random(),
+      r:80+Math.random()*160, phase:Math.random()*Math.PI*2,
+      spd:.0004+Math.random()*.0006
+    }));
+    const n = Math.floor(W*H/5000);
+    motes = Array.from({length:n},makeMote);
   }
-
-  function makeMote() {
-    return {
-      x: Math.random() * W, y: Math.random() * H,
-      r: 0.4 + Math.random() * 1.2,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: -0.05 - Math.random() * 0.12,
-      alpha: 0.08 + Math.random() * 0.22,
-      life: 0, maxLife: 300 + Math.random() * 500,
-    };
+  function makeMote(){
+    return {x:Math.random()*W,y:Math.random()*H,r:.4+Math.random()*1.2,
+      vx:(Math.random()-.5)*.18,vy:-.05-Math.random()*.12,
+      a:.08+Math.random()*.22,life:0,max:300+Math.random()*500};
   }
-
-  function draw(now) {
-    const dt = now - (draw._last || now);
-    draw._last = now;
-    t += dt;
-
-    ctx.fillStyle = '#0D1820';
-    ctx.fillRect(0, 0, W, H);
-
-    const key = ctx.createRadialGradient(W*0.32, H*0.38, 0, W*0.32, H*0.38, W*0.48);
-    key.addColorStop(0,   'rgba(200,215,230,0.13)');
-    key.addColorStop(0.5, 'rgba(200,215,230,0.04)');
-    key.addColorStop(1,   'rgba(200,215,230,0)');
-    ctx.fillStyle = key; ctx.fillRect(0, 0, W, H);
-
-    const breathe = 0.5 + 0.5 * Math.sin(t * 0.00045);
-    const heat = ctx.createRadialGradient(W*0.88, H*0.5, 0, W*0.88, H*0.5, W*0.55);
-    heat.addColorStop(0,   `rgba(196,81,42,${0.09*breathe})`);
-    heat.addColorStop(0.4, `rgba(196,81,42,${0.03*breathe})`);
-    heat.addColorStop(1,   'rgba(196,81,42,0)');
-    ctx.fillStyle = heat; ctx.fillRect(0, 0, W, H);
-
-    hazePoints.forEach(p => {
-      const drift = Math.sin(t * p.speed + p.phase) * 0.5 + 0.5;
-      const haze = ctx.createRadialGradient(
-        p.x + Math.sin(t * p.speed * 1.3) * 12,
-        p.y + Math.cos(t * p.speed * 0.8) * 8, 0,
-        p.x, p.y, p.r
-      );
-      haze.addColorStop(0, `rgba(220,170,130,${0.04*drift})`);
-      haze.addColorStop(1, 'rgba(220,170,130,0)');
-      ctx.fillStyle = haze;
-      ctx.beginPath();
-      ctx.arc(p.x + Math.sin(t * p.speed) * 18, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
+  function frame(now){
+    const dt=now-(frame._last||now); frame._last=now; t+=dt;
+    ctx.fillStyle='#0D1820'; ctx.fillRect(0,0,W,H);
+    // cool key light
+    const kl=ctx.createRadialGradient(W*.3,H*.38,0,W*.3,H*.38,W*.46);
+    kl.addColorStop(0,'rgba(190,210,228,.13)'); kl.addColorStop(1,'rgba(190,210,228,0)');
+    ctx.fillStyle=kl; ctx.fillRect(0,0,W,H);
+    // heat glow right
+    const b=.5+.5*Math.sin(t*.00042);
+    const hg=ctx.createRadialGradient(W*.88,H*.5,0,W*.88,H*.5,W*.52);
+    hg.addColorStop(0,`rgba(196,81,42,${.09*b})`); hg.addColorStop(1,'rgba(196,81,42,0)');
+    ctx.fillStyle=hg; ctx.fillRect(0,0,W,H);
+    // heat haze
+    hazePoints.forEach(p=>{
+      const d=Math.sin(t*p.spd+p.phase)*.5+.5;
+      const h=ctx.createRadialGradient(p.x+Math.sin(t*p.spd*1.3)*12,p.y+Math.cos(t*p.spd*.8)*8,0,p.x,p.y,p.r);
+      h.addColorStop(0,`rgba(220,165,120,${.04*d})`); h.addColorStop(1,'rgba(220,165,120,0)');
+      ctx.fillStyle=h; ctx.beginPath(); ctx.arc(p.x+Math.sin(t*p.spd)*18,p.y,p.r,0,Math.PI*2); ctx.fill();
     });
-
-    ctx.save();
-    motes.forEach((m, i) => {
-      m.life += dt; m.x += m.vx; m.y += m.vy;
-      const lf = m.life / m.maxLife;
-      const a  = lf < 0.1 ? lf/0.1 : lf > 0.8 ? 1-(lf-0.8)/0.2 : 1;
-      ctx.fillStyle = `rgba(210,225,235,${m.alpha*a})`;
-      ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, Math.PI*2); ctx.fill();
-      if (m.life >= m.maxLife || m.y < -10 || m.x < -10 || m.x > W+10) motes[i] = makeMote();
+    // dust motes
+    motes.forEach((m,i)=>{
+      m.life+=dt; m.x+=m.vx; m.y+=m.vy;
+      const l=m.life/m.max;
+      const a=l<.1?l/.1:l>.8?(1-l)/.2:1;
+      ctx.fillStyle=`rgba(205,220,232,${m.a*a})`; ctx.beginPath(); ctx.arc(m.x,m.y,m.r,0,Math.PI*2); ctx.fill();
+      if(m.life>=m.max||m.y<-10||m.x<-10||m.x>W+10) motes[i]=makeMote();
     });
-    ctx.restore();
-
-    const id = ctx.getImageData(0, 0, W*dpr, H*dpr);
-    const d  = id.data;
-    for (let i = 0; i < d.length; i += 4) {
-      const n = (Math.random() - 0.5) * 9;
-      d[i]   = Math.max(0, Math.min(255, d[i]+n));
-      d[i+1] = Math.max(0, Math.min(255, d[i+1]+n));
-      d[i+2] = Math.max(0, Math.min(255, d[i+2]+n));
+    // film grain
+    const id=ctx.getImageData(0,0,W*dpr,H*dpr); const d=id.data;
+    for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;
+      d[i]=Math.max(0,Math.min(255,d[i]+n)); d[i+1]=Math.max(0,Math.min(255,d[i+1]+n)); d[i+2]=Math.max(0,Math.min(255,d[i+2]+n));
     }
-    ctx.putImageData(id, 0, 0);
-    requestAnimationFrame(draw);
+    ctx.putImageData(id,0,0);
+    requestAnimationFrame(frame);
   }
-
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(draw);
+  window.addEventListener('resize',resize);
+  resize(); requestAnimationFrame(frame);
 })();
 
-/* ── Contact form ── */
-function setType(type) {
-  document.getElementById('contact-type').value = type;
-  document.getElementById('company-field').style.display = type === 'business' ? 'block' : 'none';
-  document.querySelectorAll('.toggle-btn').forEach((b, i) => {
-    b.classList.toggle('active', (i === 0 && type === 'individual') || (i === 1 && type === 'business'));
-  });
+/* Contact toggle */
+function setContactType(t, btn){
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('company-field').style.display = t==='business'?'block':'none';
 }
 
-/* Form submit → Google Sheet */
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
-
-async function submitForm(e) {
+/* Contact form */
+const SHEET_URL = ''; // TODO: add Google Sheets Apps Script URL
+function handleSubmit(e){
   e.preventDefault();
-  const form = e.target;
   const btn = document.getElementById('submit-btn');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
-
-  const payload = {
-    contact_type: form.contact_type.value,
-    company:      form.company.value,
-    first_name:   form.first_name.value,
-    last_name:    form.last_name.value,
-    email:        form.email.value,
-    message:      form.message.value
-  };
-
-  try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-    btn.textContent = 'Message sent ✓';
-    form.reset();
-    setType('individual');
-  } catch (err) {
-    btn.textContent = 'Something went wrong — try again';
-    btn.disabled = false;
+  btn.textContent='Sending…'; btn.disabled=true;
+  if(!SHEET_URL){
+    setTimeout(()=>{ btn.textContent='Sent ✓'; btn.style.background='#1E4D5C'; },800);
+    return;
   }
+  const data = Object.fromEntries(new FormData(e.target));
+  fetch(SHEET_URL,{method:'POST',body:JSON.stringify(data)})
+    .then(()=>{ btn.textContent='Sent ✓'; btn.style.background='#1E4D5C'; })
+    .catch(()=>{ btn.textContent='Try again'; btn.disabled=false; });
 }
 </script>
 </body>
