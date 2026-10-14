@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>eztia — Stay Cool.</title>
+<title>eztia — Stay cool.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;1,300&display=swap">
 <style>
@@ -64,6 +64,7 @@ nav.scrolled .nav-cta{background:#1B2D3E;color:#F2F6F9 !important}
 /* ══ HERO ══ */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
 #bg-canvas{position:absolute;inset:0;width:100%;height:100%}
+#bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:none}
 .hero-overlay{
   position:absolute;inset:0;
   background:
@@ -89,12 +90,12 @@ nav.scrolled .nav-cta{background:#1B2D3E;color:#F2F6F9 !important}
 }
 .hero-h1{
   font-family:'Barlow Condensed',sans-serif;font-weight:300;
-  font-size:clamp(58px,8.2vw,112px);
+  font-size:clamp(46px,6.3vw,86px);
   line-height:.88;letter-spacing:-.01em;color:#F2F6F9;
   margin-bottom:22px;
   opacity:0;animation:fadeUp 1.1s cubic-bezier(.16,1,.3,1) .7s forwards;
 }
-.hero-h1 strong{font-weight:800;display:block}
+.hero-h1 strong{font-weight:inherit;display:block}
 .hero-sub{
   font-size:clamp(13px,1.4vw,16px);font-weight:300;line-height:1.75;
   color:rgba(242,246,249,.6);max-width:380px;margin-bottom:32px;
@@ -444,16 +445,19 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
 
 <!-- ══ HERO ══ -->
 <section class="hero">
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="Running%20Video.MP4" type="video/mp4">
+  </video>
   <canvas id="bg-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">
       <span class="hero-eyebrow-line"></span>Cooling Apparel &amp; Technology
     </p>
-    <h1 class="hero-h1">Stay<strong>cool.</strong></h1>
+    <h1 class="hero-h1">Stay <strong>cool.</strong></h1>
     <p class="hero-sub">Engineered for people who train, work, and perform in the heat. Cooling built into the fabric — not strapped on top.</p>
     <div class="hero-actions">
-      <a href="#collection" class="btn btn-solid">Shop Now →</a>
+      <a href="#contact" class="btn btn-solid">Contact →</a>
       <a href="#technology" class="btn btn-outline">Our Technology →</a>
     </div>
   </div>
@@ -582,7 +586,7 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
       </div>
       <div>
         <div class="tech-num">8<sup>hrs</sup></div>
-        <div class="tech-label-sm">During strenuous activity</div>
+        <div class="tech-label-sm">Effective cooling</div>
       </div>
       <div>
         <div class="tech-num">H₂O</div>
@@ -650,6 +654,7 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
       <button class="toggle-btn" onclick="setContactType('business',this)">Business</button>
     </div>
     <form id="contact-form" onsubmit="handleSubmit(event)">
+      <input type="hidden" id="contact-type" name="contact_type" value="individual">
       <div class="form-field" id="company-field" style="display:none">
         <label>Company</label>
         <input type="text" name="company" placeholder="Your company">
@@ -657,16 +662,16 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
       <div class="two-col">
         <div class="form-field">
           <label>First name</label>
-          <input type="text" name="first" placeholder="Jane">
+          <input type="text" name="first_name" placeholder="Jane" autocomplete="given-name" required>
         </div>
         <div class="form-field">
           <label>Last name</label>
-          <input type="text" name="last" placeholder="Smith">
+          <input type="text" name="last_name" placeholder="Smith" autocomplete="family-name" required>
         </div>
       </div>
       <div class="form-field">
         <label>Email</label>
-        <input type="email" name="email" placeholder="jane@example.com">
+        <input type="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
       </div>
       <div class="form-field">
         <label>Message</label>
@@ -696,8 +701,7 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 eztia Ltd.</span>
       <div class="footer-social">
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/company/eztiamaterials/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -714,6 +718,11 @@ window.addEventListener('scroll', () => {
 (function(){
   const C = document.getElementById('bg-canvas');
   const ctx = C.getContext('2d');
+  const vid = document.getElementById('bg-video');
+  vid.addEventListener('canplay', () => {
+    vid.style.display = 'block';
+    C.style.display = 'none';
+  }, { once: true });
   let t=0, W, H, dpr, hazePoints, motes;
 
   function resize(){
@@ -779,23 +788,36 @@ window.addEventListener('scroll', () => {
 function setContactType(t, btn){
   document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
+  document.getElementById('contact-type').value = t;
   document.getElementById('company-field').style.display = t==='business'?'block':'none';
 }
 
 /* Contact form */
-const SHEET_URL = ''; // TODO: add Google Sheets Apps Script URL
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
 function handleSubmit(e){
   e.preventDefault();
+  const form = e.target;
   const btn = document.getElementById('submit-btn');
   btn.textContent='Sending…'; btn.disabled=true;
-  if(!SHEET_URL){
-    setTimeout(()=>{ btn.textContent='Sent ✓'; btn.style.background='#1E4D5C'; },800);
-    return;
-  }
-  const data = Object.fromEntries(new FormData(e.target));
-  fetch(SHEET_URL,{method:'POST',body:JSON.stringify(data)})
-    .then(()=>{ btn.textContent='Sent ✓'; btn.style.background='#1E4D5C'; })
-    .catch(()=>{ btn.textContent='Try again'; btn.disabled=false; });
+  const payload = {
+    contact_type: form.contact_type.value,
+    company:      form.company.value,
+    first_name:   form.first_name.value,
+    last_name:    form.last_name.value,
+    email:        form.email.value,
+    message:      form.message.value
+  };
+  fetch(SHEET_URL,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify(payload)
+  })
+    .then(()=>{
+      btn.textContent='Message sent ✓'; btn.style.background='#1E4D5C';
+      form.reset();
+      setContactType('individual', document.querySelector('.toggle-btn'));
+    })
+    .catch(()=>{ btn.textContent='Something went wrong — try again'; btn.disabled=false; });
 }
 </script>
 </body>
