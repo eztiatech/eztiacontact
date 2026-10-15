@@ -446,7 +446,7 @@ footer{background:#1B2D3E;padding:48px 40px 32px}
 <!-- ══ HERO ══ -->
 <section class="hero">
   <video id="bg-video" autoplay muted loop playsinline>
-    <source src="https://assets.mixkit.co/videos/609/609-720.mp4" type="video/mp4">
+    <source src="https://videos.pexels.com/video-files/8520623/8520623-hd_2048_840_25fps.mp4" type="video/mp4">
   </video>
   <canvas id="bg-canvas"></canvas>
   <div class="hero-overlay"></div>
@@ -723,6 +723,10 @@ window.addEventListener('scroll', () => {
     vid.style.display = 'block';
     C.style.display = 'none';
   }, { once: true });
+  // Loop only the dark opening of the clip (it turns bright daylight after ~9s)
+  vid.addEventListener('timeupdate', () => {
+    if (vid.currentTime > 8.5) vid.currentTime = 0;
+  });
   let t=0, W, H, dpr, hazePoints, motes;
 
   function resize(){
