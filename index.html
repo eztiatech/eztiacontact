@@ -752,9 +752,6 @@ window.addEventListener('scroll', () => {
     vid.style.display = 'block';
     C.style.display = 'none';
   }, { once: true });
-  vid.addEventListener('timeupdate', () => {
-    if (vid.currentTime > 8.5) vid.currentTime = 0;
-  });
   let t=0, W, H, dpr, hazePoints, motes;
 
   function resize(){
