@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Barlow:wght@400&display=swap">
 <style>
+/* wordmark sizing */
+.nav-logo img{height:22px;width:auto;display:block}
+</style>
+<style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -457,7 +461,9 @@ footer{background:var(--navy);padding:48px 40px 32px}
 <div class="top-bar"></div>
 
 <nav id="sitenav">
-  <a href="#" class="nav-logo">eztia</a>
+  <a href="#" class="nav-logo" id="nav-logo-link">
+    <img src="wordmark/light.svg" alt="Eztia" id="nav-wordmark">
+  </a>
   <ul class="nav-links">
     <li><a href="#construction">Construction</a></li>
     <li><a href="#technology">Technology</a></li>
@@ -469,7 +475,7 @@ footer{background:var(--navy);padding:48px 40px 32px}
 <!-- ══ HERO ══ -->
 <section class="hero">
   <video id="bg-video" autoplay muted loop playsinline>
-    <source src="hero-runner.mp4" type="video/mp4">
+    <source src="hero-gel.mp4" type="video/mp4">
   </video>
   <canvas id="bg-canvas"></canvas>
   <div class="hero-overlay"></div>
@@ -528,38 +534,39 @@ footer{background:var(--navy);padding:48px 40px 32px}
       </div>
     </div>
     <div class="photo-cell portrait">
-      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop"
-           alt="Worker in summer heat" loading="lazy">
+      <img src="site-img-2.jpg"
+           alt="Construction worker adjusting cooling arm sleeve on site" loading="lazy">
       <div class="photo-caption">
-        <div class="photo-caption-name">Long shifts</div>
-        <div class="photo-caption-sub">Heat management, hour after hour.</div>
+        <div class="photo-caption-name">Built in.</div>
+        <div class="photo-caption-sub">Cooling that goes on with the gear.</div>
       </div>
     </div>
     <div class="photo-cell portrait">
-      <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80&auto=format&fit=crop"
-           alt="Outdoor work in heat" loading="lazy">
+      <img src="site-img-4.jpg"
+           alt="Ironworker on job site" loading="lazy">
       <div class="photo-caption">
-        <div class="photo-caption-name">All conditions</div>
-        <div class="photo-caption-sub">Direct sun. High humidity. Any climate.</div>
+        <div class="photo-caption-name">Hour after hour.</div>
+        <div class="photo-caption-sub">Engineered for the full shift.</div>
       </div>
     </div>
   </div>
   <div class="grid-3" style="border-top:3px solid #fff">
     <div class="photo-cell wide">
-      <img src="https://www.eztiamaterials.com/Dot Detail.webp"
-           alt="Eztia cooling gel microstructure" loading="lazy"
-           style="object-position:center center">
+      <img src="site-img-3.jpg"
+           alt="Construction crew taking a break on site" loading="lazy"
+           style="object-position:center 40%">
       <div class="photo-caption">
-        <div class="photo-caption-name">Gel Technology</div>
-        <div class="photo-caption-sub">Water-activated polymer cooling</div>
+        <div class="photo-caption-name">The whole crew.</div>
+        <div class="photo-caption-sub">When it's hot, performance is a team problem.</div>
       </div>
     </div>
     <div class="photo-cell portrait" style="aspect-ratio:unset">
-      <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80&auto=format&fit=crop"
-           alt="Worker on site" loading="lazy">
+      <img src="site-img-5.png"
+           alt="Eztia cooling technology close-up on work gear" loading="lazy"
+           style="object-position:center 30%">
       <div class="photo-caption">
-        <div class="photo-caption-name">Everyday use</div>
-        <div class="photo-caption-sub">Heat stress, reduced.</div>
+        <div class="photo-caption-name">The technology.</div>
+        <div class="photo-caption-sub">Water-activated. Worn under anything.</div>
       </div>
     </div>
   </div>
@@ -620,8 +627,9 @@ footer{background:var(--navy);padding:48px 40px 32px}
 
 <!-- ══ EDITORIAL FULL-BLEED ══ -->
 <div class="editorial">
-  <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1600&q=80&auto=format&fit=crop"
-       alt="Worker in extreme heat" loading="lazy">
+  <img src="site-img-1.jpg"
+       alt="Ironworker tying rebar at golden hour" loading="lazy"
+       style="object-position:center 30%">
   <div class="editorial-veil"></div>
   <div class="editorial-text">
     <p class="editorial-line">When the heat is at its worst,<br>your crew should be at their best.</p>
@@ -661,8 +669,9 @@ footer{background:var(--navy);padding:48px 40px 32px}
 <!-- ══ CONTACT ══ -->
 <section class="contact-split" id="contact">
   <div class="contact-img">
-    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&q=80&auto=format&fit=crop"
-         alt="Construction worker in heat" loading="lazy">
+    <img src="site-img-2.jpg"
+         alt="Construction professional on job site" loading="lazy"
+         style="object-position:center 20%">
   </div>
   <div class="contact-form-side">
     <p class="section-label">Get in Touch</p>
@@ -725,10 +734,13 @@ footer{background:var(--navy);padding:48px 40px 32px}
 </footer>
 
 <script>
-/* Nav scroll */
+/* Nav scroll + wordmark swap */
 const nav = document.getElementById('sitenav');
+const wordmark = document.getElementById('nav-wordmark');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  if (wordmark) wordmark.src = scrolled ? 'wordmark/dark.svg' : 'wordmark/light.svg';
 }, {passive:true});
 
 /* Hero canvas — approved animation */
