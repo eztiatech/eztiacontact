@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Barlow:wght@400&display=swap">
 <style>
-/* wordmark sizing */
-.nav-logo img{height:22px;width:auto;display:block}
+/* wordmark sizing — brand minimum 80px wide; clear space = height of the "e" (~20px at this size) */
+.nav-logo img{width:80px;height:auto;display:block}
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -43,7 +43,7 @@ nav.scrolled{
   background:rgba(255,255,255,.96);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(27,45,62,.07);
-  padding:14px 40px;
+  padding:20px 40px;
 }
 .nav-logo{
   font-family:'Barlow Condensed',sans-serif;font-weight:500;
@@ -70,8 +70,8 @@ nav.scrolled .nav-links a:hover{color:var(--navy)}
 .nav-cta:hover{opacity:.85}
 nav.scrolled .nav-cta{background:var(--navy);color:var(--arctic) !important}
 @media(max-width:600px){
-  nav{padding:16px 20px}
-  nav.scrolled{padding:12px 20px}
+  nav{padding:20px}
+  nav.scrolled{padding:20px}
   .nav-links li:not(:last-child){display:none}
 }
 
