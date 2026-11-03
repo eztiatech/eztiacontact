@@ -329,7 +329,10 @@ nav.scrolled .nav-cta{background:var(--navy);color:var(--arctic) !important}
   font-size:clamp(20px,3vw,38px);font-weight:400;letter-spacing:0;
   color:#fff;line-height:1.15;
 }
-@media(max-width:540px){.editorial-text{padding:0 20px 40px}}
+@media(max-width:540px){
+  .editorial{height:auto;min-height:0;aspect-ratio:4/3}
+  .editorial-text{padding:0 20px 40px}
+}
 
 /* ══ HOW IT WORKS ══ */
 .how-section{padding:64px 40px;border-top:1px solid rgba(27,45,62,.07)}
@@ -605,9 +608,9 @@ footer{background:var(--navy);padding:48px 40px 32px}
 
 <!-- ══ EDITORIAL FULL-BLEED ══ -->
 <div class="editorial">
-  <img src="site-img-2.jpg"
-       alt="Construction worker adjusting cooling arm sleeve on site" loading="lazy"
-       style="object-position:center top">
+  <img src="site-img-3.jpg"
+       alt="Construction crew taking a break on site" loading="lazy"
+       style="object-position:20% 25%">
   <div class="editorial-veil"></div>
   <div class="editorial-text">
     <p class="editorial-line">When the heat is at its worst,<br>your crew should be at their best.</p>
@@ -647,9 +650,9 @@ footer{background:var(--navy);padding:48px 40px 32px}
 <!-- ══ CONTACT ══ -->
 <section class="contact-split" id="contact">
   <div class="contact-img">
-    <img src="site-img-3.jpg"
-         alt="Construction crew taking a break on site" loading="lazy"
-         style="object-position:30% 20%">
+    <img src="site-img-2.jpg"
+         alt="Construction worker adjusting cooling arm sleeve on site" loading="lazy"
+         style="object-position:center top">
   </div>
   <div class="contact-form-side">
     <p class="section-label">Get in Touch</p>
