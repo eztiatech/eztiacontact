@@ -5,11 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>eztia — Stay cool.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Barlow:wght@400&display=swap">
-<style>
-/* wordmark sizing — brand minimum 80px wide; clear space = height of the "e" (~20px at this size) */
-.nav-logo img{width:80px;height:auto;display:block}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@400&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -46,9 +42,9 @@ nav.scrolled{
   padding:20px 40px;
 }
 .nav-logo{
-  font-family:'Barlow Condensed',sans-serif;font-weight:500;
-  font-size:17px;letter-spacing:.18em;text-transform:uppercase;
-  color:#fff;text-decoration:none;transition:color .3s;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:48px;line-height:1;letter-spacing:0;text-transform:lowercase;
+  color:var(--arctic);text-decoration:none;transition:color .3s;
 }
 nav.scrolled .nav-logo{color:var(--navy)}
 .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
@@ -70,8 +66,8 @@ nav.scrolled .nav-links a:hover{color:var(--navy)}
 .nav-cta:hover{opacity:.85}
 nav.scrolled .nav-cta{background:var(--navy);color:var(--arctic) !important}
 @media(max-width:600px){
-  nav{padding:20px}
-  nav.scrolled{padding:20px}
+  nav{padding:20px 26px}
+  nav.scrolled{padding:20px 26px}
   .nav-links li:not(:last-child){display:none}
 }
 
@@ -461,9 +457,7 @@ footer{background:var(--navy);padding:48px 40px 32px}
 <div class="top-bar"></div>
 
 <nav id="sitenav">
-  <a href="#" class="nav-logo" id="nav-logo-link">
-    <img src="wordmark/light.svg" alt="Eztia" id="nav-wordmark">
-  </a>
+  <a href="#" class="nav-logo">eztia</a>
   <ul class="nav-links">
     <li><a href="#construction">Construction</a></li>
     <li><a href="#technology">Technology</a></li>
@@ -734,13 +728,10 @@ footer{background:var(--navy);padding:48px 40px 32px}
 </footer>
 
 <script>
-/* Nav scroll + wordmark swap */
+/* Nav scroll */
 const nav = document.getElementById('sitenav');
-const wordmark = document.getElementById('nav-wordmark');
 window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY > 60;
-  nav.classList.toggle('scrolled', scrolled);
-  if (wordmark) wordmark.src = scrolled ? 'wordmark/dark.svg' : 'wordmark/light.svg';
+  nav.classList.toggle('scrolled', window.scrollY > 60);
 }, {passive:true});
 
 /* Hero canvas — approved animation */
