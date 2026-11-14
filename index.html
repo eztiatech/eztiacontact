@@ -307,19 +307,22 @@ nav.scrolled .nav-logo{font-size:36px}
 .story-grid .lead{margin-bottom:16px;max-width:560px}
 .sig{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:var(--navy);margin-top:24px}
 .sig span{display:block;font-family:'Barlow',sans-serif;font-size:14px;color:rgba(27,45,62,.65);margin-top:2px}
-.founder{position:relative;max-width:440px;justify-self:end;margin:0}
+.founder{position:relative;max-width:360px;justify-self:end;margin:0}
 .founder img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:54% center;background:#2a2a2a}
 .quote{
-  background:var(--navy);color:var(--arctic);padding:28px 30px;position:relative;
-  margin:-90px 0 0 -40px;
+  background:var(--navy);color:var(--arctic);padding:24px 26px;position:relative;
 }
+.story-result{
+  font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:clamp(28px,2.6vw,34px);
+  line-height:1.15;color:var(--navy);margin-top:8px;padding-top:14px;position:relative;
+}
+.story-result::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--grad)}
 .quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#B34A25,#9B6BB5,#2A6FA3)}
-.quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(22px,2vw,27px);line-height:1.2}
-.quote span{display:block;margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cool-light)}
+.quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(20px,1.8vw,24px);line-height:1.25}
+.quote span{display:block;margin-top:12px;font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--cool-light)}
 @media(max-width:900px){
   .story-grid{grid-template-columns:1fr;gap:36px}
-  .founder{justify-self:start;max-width:420px}
-  .quote{margin:-70px 0 0 24px}
+  .founder{justify-self:start;max-width:360px}
 }
 
 /* ══ PILOT CTA ══ */
@@ -488,7 +491,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
         <p class="eyebrow">The evidence</p>
         <h2 class="h-main">Proven by science.</h2>
       </div>
-      <p class="proof-note">Developed by a physician and materials scientist. Proven by science and designed to support comfort and worker safety.</p>
+      <p class="proof-note">Developed by a physician and materials scientist. Designed to support comfort and worker safety.</p>
     </div>
     <div class="proof-grid">
       <div class="stat-card reveal">
@@ -634,14 +637,15 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
     <div class="reveal">
       <p class="eyebrow">Our story</p>
       <h2 class="h-main">Built by a physician and materials scientist.</h2>
-      <p class="lead">Eztia was founded by Dr. Tiffany Yeh, who has spent her career at the intersection of human performance and extreme environments. She saw firsthand how heat compromises people's ability to work at their best.</p>
-      <p class="lead">So she built something new: a cooling gel that draws heat away from the skin and can be printed onto fabric to create cooling apparel.</p>
-          </div>
+      <p class="lead">Eztia was founded by Dr. Tiffany Yeh, who spent her career at the intersection of human performance and extreme environments. She saw an unmet need: heat kills productivity, performance, and in some cases, people. She experienced firsthand how heat compromises people's ability to operate at their best.</p>
+      <p class="lead">So she built something new: a cooling gel that draws heat away from your skin and can be printed onto fabric to create cooling apparel. The clothing stays dry to the touch, and water replenishes the gel between uses. The result?</p>
+      <p class="story-result">Cooling that moves with you.</p>
+    </div>
     <figure class="founder reveal">
       <img src="Tiffany_Yeh_Headshot.jpg" alt="Dr. Tiffany Yeh, founder of Eztia" loading="lazy">
       <div class="quote">
-        <p>Evaporative cooling is not new. The material we've developed to harness it is.</p>
-        <span>Eztia Cooling Technology</span>
+        <p>“Evaporative cooling is not new. The material we've developed to harness it is.”</p>
+        <span>— Dr. Tiffany Yeh</span>
       </div>
     </figure>
   </div>
@@ -697,7 +701,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
         </div>
         <div class="form-field">
           <label>Message</label>
-          <textarea name="message" placeholder="Tell us about your team or project…"></textarea>
+          <textarea name="message" placeholder="How can we help?"></textarea>
         </div>
         <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
       </form>
@@ -825,6 +829,7 @@ function setContactType(t, btn){
   btn.classList.add('on');
   document.getElementById('contact-type').value = t;
   document.getElementById('company-field').style.display = t==='business'?'block':'none';
+  document.querySelector('#contact-form textarea[name=message]').placeholder = t==='business' ? 'Tell us about your team or project' : 'How can we help?';
 }
 
 /* Contact form */
