@@ -1,1432 +1,921 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eztia | Body Cooling Technology for Every Environment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <style>
-    /* ─── CSS Custom Properties ─── */
-    :root {
-      --deep-navy:     #1B2D3E;
-      --deep-teal:     #1E4D5C;
-      --cool-slate:    #4A6FA5;
-      --ocean-blue:    #2E7BB8;
-      --arctic-white:  #F2F6F9;
-      --glacier-ice:   #E3EDF4;
-      --misty-gray:    #CDD6DF;
-      --pale-lavender: #B8C0D4;
-      --slate-mist:    #6B8FA8;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>eztia — Stay cool.</title>
+<meta name="description" content="Eztia Cooling Technology: cooling built into workwear. A wearable solution that works without power or refrigeration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@400;500&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;font-weight:400;font-size:18px;line-height:1.65;
+  background:var(--arctic);color:var(--navy);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
 
-      --gradient-arctic-mist:  linear-gradient(135deg, #F2F6F9 0%, #A8C5D8 100%);
-      --gradient-still-water:  linear-gradient(135deg, #2E7BB8 0%, #1B2D3E 100%);
-      --gradient-glacial-dusk: linear-gradient(135deg, #4A6FA5 0%, #B8C0D4 100%);
+/* ── Brand tokens (Eztia Brand Guidelines, Oct 2026) ── */
+:root{
+  --navy:#1B2D3E;
+  --slate:#527A8C;
+  --arctic:#F2F6F9;
+  --terracotta:#B34A25;
+  --ocean:#2A6FA3;
+  --cool-light:#B8D4E8;
+  --heat-light:#E8C9B8;
+  --teal:#1E4D5C;
+  --mist:#8A9BAA;
+  --grad:linear-gradient(90deg,#B34A25 0%,#D4815A 25%,#9B6BB5 50%,#5B8FC9 75%,#2A6FA3 100%);
+  --wrap:1160px;
+  --pad:40px;
+  --section:88px;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+@media(max-width:640px){:root{--pad:20px;--section:56px}}
 
-      --font-display: 'Plus Jakarta Sans', sans-serif;
-      --font-body:    'Lato', sans-serif;
-    }
+/* ── Type (headlines: Barlow Condensed 400, sentence case) ── */
+.eyebrow{
+  font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ocean);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--grad);flex-shrink:0}
+.on-dark .eyebrow{color:var(--cool-light)}
+.h-main{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:clamp(34px,4vw,48px);line-height:1.1;letter-spacing:0;color:var(--navy);
+}
+.on-dark .h-main{color:var(--arctic)}
+.h-sub{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:27px;line-height:1.2;color:var(--navy);
+}
+.on-dark .h-sub{color:var(--arctic)}
+.lead{font-size:18px;line-height:1.65;color:rgba(27,45,62,.8);max-width:520px}
+.on-dark .lead{color:rgba(242,246,249,.82)}
+.text-link{
+  font-family:'Barlow',sans-serif;font-size:15px;font-weight:500;color:var(--navy);
+  text-decoration:none;border-bottom:1px solid rgba(27,45,62,.25);padding-bottom:2px;
+  transition:border-color .2s;white-space:nowrap;
+}
+.text-link:hover{border-color:var(--navy)}
+.on-dark .text-link{color:var(--arctic);border-color:rgba(242,246,249,.35)}
+.on-dark .text-link:hover{border-color:var(--arctic)}
 
-    /* ─── Reset & Base ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: var(--font-body);
-      background: var(--arctic-white);
-      color: var(--deep-navy);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display: block; max-width: 100%; }
+/* ── Buttons ── */
+.btn{
+  font-family:'Barlow',sans-serif;font-size:15px;font-weight:500;letter-spacing:.02em;
+  padding:14px 28px;text-decoration:none;display:inline-block;border:1px solid transparent;
+  transition:background .2s,border-color .2s,opacity .2s;cursor:pointer;
+}
+.btn-cta{background:var(--terracotta);color:var(--arctic)}
+.btn-cta:hover{background:#9C3F1F}
+.btn-light{background:var(--arctic);color:var(--navy)}
+.btn-light:hover{opacity:.9}
+.btn-outline{background:transparent;color:var(--arctic);border-color:rgba(242,246,249,.45)}
+.btn-outline:hover{border-color:var(--arctic);background:rgba(242,246,249,.06)}
 
-    /* ─── Utility ─── */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .section-pad    { padding: 96px 0; }
-    .section-pad-sm { padding: 72px 0; }
+/* ── Top line + nav ── */
+.top-bar{position:fixed;top:0;left:0;right:0;height:2px;background:var(--grad);z-index:600}
+nav{
+  position:fixed;top:2px;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px var(--pad);
+  transition:background .35s,border-color .35s,padding .35s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(27,45,62,.9);
+  backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom-color:rgba(242,246,249,.08);
+  padding:12px var(--pad);
+}
+.nav-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:42px;line-height:1;letter-spacing:0;text-transform:lowercase;
+  color:var(--arctic);text-decoration:none;transition:font-size .35s;
+}
+nav.scrolled .nav-logo{font-size:36px}
+.nav-links{display:flex;gap:30px;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(242,246,249,.8);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--arctic)}
+.nav-links a.nav-cta{
+  background:var(--arctic);color:var(--navy);padding:10px 20px;
+}
+.nav-links a.nav-cta:hover{opacity:.9;color:var(--navy)}
+@media(max-width:720px){
+  .nav-links li:not(:last-child){display:none}
+  .nav-logo{font-size:36px}
+}
 
-    /* ─── Fade-in animation ─── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible        { opacity: 1; transform: translateY(0); }
-    .fade-up-delay-1        { transition-delay: 0.1s; }
-    .fade-up-delay-2        { transition-delay: 0.2s; }
-    .fade-up-delay-3        { transition-delay: 0.3s; }
-    .fade-up-delay-4        { transition-delay: 0.4s; }
+/* ══ HERO ══ */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:#0D1820}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%}
+#bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:none}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(8,14,22,.85) 0%,rgba(8,14,22,.35) 55%,rgba(8,14,22,.05) 100%),
+    linear-gradient(to top,rgba(8,14,22,.8) 0%,transparent 45%);
+}
+.hero-content{
+  position:relative;z-index:10;height:100%;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 150px;max-width:700px;
+}
+.hero .eyebrow{color:rgba(242,246,249,.8);margin-bottom:18px}
+.hero-h1{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:clamp(62px,7vw,100px);line-height:1.05;letter-spacing:0;color:var(--arctic);
+  margin-bottom:14px;
+}
+.hero-h2{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:clamp(24px,2.4vw,32px);line-height:1.2;color:var(--arctic);margin-bottom:16px;
+}
+.hero-sub{font-size:18px;line-height:1.6;color:rgba(242,246,249,.82);max-width:470px;margin-bottom:30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-anim{opacity:0;animation:fadeUp 1s cubic-bezier(.16,1,.3,1) forwards}
+.hero-anim.d1{animation-delay:.3s}.hero-anim.d2{animation-delay:.55s}.hero-anim.d3{animation-delay:.8s}
+.hero-anim.d4{animation-delay:1.05s}.hero-anim.d5{animation-delay:1.3s}.hero-anim.d6{animation-delay:1.6s}
+.hero-pillars{
+  position:absolute;left:0;right:0;bottom:0;z-index:10;
+  border-top:1px solid rgba(242,246,249,.14);
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:rgba(8,14,22,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.hero-pillars div{
+  padding:20px var(--pad);
+  font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:.02em;
+  color:var(--arctic);display:flex;align-items:center;gap:12px;
+}
+.hero-pillars div+div{border-left:1px solid rgba(242,246,249,.14)}
+.hero-pillars span{font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--cool-light)}
+.hero-grad-rule{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad);z-index:11}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(max-width:720px){
+  .hero-content{padding-bottom:200px}
+  .hero-pillars{grid-template-columns:1fr}
+  .hero-pillars div{padding:11px var(--pad);font-size:16px}
+  .hero-pillars div+div{border-left:none;border-top:1px solid rgba(242,246,249,.1)}
+}
 
-    /* ─── Shared section typography ─── */
-    .section-label {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      color: var(--cool-slate);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      display: block;
-    }
-    .section-headline {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      color: var(--deep-navy);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-    .section-subtext {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--slate-mist);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 52px;
-    }
+/* ══ MARQUEE ══ */
+.marquee-strip{background:var(--navy);overflow:hidden;padding:12px 0}
+.marquee-inner{display:flex;white-space:nowrap;width:max-content;animation:marquee 30s linear infinite}
+.marquee-inner span{
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(242,246,249,.85);padding:0 26px;
+}
+.marquee-inner .dot{color:rgba(242,246,249,.4);padding:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* ─── Dot grid pattern ─── */
-    .dot-bg {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%234A6FA5'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 24px 24px;
-    }
+/* ══ PROOF (signature gradient) ══ */
+.proof{background:var(--grad);padding:64px 0}
+.proof-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:36px}
+.proof .eyebrow{color:var(--navy)}
+.proof .eyebrow::before{background:var(--navy)}
+.proof-note{font-size:15px;color:var(--navy);opacity:.85;max-width:340px;line-height:1.55}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{
+  background:rgba(242,246,249,.9);padding:26px 24px 24px;
+  display:flex;flex-direction:column;
+}
+.stat-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:clamp(44px,4.4vw,60px);line-height:1;color:var(--navy);
+  display:flex;align-items:baseline;gap:.12em;white-space:nowrap;
+}
+.stat-num .upto{font-size:.34em;letter-spacing:.02em;margin-right:.15em}
+.stat-num .unit{font-size:.42em;align-self:flex-start;margin-top:.15em}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:var(--navy);margin-top:14px;line-height:1.2}
+.stat-detail{font-size:14px;color:rgba(27,45,62,.72);margin-top:8px;line-height:1.5}
+@media(max-width:900px){
+  .proof-grid{grid-template-columns:1fr 1fr}
+  .proof-head{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media(max-width:360px){.proof-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.stat-card{padding:20px 16px}.stat-label{font-size:18px}}
 
-    /* ══════════════════════════════════
-       NAVBAR
-    ══════════════════════════════════ */
-    #navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: var(--arctic-white);
-      border-bottom: 1px solid transparent;
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    #navbar.scrolled {
-      box-shadow: 0 2px 16px rgba(27,45,62,0.1);
-      border-color: var(--misty-gray);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-      gap: 24px;
-    }
-    .nav-logo img {
-      height: 36px;
-      width: auto;
-      display: block;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.88rem;
-      color: var(--deep-navy);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--ocean-blue); }
-    .btn-nav-cta {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--arctic-white);
-      background: var(--cool-slate);
-      padding: 10px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-nav-cta:hover { background: var(--ocean-blue); transform: translateY(-1px); }
+/* ══ ENTERPRISE ══ */
+.enterprise{padding:var(--section) 0 48px}
+.ent-grid{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:start}
+.ent-grid .h-main{margin-bottom:20px}
+.ent-grid .lead{margin-bottom:28px}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(27,45,62,.12)}
+.benefit{padding:26px 26px 26px 0;border-bottom:1px solid rgba(27,45,62,.12)}
+.benefit:nth-child(even){padding-left:26px;padding-right:0;border-left:1px solid rgba(27,45,62,.12)}
+.benefit svg{width:30px;height:30px;stroke:var(--ocean);fill:none;stroke-width:1.5;margin-bottom:14px}
+.benefit h3{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:24px;line-height:1.2;margin-bottom:6px}
+.benefit p{font-size:16px;line-height:1.6;color:rgba(27,45,62,.75)}
+@media(max-width:900px){.ent-grid{grid-template-columns:1fr;gap:40px}}
+@media(max-width:520px){
+  .benefits{grid-template-columns:1fr}
+  .benefit,.benefit:nth-child(even){padding:22px 0;border-left:none}
+}
 
-    /* Mobile hamburger */
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-    .nav-toggle span {
-      display: block;
-      width: 24px; height: 2px;
-      background: var(--deep-navy);
-      border-radius: 2px;
-      transition: 0.3s;
-    }
+/* ══ PRODUCTS ══ */
+.products{padding:0 0 var(--section)}
+.products-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;gap:20px}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product{position:relative;overflow:hidden;background:var(--slate);aspect-ratio:1/1}
+.product-tex{position:absolute;inset:0;background:#141a1f url('Dot%20Detail.webp') no-repeat;background-size:221.5% auto;background-position:71.2% 0;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.product:hover .product-tex{transform:scale(1.04)}
+.product img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.product:hover img{transform:scale(1.04)}
+.product-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:56px 22px 20px;
+  background:linear-gradient(to top,rgba(8,14,22,.82),transparent);
+}
+.product-cap h3{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:24px;color:var(--arctic);line-height:1.15}
+.product-cap p{font-size:14px;color:rgba(242,246,249,.85);margin-top:4px;line-height:1.45}
+@media(max-width:760px){
+  .product-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .product:last-child{grid-column:span 2;aspect-ratio:16/10}
+  .product:last-child .product-tex{background-size:110% auto;background-position:60% 0}
+  .products-head{flex-direction:column;align-items:flex-start}
+}
 
-    /* ══════════════════════════════════
-       HERO
-    ══════════════════════════════════ */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: var(--gradient-still-water);
-      overflow: hidden;
-      padding-top: 68px;
-    }
-    .hero-hex-overlay {
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 56px 64px;
-      opacity: 0.1;
-      pointer-events: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 80px 24px 48px;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-eyebrow {
-      font-family: 'Courier New', monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: var(--ocean-blue);
-      margin-bottom: 20px;
-      display: block;
-    }
-    .hero-headline {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
-      color: var(--arctic-white);
-      line-height: 1.15;
-      margin-bottom: 24px;
-      letter-spacing: -0.02em;
-    }
-    .hero-sub {
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      color: var(--glacier-ice);
-      max-width: 560px;
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    /* Brightened primary CTA */
-    .btn-primary {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--deep-navy);
-      background: #FFFFFF;
-      padding: 14px 32px;
-      border-radius: 999px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      background: var(--glacier-ice);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255,255,255,0.25);
-    }
-    .btn-text-link {
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--arctic-white);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1.5px solid rgba(242,246,249,0.4);
-      padding: 13px 28px;
-      border-radius: 999px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-text-link:hover {
-      border-color: rgba(242,246,249,0.8);
-      background: rgba(242,246,249,0.08);
-    }
+/* ══ HOW IT WORKS ══ */
+.how{background:var(--navy);padding:var(--section) 0}
+.how-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:56px}
+.how-top .h-main{margin-bottom:18px}
+.how-img{aspect-ratio:16/10;overflow:hidden;background:#0D1820}
+.how-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.9)}
+.flow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-top:34px}
+.flow::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+.flow-step{position:relative}
+.flow-step::before{
+  content:"";position:absolute;top:-41px;left:0;width:14px;height:14px;border-radius:50%;
+  background:var(--navy);border:2px solid var(--cool-light);
+}
+.flow-step:nth-child(1)::before{border-color:#B34A25}
+.flow-step:nth-child(2)::before{border-color:#D4815A}
+.flow-step:nth-child(3)::before{border-color:#9B6BB5}
+.flow-step:nth-child(4)::before{border-color:#5B8FC9}
+.flow-num{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.12em;color:var(--cool-light);margin-bottom:10px}
+.flow-step svg{width:34px;height:34px;stroke:var(--arctic);fill:none;stroke-width:1.4;margin-bottom:14px}
+.flow-step h3{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:26px;color:var(--arctic);line-height:1.15;margin-bottom:8px}
+.flow-step p{font-size:16px;line-height:1.6;color:rgba(242,246,249,.78)}
+.no-list{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:48px;padding-top:28px;
+  border-top:1px solid rgba(242,246,249,.1);align-items:center;
+}
+.no-list span{
+  font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--arctic);border:1px solid rgba(242,246,249,.25);padding:8px 14px;
+}
+.no-list .no-intro{border:none;padding-left:0;color:var(--cool-light)}
+@media(max-width:900px){
+  .how-top{grid-template-columns:1fr;gap:32px}
+  .flow{grid-template-columns:1fr 1fr;gap:36px 24px}
+  .flow::before{display:none}
+  .flow-step::before{display:none}
+  .flow{padding-top:0}
+  .flow-step{border-top:2px solid var(--cool-light);padding-top:18px}
+  .flow-step:nth-child(1){border-color:#B34A25}.flow-step:nth-child(2){border-color:#D4815A}
+  .flow-step:nth-child(3){border-color:#9B6BB5}.flow-step:nth-child(4){border-color:#5B8FC9}
+}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
 
-    /* ── Value prop tile strip (replaces triad) ── */
-    .hero-value-strip {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: auto;
-    }
-    .value-tile {
-      padding: 28px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .value-tile:nth-child(1) { background: var(--deep-navy); }
-    .value-tile:nth-child(2) { background: var(--deep-teal); }
-    .value-tile:nth-child(3) { background: var(--cool-slate); }
-    .value-tile-headline {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--arctic-white);
-      line-height: 1.3;
-    }
-    .value-tile-desc {
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      color: var(--pale-lavender);
-      line-height: 1.5;
-    }
+/* ══ EDITORIAL ══ */
+.editorial{position:relative;height:56vh;min-height:380px;max-height:620px;overflow:hidden}
+.editorial img{width:100%;height:100%;object-fit:cover;object-position:20% 25%}
+.editorial-veil{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,14,22,.7) 0%,rgba(8,14,22,.1) 60%,transparent 100%)}
+.editorial-text{position:absolute;left:0;right:0;bottom:0;padding-bottom:52px}
+.editorial-line{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;
+  font-size:clamp(28px,3.4vw,46px);line-height:1.1;color:var(--arctic);max-width:640px;
+}
+@media(max-width:540px){
+  .editorial{height:auto;min-height:0;aspect-ratio:4/5}
+  .editorial img{object-position:30% center}
+  .editorial-text{padding-bottom:32px}
+}
 
-    /* ══════════════════════════════════
-       THE CHALLENGE
-    ══════════════════════════════════ */
-    #challenge {
-      background: var(--arctic-white);
-      position: relative;
-      overflow: hidden;
-    }
-    #challenge .dot-overlay {
-      position: absolute; inset: 0;
-      opacity: 0.08;
-      pointer-events: none;
-    }
-    .stat-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .stat-card {
-      background: var(--arctic-white);
-      border: 1px solid var(--misty-gray);
-      border-radius: 16px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gradient-still-water);
-    }
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(27,45,62,0.1);
-    }
-    .stat-number {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 3rem;
-      color: var(--ocean-blue);
-      line-height: 1;
-      margin-bottom: 12px;
-      letter-spacing: -0.03em;
-    }
-    .stat-desc {
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--deep-navy);
-      line-height: 1.6;
-    }
+/* ══ FOUNDER ══ */
+.story{padding:var(--section) 0}
+.story-grid{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:center}
+.story-grid .h-main{margin-bottom:20px}
+.story-grid .lead{margin-bottom:16px;max-width:560px}
+.sig{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:var(--navy);margin-top:24px}
+.sig span{display:block;font-family:'Barlow',sans-serif;font-size:14px;color:rgba(27,45,62,.65);margin-top:2px}
+.founder{position:relative;max-width:360px;justify-self:end;margin:0}
+.founder img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:58% center;background:#14181d}
+.quote{
+  background:var(--navy);color:var(--arctic);padding:24px 26px;position:relative;
+  margin:-80px 0 0 -40px;
+}
+.story-result{
+  font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:clamp(28px,2.6vw,34px);
+  line-height:1.15;color:var(--navy);margin-top:8px;padding-top:14px;position:relative;
+}
+.story-result::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--grad)}
+.markets{margin-top:40px;padding-top:28px;border-top:1px solid rgba(27,45,62,.12)}
+.markets .eyebrow{margin-bottom:16px}
+.markets ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
+.markets li{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:22px;line-height:1;color:var(--navy);
+  padding:12px 20px 12px 18px;border:1px solid rgba(27,45,62,.18);background:#fff;
+  display:flex;align-items:center;gap:10px;
+}
+.markets li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ocean)}
+.markets li:nth-child(1)::before{background:#B34A25}
+.markets li:nth-child(2)::before{background:#9B6BB5}
+.markets li:nth-child(3)::before{background:#2A6FA3}
+.made-in{font-size:15px;color:rgba(27,45,62,.72);margin-top:16px;padding-top:14px;border-top:1px dashed rgba(27,45,62,.15)}
+@media(max-width:520px){.markets ul{gap:8px}.markets li{font-size:18px;padding:10px 14px 10px 12px;gap:8px}}
+.quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#B34A25,#9B6BB5,#2A6FA3)}
+.quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(20px,1.8vw,24px);line-height:1.25}
+.quote span{display:block;margin-top:12px;font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--cool-light)}
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr;gap:36px}
+  .founder{justify-self:start;max-width:360px}
+  .quote{margin:-60px 0 0 24px}
+}
 
-    /* ══════════════════════════════════
-       TECHNOLOGY OVERVIEW
-    ══════════════════════════════════ */
-    #solution {
-      background: var(--deep-teal);
-      position: relative;
-      overflow: hidden;
-    }
-    .solution-hex-bg {
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 56px 64px;
-      opacity: 0.07;
-      pointer-events: none;
-    }
-    .solution-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .solution-text .section-headline { color: var(--arctic-white); }
-    .solution-text .section-label    { color: var(--ocean-blue); }
-    .solution-body {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--glacier-ice);
-      line-height: 1.75;
-      margin-bottom: 36px;
-    }
-    .feature-list { display: flex; flex-direction: column; gap: 20px; }
-    .feature-item { display: flex; gap: 16px; align-items: flex-start; }
-    .feature-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: rgba(46,123,184,0.25);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .feature-icon svg { width: 20px; height: 20px; }
-    .feature-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--arctic-white);
-      margin-bottom: 4px;
-    }
-    .feature-desc {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--pale-lavender);
-      line-height: 1.55;
-    }
+/* ══ PILOT CTA ══ */
+.pilot{background:var(--teal);padding:64px 0;position:relative;overflow:hidden}
+.pilot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--grad)}
+.pilot-inner{display:flex;justify-content:space-between;align-items:center;gap:40px}
+.pilot .h-main{margin-bottom:12px}
+.pilot .lead{max-width:600px}
+.pilot-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;flex-shrink:0}
+.pilot-actions small{font-size:14px;color:rgba(242,246,249,.75)}
+@media(max-width:820px){.pilot-inner{flex-direction:column;align-items:flex-start}}
 
-    /* Photo placeholders */
-    .photo-placeholder-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .photo-placeholder {
-      border: 2px dashed rgba(242,246,249,0.4);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      padding: 48px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-align: center;
-    }
-    .photo-placeholder-icon {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: rgba(46,123,184,0.2);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .photo-placeholder-icon svg { width: 24px; height: 24px; }
-    .photo-placeholder-label {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--arctic-white);
-    }
-    .photo-placeholder-sublabel {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--pale-lavender);
-    }
-    .photo-caption {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-style: italic;
-      color: var(--pale-lavender);
-      opacity: 0.7;
-      text-align: center;
-      margin-top: 8px;
-    }
+/* ══ CONTACT ══ */
+.contact{padding:var(--section) 0;background:#fff}
+.contact-grid{display:grid;grid-template-columns:4fr 6fr;gap:64px;align-items:center}
+.contact-img{aspect-ratio:4/5;overflow:hidden;background:#c8d4da;max-width:420px}
+.contact-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.contact-form-side .h-main{margin-bottom:24px}
+.toggle-row{display:inline-flex;border:1px solid rgba(27,45,62,.18);margin-bottom:26px}
+.toggle-btn{
+  font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:9px 20px;background:transparent;border:none;
+  color:rgba(27,45,62,.65);cursor:pointer;transition:background .15s,color .15s;
+}
+.toggle-btn.on{background:var(--navy);color:var(--arctic)}
+.form-field{margin-bottom:18px}
+label{
+  display:block;font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(27,45,62,.65);margin-bottom:6px;
+}
+input[type=text],input[type=email],textarea{
+  width:100%;font-family:'Barlow',sans-serif;font-size:18px;font-weight:400;
+  background:transparent;border:none;border-bottom:1px solid rgba(27,45,62,.25);
+  color:var(--navy);padding:9px 0;outline:none;
+  transition:border-color .2s;border-radius:0;-webkit-appearance:none;
+}
+input:focus,textarea:focus{border-color:var(--ocean)}
+textarea{resize:none;height:96px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-submit{
+  font-family:'Barlow',sans-serif;font-size:15px;font-weight:500;letter-spacing:.02em;
+  color:var(--arctic);background:var(--navy);border:none;
+  padding:15px 32px;cursor:pointer;margin-top:18px;transition:background .2s;
+}
+.btn-submit:hover{background:var(--teal)}
+.contact-note{font-size:14px;color:rgba(27,45,62,.65);margin-top:16px;line-height:1.6}
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .contact-img{max-width:none;aspect-ratio:16/10}
+}
+@media(max-width:520px){.two-col{grid-template-columns:1fr;gap:0}}
 
-    /* ══════════════════════════════════
-       HOW IT WORKS
-    ══════════════════════════════════ */
-    #howto {
-      background: var(--arctic-white);
-      position: relative;
-      overflow: hidden;
-    }
-    #howto .dot-overlay {
-      position: absolute; inset: 0;
-      opacity: 0.06;
-      pointer-events: none;
-    }
-    #howto .section-headline { color: var(--deep-navy); }
-    .howto-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin: 52px auto 0;
-      max-width: 960px;
-    }
-    .step-card {
-      border-radius: 16px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-    /* Alternating card backgrounds for strong contrast */
-    .step-card:nth-child(1) { background: var(--deep-navy); }
-    .step-card:nth-child(2) { background: var(--deep-teal); }
-    .step-card:nth-child(3) { background: var(--ocean-blue); }
-    .step-number {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 4rem;
-      color: rgba(242,246,249,0.2);
-      line-height: 1;
-      margin-bottom: 16px;
-      letter-spacing: -0.04em;
-    }
-    .step-indicator {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      background: var(--ocean-blue);
-      border-radius: 50%;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--arctic-white);
-      margin: 0 auto 16px;
-    }
-    .step-card:nth-child(3) .step-indicator { background: rgba(255,255,255,0.25); }
-    .step-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.15rem;
-      color: var(--arctic-white);
-      margin-bottom: 10px;
-    }
-    .step-desc {
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      color: var(--glacier-ice);
-      line-height: 1.65;
-      opacity: 0.9;
-    }
+/* ══ FOOTER ══ */
+footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:40px;
+  padding-bottom:44px;border-bottom:1px solid rgba(242,246,249,.12);margin-bottom:24px;
+}
+.lockup{display:inline-flex;flex-direction:column;align-items:center}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:56px;line-height:1;text-transform:lowercase;color:var(--arctic)}
+.lockup-rule{width:100%;height:2px;background:var(--grad);margin:8px 0 6px}
+.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:rgba(242,246,249,.85)}
+.footer-desc{font-size:14px;color:rgba(242,246,249,.65);margin-top:8px;max-width:260px;line-height:1.55}
+.footer-col h4{
+  font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cool-light);margin-bottom:16px;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:15px;color:rgba(242,246,249,.82);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--arctic)}
+.footer-col p{font-size:15px;color:rgba(242,246,249,.75);line-height:1.55;margin-bottom:14px}
+.signup{display:flex;border-bottom:1px solid rgba(242,246,249,.35)}
+.signup input{
+  flex:1;font-size:16px;color:var(--arctic);border:none;padding:10px 0;background:transparent;
+}
+.signup input::placeholder{color:rgba(242,246,249,.5)}
+.signup input:focus{border:none}
+.signup button{
+  background:none;border:none;color:var(--arctic);cursor:pointer;
+  font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:0 0 0 12px;
+}
+.signup-msg{font-size:14px;color:var(--cool-light);margin-top:10px;min-height:20px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:rgba(242,246,249,.6)}
+.footer-bottom a{color:rgba(242,246,249,.75);text-decoration:none}
+.footer-bottom a:hover{color:var(--arctic)}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+}
 
-    /* ══════════════════════════════════
-       WHO WE SERVE
-    ══════════════════════════════════ */
-    #audience {
-      background: var(--glacier-ice);
-      position: relative;
-      overflow: hidden;
-    }
-    .audience-hex-bg {
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%231B2D3E' stroke-width='1'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 56px 64px;
-      opacity: 0.05;
-      pointer-events: none;
-    }
-    .industry-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 52px;
-    }
-    .industry-card {
-      background: white;
-      border: 1.5px solid var(--misty-gray);
-      border-radius: 16px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .industry-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(27,45,62,0.12);
-    }
-    .industry-card-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-    .industry-icon-wrap {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--glacier-ice);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .industry-icon-wrap svg { width: 22px; height: 22px; }
-    .industry-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--deep-navy);
-    }
-    .industry-title::after {
-      content: '';
-      display: block;
-      width: 28px; height: 3px;
-      background: var(--cool-slate);
-      margin-top: 6px;
-      border-radius: 2px;
-    }
-    .industry-desc {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--slate-mist);
-      line-height: 1.65;
-    }
-
-    /* ══════════════════════════════════
-       COMPANY
-    ══════════════════════════════════ */
-    #company {
-      background: var(--arctic-white);
-      position: relative;
-      overflow: hidden;
-    }
-    #company .dot-overlay {
-      position: absolute; inset: 0;
-      opacity: 0.08;
-      pointer-events: none;
-    }
-    .company-intro {
-      max-width: 640px;
-      margin-bottom: 56px;
-    }
-    .company-sub {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--slate-mist);
-      line-height: 1.75;
-    }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    .team-card {
-      background: white;
-      border-radius: 16px;
-      padding: 28px 22px;
-      text-align: center;
-      box-shadow: 0 2px 16px rgba(27,45,62,0.07);
-      border: 1px solid var(--glacier-ice);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .team-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(27,45,62,0.1);
-    }
-    .team-photo-placeholder {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: var(--glacier-ice);
-      border: 2px solid var(--misty-gray);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-    }
-    .team-photo-placeholder svg { width: 32px; height: 32px; opacity: 0.4; }
-    .team-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--deep-navy);
-      margin-bottom: 4px;
-    }
-    .team-title {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      color: var(--cool-slate);
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-    .team-bio {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--slate-mist);
-      line-height: 1.55;
-      font-style: italic;
-    }
-    .team-coming-soon {
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      color: var(--slate-mist);
-      font-style: italic;
-      text-align: center;
-    }
-
-    /* ══════════════════════════════════
-       CONTACT FORM
-    ══════════════════════════════════ */
-    #contact {
-      background: var(--deep-navy);
-      position: relative;
-      overflow: hidden;
-    }
-    #contact .dot-overlay {
-      position: absolute; inset: 0;
-      opacity: 0.07;
-      pointer-events: none;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 72px;
-      align-items: start;
-    }
-    .contact-intro .section-headline { color: var(--arctic-white); margin-bottom: 16px; }
-    #contact .section-label { color: var(--ocean-blue); }
-    .contact-intro-sub {
-      font-family: var(--font-body);
-      font-size: 0.97rem;
-      color: var(--pale-lavender);
-      line-height: 1.75;
-    }
-    .contact-details { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
-    .contact-detail-item {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--arctic-white);
-    }
-    .contact-detail-item a {
-      color: var(--glacier-ice);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .contact-detail-item a:hover { color: var(--ocean-blue); }
-
-    /* Form card */
-    .form-card {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 4px 32px rgba(27,45,62,0.08);
-      border: 1px solid var(--misty-gray);
-    }
-    .toggle-group { display: flex; gap: 8px; margin-bottom: 20px; }
-    .toggle-btn {
-      flex: 1;
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1.5px solid var(--misty-gray);
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      background: var(--glacier-ice);
-      color: var(--cool-slate);
-    }
-    .toggle-btn.active {
-      background: var(--ocean-blue);
-      color: var(--arctic-white);
-      border-color: var(--ocean-blue);
-    }
-    .toggle-label {
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.82rem;
-      color: var(--slate-mist);
-      margin-bottom: 6px;
-      display: block;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { margin-bottom: 20px; }
-    .form-label {
-      display: block;
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.88rem;
-      color: var(--deep-navy);
-      margin-bottom: 7px;
-    }
-    .form-label .optional { font-weight: 400; color: var(--slate-mist); font-size: 0.8rem; margin-left: 4px; }
-    .form-input, .form-textarea {
-      width: 100%;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--deep-navy);
-      background: var(--arctic-white);
-      border: 1.5px solid var(--misty-gray);
-      border-radius: 10px;
-      padding: 11px 14px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      -webkit-appearance: none;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: var(--ocean-blue);
-      box-shadow: 0 0 0 3px rgba(46,123,184,0.12);
-    }
-    .form-textarea { resize: vertical; min-height: 108px; }
-    /* Company name slide-in */
-    .company-field-wrap {
-      overflow: hidden;
-      max-height: 0; opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.35s ease, margin-bottom 0.35s ease;
-      margin-bottom: 0;
-    }
-    .company-field-wrap.visible { max-height: 90px; opacity: 1; margin-bottom: 20px; }
-    /* Brightened submit button */
-    .btn-submit {
-      width: 100%;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--arctic-white);
-      background: var(--ocean-blue);
-      border: none;
-      border-radius: 999px;
-      padding: 15px 32px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      margin-top: 8px;
-    }
-    .btn-submit:hover {
-      background: #2370a8;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(46,123,184,0.4);
-    }
-    .btn-submit:focus { outline: 3px solid var(--ocean-blue); outline-offset: 3px; }
-
-    /* ══════════════════════════════════
-       FOOTER
-    ══════════════════════════════════ */
-    footer {
-      background: var(--deep-navy);
-      padding: 64px 0 0;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(242,246,249,0.1);
-    }
-    .footer-brand .footer-logo-img { height: 28px; width: auto; margin-bottom: 14px; }
-    .footer-tagline {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--pale-lavender);
-      line-height: 1.65;
-    }
-    .footer-nav-heading {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      color: var(--pale-lavender);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-nav-links a {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--arctic-white);
-      text-decoration: none;
-      opacity: 0.82;
-      transition: color 0.2s, opacity 0.2s;
-    }
-    .footer-nav-links a:hover { color: var(--ocean-blue); opacity: 1; }
-    .footer-contact-link {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--arctic-white);
-      text-decoration: none;
-      opacity: 0.82;
-      transition: color 0.2s, opacity 0.2s;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .footer-contact-link:hover { color: var(--ocean-blue); opacity: 1; }
-    .footer-bottom { padding: 20px 0; text-align: center; }
-    .footer-legal {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--pale-lavender);
-      opacity: 0.6;
-    }
-
-    /* ══════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .solution-grid   { grid-template-columns: 1fr; gap: 48px; }
-      .contact-grid    { grid-template-columns: 1fr; gap: 48px; }
-      .footer-grid     { grid-template-columns: 1fr 1fr; }
-      .footer-brand    { grid-column: 1 / -1; }
-      .team-grid       { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      .section-pad { padding: 72px 0; }
-      .nav-links, .btn-nav-cta { display: none; }
-      .nav-toggle { display: flex; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; top: 68px; left: 0; right: 0;
-        background: var(--arctic-white);
-        padding: 24px; gap: 16px;
-        box-shadow: 0 8px 24px rgba(27,45,62,0.12);
-        z-index: 999;
-        border-top: 1px solid var(--misty-gray);
-      }
-      .stat-cards      { grid-template-columns: 1fr; }
-      .industry-cards  { grid-template-columns: 1fr; }
-      .howto-grid      { grid-template-columns: 1fr; }
-      .form-row        { grid-template-columns: 1fr; }
-      .footer-grid     { grid-template-columns: 1fr; }
-      .team-grid       { grid-template-columns: repeat(2, 1fr); }
-      .hero-value-strip { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .hero-headline   { font-size: 2rem; }
-      .hero-ctas       { flex-direction: column; align-items: stretch; }
-      .btn-primary, .btn-text-link { text-align: center; justify-content: center; }
-      .form-card       { padding: 28px 20px; }
-      .team-grid       { grid-template-columns: 1fr; }
-    }
-
-    /* ── Animated hero background ── */
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes floatHex1 {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.06; }
-      50%       { transform: translateY(-40px) rotate(8deg); opacity: 0.12; }
-    }
-    @keyframes floatHex2 {
-      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.05; }
-      50%       { transform: translateY(30px) rotate(-6deg) scale(1.08); opacity: 0.1; }
-    }
-    @keyframes floatHex3 {
-      0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.04; }
-      33%       { transform: translateY(-20px) translateX(15px); opacity: 0.09; }
-      66%       { transform: translateY(15px) translateX(-10px); opacity: 0.07; }
-    }
-    @keyframes shimmer {
-      0%, 100% { opacity: 0.08; }
-      50%       { opacity: 0.18; }
-    }
-    #hero {
-      background: #1B2D3E !important;
-      background-size: 400% 400% !important;
-      animation: none;
-    }
-    .hero-video-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.55;
-    }
-    .hero-video-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(27,45,62,0.62) 0%,
-        rgba(27,45,62,0.42) 55%,
-        rgba(27,45,62,0.78) 100%
-      );
-      z-index: 1;
-      pointer-events: none;
-    }
-    .hero-float-1 {
-      position: absolute; width: 420px; height: 480px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E");
-      background-size: 56px 64px;
-      top: 5%; right: 5%;
-      animation: floatHex1 9s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .hero-float-2 {
-      position: absolute; width: 360px; height: 400px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
-      background-size: 56px 64px;
-      bottom: 20%; left: 2%;
-      animation: floatHex2 13s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .hero-float-3 {
-      position: absolute; width: 280px; height: 320px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='64'%3E%3Cpath d='M28 2 L52 16 L52 48 L28 62 L4 48 L4 16 Z' fill='none' stroke='%232E7BB8' stroke-width='1.5'/%3E%3C/svg%3E");
-      background-size: 56px 64px;
-      top: 40%; right: 30%;
-      animation: floatHex3 17s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .hero-shimmer {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(46,123,184,0.25) 0%, transparent 70%);
-      animation: shimmer 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-  </style>
+/* ══ Scroll reveal ══ */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .hero-anim{animation:none;opacity:1}
+  .marquee-inner{animation:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<!-- ══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
-<header id="navbar" role="banner">
-  <div class="container">
-    <nav class="nav-inner" aria-label="Main navigation">
-      <a href="#" class="nav-logo" aria-label="eztia home">
-        <img src="wordmark/blue.png" alt="eztia" />
-      </a>
+<div class="top-bar"></div>
 
-      <ul class="nav-links" id="nav-links" role="list">
-        <li><a href="#solution">Technology</a></li>
-        <li><a href="#challenge">Performance</a></li>
-        <li><a href="#audience">Who We Serve</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<nav id="sitenav">
+  <a href="#" class="nav-logo" aria-label="eztia home">eztia</a>
+  <ul class="nav-links">
+    <li><a href="#enterprise">Enterprise</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
 
-      <a href="#contact" class="btn-nav-cta">Learn More</a>
-
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
-<section id="hero" aria-labelledby="hero-headline">
-  <video class="hero-video-bg" autoplay muted loop playsinline aria-hidden="true">
-    <source src="Running%20Video.MP4" type="video/mp4">
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="hero-gel.mp4" type="video/mp4">
   </video>
-  <div class="hero-video-overlay" aria-hidden="true"></div>
-  <div class="hero-hex-overlay" aria-hidden="true"></div>
-  <div class="hero-float-1" aria-hidden="true"></div>
-  <div class="hero-float-2" aria-hidden="true"></div>
-  <div class="hero-float-3" aria-hidden="true"></div>
-  <div class="hero-shimmer" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-content">
-      <span class="hero-eyebrow" aria-label="HydraVolt technology">EZTIA</span>
-      <h1 class="hero-headline" id="hero-headline">Cooling,<br>reimagined.</h1>
-      <p class="hero-sub">HydraVolt™ turns apparel into cooling technology.</p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn-primary">Learn More</a>
-        <a href="#solution" class="btn-text-link">See How It Works <span aria-hidden="true">→</span></a>
-      </div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow hero-anim d1">Eztia Cooling Technology</p>
+    <h1 class="hero-h1 hero-anim d2">Stay cool.</h1>
+    <p class="hero-h2 hero-anim d3">Protect your workforce. Reduce your heat risk.</p>
+    <p class="hero-sub hero-anim d4">Cooling built into the workwear itself. It runs on sweat or water, with no power or refrigeration.</p>
+    <div class="hero-actions hero-anim d5">
+      <a href="#contact" class="btn btn-cta" data-pilot>Request a pilot →</a>
+      <a href="#technology" class="btn btn-outline">How it works →</a>
     </div>
   </div>
-
-  <!-- Value prop tile strip -->
-  <div class="hero-value-strip" aria-label="Key benefits">
-    <div class="value-tile">
-      <span class="value-tile-headline">Cools on contact</span>
-      <span class="value-tile-desc">Cooling gel activates the moment temperature rises</span>
-    </div>
-    <div class="value-tile">
-      <span class="value-tile-headline">Worn in, not added on</span>
-      <span class="value-tile-desc">Built into the fabric. No vests, no packs, no setup</span>
-    </div>
-    <div class="value-tile">
-      <span class="value-tile-headline">All-shift durability</span>
-      <span class="value-tile-desc">Washable, durable, and effective across full work days</span>
-    </div>
+  <div class="hero-pillars hero-anim d6">
+    <div><span>01</span>No power or refrigeration</div>
+    <div><span>02</span>Wears like a standard work layer</div>
+    <div><span>03</span>Recharges with water</div>
   </div>
+  <div class="hero-grad-rule"></div>
 </section>
 
-<!-- ══════════════════════════════════ THE CHALLENGE ══════════════════════════════════ -->
-<section id="challenge" class="section-pad" aria-labelledby="challenge-headline">
-  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="fade-up">
-      <span class="section-label">The Challenge</span>
-      <h2 class="section-headline" id="challenge-headline">Heat is the leading weather-related cause of death.</h2>
-      <p class="section-subtext">Heat affects everyone - from construction crews and industrial teams to athletes, commuters, and anyone working or moving in the heat. The research is clear: heat impairs performance and raises risk.</p>
-    </div>
-    <div class="stat-cards">
-      <div class="stat-card fade-up fade-up-delay-1">
-        <div class="stat-number">10°C</div>
-        <p class="stat-desc">HydraVolt™ is proven to reduce skin temperature by up to 10°C, providing measurable cooling from the moment it activates.</p>
-      </div>
-      <div class="stat-card fade-up fade-up-delay-2">
-        <div class="stat-number">H<sub>2</sub>O</div>
-        <p class="stat-desc">No batteries, refrigeration, or electricity needed. HydraVolt™ recharges with water, nothing else.</p>
-      </div>
-      <div class="stat-card fade-up fade-up-delay-3">
-        <div class="stat-number">8 hrs</div>
-        <p class="stat-desc">Up to 8 hours of effective cooling during strenuous physical activity - built for full shifts and long days.</p>
-      </div>
-    </div>
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-strip">
+  <div class="marquee-inner" aria-hidden="true">
+    <span>Eztia Cooling Technology</span><span class="dot">·</span>
+    <span>Activates on skin contact</span><span class="dot">·</span>
+    <span>Up to 10°C skin reduction</span><span class="dot">·</span>
+    <span>Up to 8 hours cooling</span><span class="dot">·</span>
+    <span>Recharges with water</span><span class="dot">·</span>
+    <span>No batteries</span><span class="dot">·</span>
+    <span>Eztia Cooling Technology</span><span class="dot">·</span>
+    <span>Activates on skin contact</span><span class="dot">·</span>
+    <span>Up to 10°C skin reduction</span><span class="dot">·</span>
+    <span>Up to 8 hours cooling</span><span class="dot">·</span>
+    <span>Recharges with water</span><span class="dot">·</span>
+    <span>No batteries</span><span class="dot">·</span>
   </div>
-</section>
+</div>
 
-<!-- ══════════════════════════════════ TECHNOLOGY OVERVIEW ══════════════════════════════════ -->
-<section id="solution" class="section-pad" aria-labelledby="solution-headline">
-  <div class="solution-hex-bg" aria-hidden="true"></div>
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="solution-grid">
-
-      <div class="solution-text fade-up">
-        <span class="section-label">HydraVolt™ Technology</span>
-        <h2 class="section-headline" id="solution-headline">Cooling built into every thread.</h2>
-        <p class="solution-body">HydraVolt™ is a proprietary cooling gel that bonds directly to performance fabric. When body temperature rises, it activates, drawing heat away from the skin and dispersing it through the fabric's microstructure. The result: meaningfully lower skin surface temperature, improving performance and recovery.</p>
-
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="7" stroke="#2E7BB8" stroke-width="1.5"/>
-                <path d="M10 6v4l3 2" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div>
-              <p class="feature-title">Activates at body temperature</p>
-              <p class="feature-desc">No triggers, no switches. HydraVolt™ automatically responds to heat.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 3v14M3 10h14" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round"/>
-                <circle cx="10" cy="10" r="7" stroke="#2E7BB8" stroke-width="1.5"/>
-              </svg>
-            </div>
-            <div>
-              <p class="feature-title">No batteries needed</p>
-              <p class="feature-desc">Simply activate with water and wear.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10l4 4 8-8" stroke="#2E7BB8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div>
-              <p class="feature-title">Washable and built to last</p>
-              <p class="feature-desc">Engineered for everyday performance, wash after wash, wear after wear.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Photo placeholders -->
-      <div class="fade-up fade-up-delay-2" style="position:relative; z-index:1;">
-        <div class="photo-placeholder-grid">
-          <div class="photo-real">
-            <img src="Eztia Work Shirt.webp" alt="HydraVolt™ performance garment" style="width:100%; border-radius:14px; display:block; object-fit:cover; max-height:260px;" />
-          </div>
-          <div class="photo-real">
-            <img src="Dot Detail.webp" alt="HydraVolt™ gel microstructure detail" style="width:100%; border-radius:14px; display:block; object-fit:cover; max-height:260px;" />
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════ HOW IT WORKS ══════════════════════════════════ -->
-<section id="howto" class="section-pad" aria-labelledby="howto-headline">
-  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="fade-up" style="text-align:center; max-width:580px; margin:0 auto;">
-      <span class="section-label">How It Works</span>
-      <h2 class="section-headline" id="howto-headline">Simple. Durable. Effective.</h2>
-    </div>
-    <div class="howto-grid">
-      <div class="step-card fade-up fade-up-delay-1">
-        <div class="step-indicator" aria-hidden="true">1</div>
-        <h3 class="step-title">Wear it</h3>
-        <p class="step-desc">Pull it on like any base layer or shirt. Cooling is built right in.</p>
-      </div>
-      <div class="step-card fade-up fade-up-delay-2">
-        <div class="step-indicator" aria-hidden="true">2</div>
-        <h3 class="step-title">Move in it</h3>
-        <p class="step-desc">HydraVolt™ activates when body temperature rises. The harder the conditions, the harder it works.</p>
-      </div>
-      <div class="step-card fade-up fade-up-delay-3">
-        <div class="step-indicator" aria-hidden="true">3</div>
-        <h3 class="step-title">Stay cool</h3>
-        <p class="step-desc">Cooling that works with your body, whenever you need it most.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════ WHO ITS FOR ══════════════════════════════════ -->
-<section id="audience" class="section-pad" aria-labelledby="audience-headline">
-  <div class="audience-hex-bg" aria-hidden="true"></div>
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="fade-up" style="max-width:580px;">
-      <span class="section-label">Who It's For</span>
-      <h2 class="section-headline" id="audience-headline">Built for everyone heat hits hardest.</h2>
-    </div>
-    <div class="industry-cards">
-
-      <article class="industry-card fade-up fade-up-delay-1">
-        <div class="industry-card-top">
-          <div class="industry-icon-wrap" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 10 L20 22" stroke="#1B2D3E" stroke-width="2" stroke-linecap="round"/>
-              <path d="M12 22 L28 22" stroke="#1B2D3E" stroke-width="2" stroke-linecap="round"/>
-              <path d="M10 26 C10 23.8 11.8 22 14 22 H26 C28.2 22 30 23.8 30 26 V28 H10 V26Z" fill="#2E7BB8"/>
-              <path d="M15 22 L12 14" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M25 22 L28 14" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
-              <rect x="18" y="28" width="4" height="4" rx="1" fill="#1B2D3E"/>
-            </svg>
-          </div>
-          <h3 class="industry-title">Construction</h3>
-        </div>
-        <p class="industry-desc">The job doesn't stop when the temperature spikes. HydraVolt™ keeps your crew performing — shift after shift, season after season.</p>
-      </article>
-
-      <article class="industry-card fade-up fade-up-delay-2">
-        <div class="industry-card-top">
-          <div class="industry-icon-wrap" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 10 C20 10 14 16 14 22 C14 25.3 16.7 28 20 28 C23.3 28 26 25.3 26 22 C26 16 20 10 20 10Z" stroke="#2E7BB8" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M16 34 L20 28 L24 34" stroke="#1B2D3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 20 C10 19 9 17 10 15" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M28 20 C30 19 31 17 30 15" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="industry-title">Athletes</h3>
-        </div>
-        <p class="industry-desc">Heat is the enemy of performance. HydraVolt™ activates when your body needs it most, so you can push harder, for longer, without the fade.</p>
-      </article>
-
-      <article class="industry-card fade-up fade-up-delay-3">
-        <div class="industry-card-top">
-          <div class="industry-icon-wrap" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 10 L29 14 V21 C29 25.97 25.08 30.56 20 32 C14.92 30.56 11 25.97 11 21 V14 L20 10Z" fill="#2E7BB8" fill-opacity="0.15" stroke="#2E7BB8" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M20 16 V24 M16 20 H24" stroke="#1B2D3E" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="industry-title">Public Safety</h3>
-        </div>
-        <p class="industry-desc">When the gear can't come off, the cooling has to come from within. HydraVolt™ is built in, working quietly while you focus on the job.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════ CONTACT ══════════════════════════════════ -->
-<section id="contact" class="section-pad" aria-labelledby="contact-headline">
-  <div class="dot-overlay dot-bg" aria-hidden="true"></div>
-  <div class="container" style="position:relative; z-index:1;">
-    <div class="contact-grid">
-
-      <div class="contact-intro fade-up">
-        <span class="section-label">Contact Us</span>
-        <h2 class="section-headline" id="contact-headline">Get in touch.</h2>
-        <p class="contact-intro-sub">Whether you're outfitting a crew, gearing up personally, or just curious about what HydraVolt™ can do — we're here. Fill in the form and we'll get back to you.</p>
-        <div class="contact-details">
-          <div class="contact-detail-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="6.5" stroke="#4A6FA5" stroke-width="1.4"/>
-              <path d="M8 4v4l3 2" stroke="#4A6FA5" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
-            <span style="font-size:0.88rem; color:var(--slate-mist);">We aim to respond within 1–3 business days</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-card fade-up fade-up-delay-1">
-        <form id="contact-form" novalidate>
-
-          <div class="form-group">
-            <div class="toggle-group" role="group" aria-labelledby="type-label">
-              <button type="button" class="toggle-btn active" id="btn-individual" aria-pressed="true">Individual</button>
-              <button type="button" class="toggle-btn" id="btn-business" aria-pressed="false">Business</button>
-            </div>
-          </div>
-
-          <div class="company-field-wrap" id="company-wrap">
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" for="company-name">Company Name</label>
-              <input class="form-input" type="text" id="company-name" name="company" placeholder="Your company name" autocomplete="organization" tabindex="-1" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="first-name">First Name</label>
-              <input class="form-input" type="text" id="first-name" name="first_name" placeholder="First name" autocomplete="given-name" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="last-name">Last Name</label>
-              <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Last name" autocomplete="family-name" required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="email">Email Address</label>
-            <input class="form-input" type="email" id="email" name="email" placeholder="email" autocomplete="email" required />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="message">How can we help?</label>
-            <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Tell us about yourself, your team, your use case, or what you're looking for..."></textarea>
-          </div>
-
-          <input type="hidden" id="contact-type" name="contact_type" value="individual" />
-          <button type="submit" class="btn-submit">Send Message</button>
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ══════════════════════════════════ FOOTER ══════════════════════════════════ -->
-<footer aria-label="Site footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="wordmark/light.png" alt="eztia" class="footer-logo-img" />
-        <p class="footer-tagline">Stay cool. Move freely. Feel everything.<br>HydraVolt™ Performance Cooling: engineered for extreme heat.</p>
-      </div>
+<!-- ══ PROOF ══ -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-head reveal">
       <div>
-        <p class="footer-nav-heading">Navigation</p>
-        <ul class="footer-nav-links" role="list">
-          <li><a href="#solution">Technology</a></li>
-          <li><a href="#challenge">Performance</a></li>
-          <li><a href="#audience">Who We Serve</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <p class="eyebrow">The evidence</p>
+        <h2 class="h-main">Proven by science.</h2>
+      </div>
+      <p class="proof-note">Developed by a physician and materials scientist. Designed to support comfort and worker safety.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="stat-card reveal">
+        <div class="stat-num"><span class="upto">Up to</span>10<span class="unit">°C</span></div>
+        <div class="stat-label">Skin temperature reduction</div>
+        <div class="stat-detail">Draws heat away from the skin through evaporative cooling.</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num"><span class="upto">Up to</span>8<span class="unit">hrs</span></div>
+        <div class="stat-label">Cooling per charge</div>
+        <div class="stat-detail">Keeps working through physically demanding shifts.</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num"><span class="upto">Up to</span>180</div>
+        <div class="stat-label">Wash cycles tested</div>
+        <div class="stat-detail">Machine wash + tumble dry. Lifespan varies with care.</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">H₂O</div>
+        <div class="stat-label">Recharges with water</div>
+        <div class="stat-detail">Sweat or water replenishes the gel between uses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ENTERPRISE ══ -->
+<section class="enterprise" id="enterprise">
+  <div class="wrap ent-grid">
+    <div class="reveal">
+      <p class="eyebrow">For your workforce</p>
+      <h2 class="h-main">Built for the field.</h2>
+      <p class="lead">Heat illness is preventable. Eztia's cooling technology is built into workwear and replenished by sweat or water, drawing heat away from the body. It helps keep workers cooler and more comfortable through physically demanding shifts in the heat.</p>
+      <a href="#contact" class="btn btn-cta" data-pilot>Request a pilot →</a>
+    </div>
+    <div class="benefits reveal">
+      <div class="benefit">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l11 4v8c0 7-4.7 12-11 14C9.7 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 13"/></svg>
+        <h3>Supports your heat-safety plan</h3>
+        <p>A wearable layer of protection for crews working in heat exposure.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3L7 18h8l-2 11 12-16h-8z"/><path d="M4 4l24 24"/></svg>
+        <h3>No power or refrigeration</h3>
+        <p>No batteries, fans, ice packs or charging stations to manage on site.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg>
+        <h3>Through the shift</h3>
+        <p>Up to 8 hours of cooling per charge, from first pour to final walk-through.</p>
+      </div>
+      <div class="benefit">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 4l-6 4 3 6 3-1.5V28h10V12.5l3 1.5 3-6-6-4c-1 2-3 3-5 3s-4-1-5-3z"/></svg>
+        <h3>Wears like a standard layer</h3>
+        <p>No setup and no extra gear. Crews put it on like any other work layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="products-head reveal">
+      <h2 class="h-sub">Cooling, built into the gear.</h2>
+      <a href="#contact" class="text-link">Request information →</a>
+    </div>
+    <div class="product-grid">
+      <div class="product reveal">
+        <img src="Eztia%20Work%20Shirt.webp" alt="Eztia cooling work shirt worn under a hi-vis jacket" loading="lazy" style="object-position:center 30%">
+        <div class="product-cap"><h3>Work Shirt</h3><p>A cooling base layer that goes under standard PPE.</p></div>
+      </div>
+      <div class="product reveal">
+        <img src="site-img-1.jpg" alt="Ironworker wearing Eztia cooling arm sleeves while tying rebar" loading="lazy" style="object-position:32% center">
+        <div class="product-cap"><h3>Arm Sleeves</h3><p>Targeted cooling for arms exposed to sun and heat.</p></div>
+      </div>
+      <div class="product reveal">
+        <div class="product-tex" role="img" aria-label="Close-up of Eztia cooling gel dots printed on fabric"></div>
+        <div class="product-cap"><h3>Eztia Cooling Technology</h3><p>Cooling gel printed onto fabric. Dry to the touch.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how on-dark" id="technology">
+  <div class="wrap">
+    <div class="how-top">
+      <div class="reveal">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h-main">The science of staying cool.</h2>
+        <p class="lead">Evaporative cooling is not new. The material we've developed to harness it is. Eztia is a cooling gel that draws heat away from your skin and is printed onto fabric, so the clothing stays dry to the touch.</p>
+      </div>
+      <div class="how-img reveal">
+        <img src="tech-gel.jpg" alt="Close-up of Eztia cooling gel dots on fabric with water running across" loading="lazy">
+      </div>
+    </div>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M17 4v16"/><circle cx="17" cy="24" r="5"/><path d="M13 20V7a4 4 0 018 0v13"/><path d="M25 9h4M25 14h3"/></svg>
+        <h3>Heat builds</h3>
+        <p>As you work, heat builds up at the skin.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">02</div>
+        <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="9" cy="12" r="4"/><circle cx="21" cy="12" r="4"/><circle cx="15" cy="23" r="4"/><circle cx="27" cy="23" r="4"/></svg>
+        <h3>The gel draws it away</h3>
+        <p>Cooling gel on the fabric activates on skin contact and draws heat away from your body.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">03</div>
+        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M8 26c0-4 4-4 4-8s-4-4-4-8"/><path d="M17 26c0-4 4-4 4-8s-4-4-4-8"/><path d="M26 26c0-4 4-4 4-8s-4-4-4-8"/></svg>
+        <h3>Heat is released</h3>
+        <p>Moisture in the gel evaporates and carries the heat with it. The fabric stays dry to the touch.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">04</div>
+        <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M17 4c5 7 9 11.5 9 16a9 9 0 01-18 0c0-4.5 4-9 9-16z"/><path d="M13 21a4 4 0 004 4"/></svg>
+        <h3>Sweat or water recharges it</h3>
+        <p>Sweat or water replenishes the gel, so it keeps working.</p>
+      </div>
+    </div>
+    <div class="no-list reveal">
+      <span class="no-intro">Nothing to manage:</span>
+      <span>No batteries</span><span>No power</span><span>No refrigeration</span><span>No ice packs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDITORIAL ══ -->
+<div class="editorial">
+  <img src="site-img-3.jpg" alt="Construction crew taking a break on site" loading="lazy">
+  <div class="editorial-veil"></div>
+  <div class="editorial-text">
+    <div class="wrap"><p class="editorial-line reveal">When the heat is at its worst,<br>your crew should be at their best.</p></div>
+  </div>
+</div>
+
+<!-- ══ FOUNDER ══ -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="reveal">
+      <p class="eyebrow">Our story</p>
+      <h2 class="h-main">Built by a physician and materials scientist.</h2>
+      <p class="lead">Eztia was founded by Dr. Tiffany Yeh, who spent her career at the intersection of human performance and extreme environments. She saw an unmet need: heat kills productivity, performance, and in some cases, people. She experienced firsthand how heat compromises people's ability to operate at their best.</p>
+      <p class="lead">So she built something new: a cooling gel that draws heat away from your skin and can be printed onto fabric to create cooling apparel. The clothing stays dry to the touch, and water replenishes the gel between uses. The result?</p>
+      <p class="story-result">Cooling that moves with you.</p>
+      <div class="markets">
+        <p class="eyebrow">Where we operate</p>
+        <ul>
+          <li>USA</li>
+          <li>Singapore</li>
+          <li>Japan</li>
+        </ul>
+        <p class="made-in">Manufactured in Taiwan</p>
+      </div>
+    </div>
+    <figure class="founder reveal">
+      <img src="Tiffany_Yeh.jpg" alt="Dr. Tiffany Yeh holding an Eztia cooling garment" loading="lazy">
+      <div class="quote">
+        <p>“Evaporative cooling is not new. The material we've developed to harness it is.”</p>
+        <span>— Dr. Tiffany Yeh</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ══ PILOT CTA ══ -->
+<section class="pilot on-dark" id="pilot">
+  <div class="wrap pilot-inner reveal">
+    <div>
+      <p class="eyebrow">Pilot program</p>
+      <h2 class="h-main">Try Eztia with your crew.</h2>
+      <p class="lead">We run short 2–4 week pilots on real job sites, so your team can see how Eztia fits their work before you roll it out.</p>
+    </div>
+    <div class="pilot-actions">
+      <a href="#contact" class="btn btn-light" data-pilot>Request a pilot →</a>
+      <small>2–4 weeks · On your site · With your crew</small>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-img reveal">
+      <img src="site-img-2.jpg" alt="Construction worker adjusting cooling arm sleeve on site" loading="lazy">
+    </div>
+    <div class="contact-form-side reveal">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="h-main">Talk to our team.</h2>
+      <div class="toggle-row">
+        <button class="toggle-btn on" onclick="setContactType('individual',this)">Individual</button>
+        <button class="toggle-btn" onclick="setContactType('business',this)">Business</button>
+      </div>
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <input type="hidden" id="contact-type" name="contact_type" value="individual">
+        <div class="form-field" id="company-field" style="display:none">
+          <label>Company</label>
+          <input type="text" name="company" placeholder="Your company">
+        </div>
+        <div class="two-col">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" name="first_name" placeholder="Jane" autocomplete="given-name" required>
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" name="last_name" placeholder="Smith" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea name="message" placeholder="How can we help?"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
+      </form>
+      <p class="contact-note">We respond within 1–2 business days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="lockup"><div class="footer-logo">eztia</div><div class="lockup-rule"></div><div class="footer-sub">Stay cool.</div></div>
+        <p class="footer-desc">Cooling apparel and technology for people who work in the heat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#enterprise">Enterprise</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#pilot">Pilot program</a></li>
         </ul>
       </div>
-      <div>
-        <p class="footer-nav-heading">Find Us on Social</p>
-        <a href="https://www.linkedin.com/company/eztiamaterials/" class="footer-contact-link" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/eztiamaterials/" class="footer-contact-link" target="_blank" rel="noopener">Instagram</a>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="https://www.linkedin.com/company/eztiamaterials/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stay in the loop</h4>
+        <p>Occasional updates on Eztia Cooling Technology. No spam.</p>
+        <form class="signup" id="signup-form" onsubmit="handleSignup(event)">
+          <input type="email" name="email" placeholder="Your email" aria-label="Email address" required>
+          <button type="submit">Sign up →</button>
+        </form>
+        <div class="signup-msg" id="signup-msg" aria-live="polite"></div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-legal">© 2026 eztia Ltd. All rights reserved. HydraVolt™ is a trademark of eztia Ltd.</p>
+      <span>© 2026 Eztia Corp.</span>
+      <a href="https://www.linkedin.com/company/eztiamaterials/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
 </footer>
 
-<!-- ══════════════════════════════════ SCRIPTS ══════════════════════════════════ -->
 <script>
-  // Navbar scroll shadow
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 12);
-  }, { passive: true });
+/* Nav scroll */
+const nav = document.getElementById('sitenav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
 
-  // Mobile nav toggle
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks  = document.getElementById('nav-links');
-  navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
+/* Hero canvas — approved animation */
+(function(){
+  const C = document.getElementById('bg-canvas');
+  const ctx = C.getContext('2d');
+  const vid = document.getElementById('bg-video');
+  vid.addEventListener('canplay', () => {
+    vid.style.display = 'block';
+    C.style.display = 'none';
+  }, { once: true });
+  let t=0, W, H, dpr, hazePoints, motes;
 
-  // Intersection Observer — fade-up
-  const fadeEls = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
-  fadeEls.forEach(el => observer.observe(el));
-
-// Individual / Business toggle
-  const btnIndividual  = document.getElementById('btn-individual');
-  const btnBusiness    = document.getElementById('btn-business');
-  const companyWrap    = document.getElementById('company-wrap');
-  const companyInput   = document.getElementById('company-name');
-  const contactTypeVal = document.getElementById('contact-type');
-
-  function setType(type) {
-    const isBusiness = type === 'business';
-    btnIndividual.classList.toggle('active', !isBusiness);
-    btnBusiness.classList.toggle('active', isBusiness);
-    btnIndividual.setAttribute('aria-pressed', String(!isBusiness));
-    btnBusiness.setAttribute('aria-pressed', String(isBusiness));
-    companyWrap.classList.toggle('visible', isBusiness);
-    companyInput.setAttribute('tabindex', isBusiness ? '0' : '-1');
-    contactTypeVal.value = type;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1,2);
+    W = C.offsetWidth; H = C.offsetHeight;
+    C.width = W*dpr; C.height = H*dpr;
+    ctx.scale(dpr,dpr); init();
   }
-  btnIndividual.addEventListener('click', () => setType('individual'));
-  btnBusiness.addEventListener('click', () => setType('business'));
-
-  // Form submit → Google Sheet
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
-
-  document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.btn-submit');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    const payload = {
-      contact_type: document.getElementById('contact-type').value,
-      company:      document.getElementById('company-name').value,
-      first_name:   document.getElementById('first-name').value,
-      last_name:    document.getElementById('last-name').value,
-      email:        document.getElementById('email').value,
-      message:      document.getElementById('message').value
-    };
-
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload)
-      });
-      btn.textContent = 'Message sent ✓';
-      btn.style.background = '#1E4D5C';
-      this.reset();
-    } catch (err) {
-      btn.textContent = 'Something went wrong — try again';
-      btn.disabled = false;
+  function init(){
+    hazePoints = Array.from({length:6},()=>({
+      x:W*(.45+Math.random()*.55), y:H*Math.random(),
+      r:80+Math.random()*160, phase:Math.random()*Math.PI*2,
+      spd:.0004+Math.random()*.0006
+    }));
+    const n = Math.floor(W*H/5000);
+    motes = Array.from({length:n},makeMote);
+  }
+  function makeMote(){
+    return {x:Math.random()*W,y:Math.random()*H,r:.4+Math.random()*1.2,
+      vx:(Math.random()-.5)*.18,vy:-.05-Math.random()*.12,
+      a:.08+Math.random()*.22,life:0,max:300+Math.random()*500};
+  }
+  function frame(now){
+    const dt=now-(frame._last||now); frame._last=now; t+=dt;
+    ctx.fillStyle='#0D1820'; ctx.fillRect(0,0,W,H);
+    const kl=ctx.createRadialGradient(W*.3,H*.38,0,W*.3,H*.38,W*.46);
+    kl.addColorStop(0,'rgba(190,210,228,.13)'); kl.addColorStop(1,'rgba(190,210,228,0)');
+    ctx.fillStyle=kl; ctx.fillRect(0,0,W,H);
+    const b=.5+.5*Math.sin(t*.00042);
+    const hg=ctx.createRadialGradient(W*.88,H*.5,0,W*.88,H*.5,W*.52);
+    hg.addColorStop(0,`rgba(179,74,37,${.09*b})`); hg.addColorStop(1,'rgba(179,74,37,0)');
+    ctx.fillStyle=hg; ctx.fillRect(0,0,W,H);
+    hazePoints.forEach(p=>{
+      const d=Math.sin(t*p.spd+p.phase)*.5+.5;
+      const h=ctx.createRadialGradient(p.x+Math.sin(t*p.spd*1.3)*12,p.y+Math.cos(t*p.spd*.8)*8,0,p.x,p.y,p.r);
+      h.addColorStop(0,`rgba(220,165,120,${.04*d})`); h.addColorStop(1,'rgba(220,165,120,0)');
+      ctx.fillStyle=h; ctx.beginPath(); ctx.arc(p.x+Math.sin(t*p.spd)*18,p.y,p.r,0,Math.PI*2); ctx.fill();
+    });
+    motes.forEach((m,i)=>{
+      m.life+=dt; m.x+=m.vx; m.y+=m.vy;
+      const l=m.life/m.max;
+      const a=l<.1?l/.1:l>.8?(1-l)/.2:1;
+      ctx.fillStyle=`rgba(205,220,232,${m.a*a})`; ctx.beginPath(); ctx.arc(m.x,m.y,m.r,0,Math.PI*2); ctx.fill();
+      if(m.life>=m.max||m.y<-10||m.x<-10||m.x>W+10) motes[i]=makeMote();
+    });
+    const id=ctx.getImageData(0,0,W*dpr,H*dpr); const d=id.data;
+    for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;
+      d[i]=Math.max(0,Math.min(255,d[i]+n)); d[i+1]=Math.max(0,Math.min(255,d[i+1]+n)); d[i+2]=Math.max(0,Math.min(255,d[i+2]+n));
     }
+    ctx.putImageData(id,0,0);
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',resize);
+  resize(); requestAnimationFrame(frame);
+})();
+
+/* Contact toggle */
+function setContactType(t, btn){
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('contact-type').value = t;
+  document.getElementById('company-field').style.display = t==='business'?'block':'none';
+  document.querySelector('#contact-form textarea[name=message]').placeholder = t==='business' ? 'Tell us about your team or project' : 'How can we help?';
+}
+
+/* Contact form */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwm_24fbliBdvAPHV0CAcQ_c88r6spv0ns8JZ9cxyJvvDpFCvHcCSYhP1NT2xCo5yeZvA/exec';
+function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submit-btn');
+  btn.textContent='Sending…'; btn.disabled=true;
+  const payload = {
+    contact_type: form.contact_type.value,
+    company:      form.company.value,
+    first_name:   form.first_name.value,
+    last_name:    form.last_name.value,
+    email:        form.email.value,
+    message:      form.message.value
+  };
+  fetch(SHEET_URL,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify(payload)
+  })
+    .then(()=>{
+      btn.textContent='Message sent ✓'; btn.style.background='#1E4D5C';
+      form.reset();
+      setContactType('individual', document.querySelector('.toggle-btn'));
+    })
+    .catch(()=>{ btn.textContent='Something went wrong — try again'; btn.disabled=false; });
+}
+
+/* Scroll reveal */
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(e=>io.observe(e));
+})();
+
+/* Pilot buttons: open the form in Business mode */
+document.querySelectorAll('[data-pilot]').forEach(a=>{
+  a.addEventListener('click',()=>{
+    const btn=document.querySelectorAll('.toggle-btn')[1];
+    if(btn) setContactType('business',btn);
   });
-  
+});
+
+/* Footer email signup (same Google Sheet, contact_type = newsletter) */
+function handleSignup(e){
+  e.preventDefault();
+  const f=e.target, out=document.getElementById('signup-msg'), btn=f.querySelector('button');
+  btn.disabled=true; out.textContent='Signing you up…';
+  fetch(SHEET_URL,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify({contact_type:'newsletter',company:'',first_name:'',last_name:'',email:f.email.value,message:'Newsletter signup'})
+  })
+    .then(()=>{ out.textContent='Thanks, you\'re on the list.'; f.reset(); btn.disabled=false; })
+    .catch(()=>{ out.textContent='Something went wrong. Try again.'; btn.disabled=false; });
+}
 </script>
 </body>
 </html>
