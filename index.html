@@ -6,7 +6,7 @@
 <title>eztia — Stay cool.</title>
 <meta name="description" content="Eztia Cooling Technology: cooling built into workwear. A wearable solution that works without power or refrigeration.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Barlow:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@400;500&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -93,9 +93,12 @@ nav.scrolled{
   border-bottom-color:rgba(242,246,249,.08);
   padding:12px var(--pad);
 }
-.nav-logo{display:block;line-height:0}
-.nav-logo img{height:34px;width:auto;transition:height .35s}
-nav.scrolled .nav-logo img{height:30px}
+.nav-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:42px;line-height:1;letter-spacing:0;text-transform:lowercase;
+  color:var(--arctic);text-decoration:none;transition:font-size .35s;
+}
+nav.scrolled .nav-logo{font-size:36px}
 .nav-links{display:flex;gap:30px;list-style:none;align-items:center}
 .nav-links a{
   font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;
@@ -109,7 +112,7 @@ nav.scrolled .nav-logo img{height:30px}
 .nav-links a.nav-cta:hover{opacity:.9;color:var(--navy)}
 @media(max-width:720px){
   .nav-links li:not(:last-child){display:none}
-  .nav-logo img{height:30px}
+  .nav-logo{font-size:36px}
 }
 
 /* ══ HERO ══ */
@@ -222,7 +225,9 @@ nav.scrolled .nav-logo img{height:30px}
 .products{padding:0 0 var(--section)}
 .products-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;gap:20px}
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.product{position:relative;overflow:hidden;background:var(--slate);aspect-ratio:4/5}
+.product{position:relative;overflow:hidden;background:var(--slate);aspect-ratio:1/1}
+.product-tex{position:absolute;inset:0;background:#141a1f url('Dot%20Detail.webp') no-repeat;background-size:221.5% auto;background-position:71.2% 0;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.product:hover .product-tex{transform:scale(1.04)}
 .product img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
 .product:hover img{transform:scale(1.04)}
 .product-cap{
@@ -234,6 +239,7 @@ nav.scrolled .nav-logo img{height:30px}
 @media(max-width:760px){
   .product-grid{grid-template-columns:1fr 1fr;gap:10px}
   .product:last-child{grid-column:span 2;aspect-ratio:16/10}
+  .product:last-child .product-tex{background-size:110% auto;background-position:60% 0}
   .products-head{flex-direction:column;align-items:flex-start}
 }
 
@@ -301,13 +307,20 @@ nav.scrolled .nav-logo img{height:30px}
 .story-grid .lead{margin-bottom:16px;max-width:560px}
 .sig{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:var(--navy);margin-top:24px}
 .sig span{display:block;font-family:'Barlow',sans-serif;font-size:14px;color:rgba(27,45,62,.65);margin-top:2px}
+.founder{position:relative;max-width:440px;justify-self:end;margin:0}
+.founder img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:54% center;background:#2a2a2a}
 .quote{
-  background:var(--navy);color:var(--arctic);padding:44px 40px;position:relative;
+  background:var(--navy);color:var(--arctic);padding:28px 30px;position:relative;
+  margin:-90px 0 0 -40px;
 }
 .quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#B34A25,#9B6BB5,#2A6FA3)}
-.quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.2}
-.quote span{display:block;margin-top:20px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cool-light)}
-@media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:36px}}
+.quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(22px,2vw,27px);line-height:1.2}
+.quote span{display:block;margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cool-light)}
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr;gap:36px}
+  .founder{justify-self:start;max-width:420px}
+  .quote{margin:-70px 0 0 24px}
+}
 
 /* ══ PILOT CTA ══ */
 .pilot{background:var(--teal);padding:64px 0;position:relative;overflow:hidden}
@@ -365,8 +378,10 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
   display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:40px;
   padding-bottom:44px;border-bottom:1px solid rgba(242,246,249,.12);margin-bottom:24px;
 }
-.footer-logo{height:44px;width:auto}
-.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:rgba(242,246,249,.85);margin-top:12px}
+.lockup{display:inline-flex;flex-direction:column;align-items:center}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:56px;line-height:1;text-transform:lowercase;color:var(--arctic)}
+.lockup-rule{width:100%;height:2px;background:var(--grad);margin:8px 0 6px}
+.footer-sub{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:rgba(242,246,249,.85)}
 .footer-desc{font-size:14px;color:rgba(242,246,249,.65);margin-top:8px;max-width:260px;line-height:1.55}
 .footer-col h4{
   font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;
@@ -413,7 +428,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
 <div class="top-bar"></div>
 
 <nav id="sitenav">
-  <a href="#" class="nav-logo"><img src="light.svg" alt="eztia" width="96" height="34"></a>
+  <a href="#" class="nav-logo" aria-label="eztia home">eztia</a>
   <ul class="nav-links">
     <li><a href="#enterprise">Enterprise</a></li>
     <li><a href="#technology">Technology</a></li>
@@ -551,7 +566,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
         <div class="product-cap"><h3>Arm Sleeves</h3><p>Targeted cooling for arms exposed to sun and heat.</p></div>
       </div>
       <div class="product reveal">
-        <img src="Dot%20Detail.jpeg" alt="Close-up of Eztia cooling gel dots printed on fabric" loading="lazy">
+        <div class="product-tex" role="img" aria-label="Close-up of Eztia cooling gel dots printed on fabric"></div>
         <div class="product-cap"><h3>Eztia Cooling Technology</h3><p>Cooling gel printed onto fabric. Dry to the touch.</p></div>
       </div>
     </div>
@@ -621,12 +636,14 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
       <h2 class="h-main">Built by a physician and materials scientist.</h2>
       <p class="lead">Eztia was founded by Dr. Tiffany Yeh, who has spent her career at the intersection of human performance and extreme environments. She saw firsthand how heat compromises people's ability to work at their best.</p>
       <p class="lead">So she built something new: a cooling gel that draws heat away from the skin and can be printed onto fabric to create cooling apparel.</p>
-      <p class="sig">Dr. Tiffany Yeh<span>Founder, Eztia</span></p>
-    </div>
-    <div class="quote reveal">
-      <p>Evaporative cooling is not new. The material we've developed to harness it is.</p>
-      <span>Eztia Cooling Technology</span>
-    </div>
+          </div>
+    <figure class="founder reveal">
+      <img src="Tiffany_Yeh_Headshot.jpg" alt="Dr. Tiffany Yeh, founder of Eztia" loading="lazy">
+      <div class="quote">
+        <p>Evaporative cooling is not new. The material we've developed to harness it is.</p>
+        <span>Eztia Cooling Technology</span>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -694,8 +711,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <img class="footer-logo" src="light.svg" alt="eztia" width="125" height="44">
-        <div class="footer-sub">Stay cool.</div>
+        <div class="lockup"><div class="footer-logo">eztia</div><div class="lockup-rule"></div><div class="footer-sub">Stay cool.</div></div>
         <p class="footer-desc">Cooling apparel and technology for people who work in the heat.</p>
       </div>
       <div class="footer-col">
