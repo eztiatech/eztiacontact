@@ -448,7 +448,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
     <p class="eyebrow hero-anim d1">Eztia Cooling Technology</p>
     <h1 class="hero-h1 hero-anim d2">Stay cool.</h1>
     <p class="hero-h2 hero-anim d3">Protect your workforce. Reduce your heat risk.</p>
-    <p class="hero-sub hero-anim d4">Cooling built into workwear and replenished by sweat or water. A wearable solution that works without power or refrigeration.</p>
+    <p class="hero-sub hero-anim d4">Cooling built into the workwear itself. It runs on sweat or water, with no power or refrigeration.</p>
     <div class="hero-actions hero-anim d5">
       <a href="#contact" class="btn btn-cta" data-pilot>Request a pilot →</a>
       <a href="#technology" class="btn btn-outline">How it works →</a>
@@ -468,13 +468,13 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
     <span>Eztia Cooling Technology</span><span class="dot">·</span>
     <span>Activates on skin contact</span><span class="dot">·</span>
     <span>Up to 10°C skin reduction</span><span class="dot">·</span>
-    <span>Up to 8 hours continuous</span><span class="dot">·</span>
+    <span>Up to 8 hours cooling</span><span class="dot">·</span>
     <span>Recharges with water</span><span class="dot">·</span>
     <span>No batteries</span><span class="dot">·</span>
     <span>Eztia Cooling Technology</span><span class="dot">·</span>
     <span>Activates on skin contact</span><span class="dot">·</span>
     <span>Up to 10°C skin reduction</span><span class="dot">·</span>
-    <span>Up to 8 hours continuous</span><span class="dot">·</span>
+    <span>Up to 8 hours cooling</span><span class="dot">·</span>
     <span>Recharges with water</span><span class="dot">·</span>
     <span>No batteries</span><span class="dot">·</span>
   </div>
@@ -486,7 +486,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
     <div class="proof-head reveal">
       <div>
         <p class="eyebrow">The evidence</p>
-        <h2 class="h-main">Engineered, not marketed.</h2>
+        <h2 class="h-main">Proven by science.</h2>
       </div>
       <p class="proof-note">Developed by a physician and materials scientist. Proven by science and designed to support comfort and worker safety.</p>
     </div>
@@ -502,9 +502,9 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
         <div class="stat-detail">Keeps working through physically demanding shifts.</div>
       </div>
       <div class="stat-card reveal">
-        <div class="stat-num">180</div>
-        <div class="stat-label">Wash + tumble-dry cycles tested</div>
-        <div class="stat-detail">Lifespan varies with care.</div>
+        <div class="stat-num"><span class="upto">Up to</span>180</div>
+        <div class="stat-label">Wash cycles tested</div>
+        <div class="stat-detail">Machine wash + tumble dry. Lifespan varies with care.</div>
       </div>
       <div class="stat-card reveal">
         <div class="stat-num">H₂O</div>
@@ -609,7 +609,7 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
         <div class="flow-num">04</div>
         <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M17 4c5 7 9 11.5 9 16a9 9 0 01-18 0c0-4.5 4-9 9-16z"/><path d="M13 21a4 4 0 004 4"/></svg>
         <h3>Sweat or water recharges it</h3>
-        <p>Sweat or water replenishes the gel, so it keeps working. Recharge anywhere on site.</p>
+        <p>Sweat or water replenishes the gel, so it keeps working.</p>
       </div>
     </div>
     <div class="no-list reveal">
@@ -870,8 +870,6 @@ document.querySelectorAll('[data-pilot]').forEach(a=>{
   a.addEventListener('click',()=>{
     const btn=document.querySelectorAll('.toggle-btn')[1];
     if(btn) setContactType('business',btn);
-    const msg=document.querySelector('#contact-form textarea[name=message]');
-    if(msg && !msg.value) msg.value='We are interested in a 2–4 week pilot. ';
   });
 });
 
