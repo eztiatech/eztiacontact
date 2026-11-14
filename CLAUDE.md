@@ -32,10 +32,10 @@ Define colors as CSS custom properties and use only these.
 | Eztia Navy | `#1B2D3E` | Primary background for dark sections |
 | Eztia Slate | `#527A8C` | Hero product colorway, product imagery |
 | Arctic White | `#F2F6F9` | Primary text on dark backgrounds |
-| Heat Terracotta | `#C4512A` | Call-to-action accent — use sparingly |
-| Ocean Blue | `#2E7BB8` | Links and icons |
+| Heat Terracotta | `#B34A25` | Call-to-action / enterprise accent — use sparingly |
+| Ocean Blue | `#2A6FA3` | Links and icons |
 
-Secondary: Heat Mid `#D4815A`, Heat Light `#E8C9B8`, Cool Light `#B8D4E8`, Deep Teal `#1E4D5C`, Mist Grey `#8A9BAA`, Warm Grey `#C8C0B8`.
+Secondary: Heat Mid `#D4815A`, Heat Light `#E8C9B8`, Cool Light `#B8D4E8`, Deep Teal `#1E4D5C`, Mist Grey `#8A9BAA`, Warm Grey `#C8C0B8`. Accent: Violet Mid `#9B6BB5` (gradient midpoint).
 
 - Never use pure white `#FFFFFF` for text — use Arctic White.
 - Never use Fire Red `#E74F08` (retired).
@@ -44,21 +44,23 @@ Secondary: Heat Mid `#D4815A`, Heat Light `#E8C9B8`, Cool Light `#B8D4E8`, Deep 
 
 ## Brand: typography
 
-- **Display/headlines:** Barlow Condensed (Google Fonts) — weights 300–800.
-- **Body:** Barlow — Light 300 for long-form text, Regular 400 for UI, labels, captions.
+Source of truth: Eztia Brand Guidelines (Oct 2026), section 09 · Typography (web). Use only Barlow Condensed and Barlow.
+
+- **All headlines are Barlow Condensed Regular 400**, sentence case, period retained. Do not use bold/semibold for headlines — use scale and whitespace for emphasis.
+- **Body and UI text:** Barlow 400. **Uppercase eyebrows and nav labels:** Barlow 500 with 0.08–0.12em letter-spacing.
 - **Retired — never use:** Plus Jakarta Sans, Urbanist, Hanken Grotesk, Overpass Mono.
 
-| Level | Face | Size |
-|---|---|---|
-| Display XL | Barlow Condensed 800 | 80–120px (hero) |
-| Display L | Barlow Condensed 700 | 56–72px (section headlines) |
-| Display M | Barlow Condensed 600 | 36–48px (sub-headlines) |
-| Body L | Barlow 300 | 18px / 1.7 |
-| Body M | Barlow 400 | 15–16px / 1.6 |
-| Label | Barlow Condensed 400 | 11–13px, letter-spacing 0.2em (eyebrows, nav, tags) |
-| Micro | Barlow Condensed 300 | 9–10px, letter-spacing 0.25em (legal, captions) |
+| Role | Face / weight | Size | Leading | Tracking |
+|---|---|---|---|---|
+| Hero ("Stay cool.") | Barlow Condensed 400 | clamp(62px, 7vw, 100px) | 1.05 | 0 |
+| Main headline | Barlow Condensed 400 | ~43–48px | 1.1 | 0 |
+| Supporting heading | Barlow Condensed 400 | ~27px | 1.2 | 0 |
+| Hero supporting / intro / body | Barlow 400 | 17–18px | 1.6–1.65 | normal |
+| Uppercase eyebrow | Barlow 500 | 12–13px | — | 0.12em |
+| Navigation labels | Barlow 500 | 13px | — | 0.08em |
+| Technical annotation | Barlow Condensed 400 | — | — | — |
 
-Scale headline sizes down sensibly on mobile.
+Zahra asked for body text 1–2px larger than the original comparison for legibility (18px body). Scale headline sizes down sensibly on mobile.
 
 ## Brand: logo
 
@@ -86,6 +88,12 @@ Confident, warm, precise, slightly dry — "like a doctor who trains." Lead with
 - **No claim without scientific verification.** Only use performance claims that appear in the current brand guidelines or that Zahra has approved in the request. When in doubt, leave it out and ask.
 - Don't add the word "worker" to site copy without asking — it was deliberately removed earlier, even though the new guidelines use it for the enterprise vertical.
 - Don't promote enterprise workwear in consumer-facing sections (never cross-sell).
+- Approved wording (Zahra, Nov 2026): "A wearable solution that works without power or refrigeration." Never say "the only" wearable solution — that comparison is not verified.
+- Wash durability: "180 wash + tumble-dry cycles tested. Lifespan varies with care." Don't say infinite/unlimited washes.
+- Use "Up to" with the 10°C and 8-hour claims. Don't say "clinically measured."
+- Never show customer or partner logos or names on the site.
+- Pilots: we run short 2–4 week pilots.
+- The Japanese user guide PDF is not a source of truth for claims; the Brand Guidelines are.
 
 ## Imagery
 
