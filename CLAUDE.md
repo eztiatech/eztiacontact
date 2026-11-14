@@ -89,7 +89,7 @@ Confident, warm, precise, slightly dry — "like a doctor who trains." Lead with
 - Don't add the word "worker" to site copy without asking — it was deliberately removed earlier, even though the new guidelines use it for the enterprise vertical.
 - Don't promote enterprise workwear in consumer-facing sections (never cross-sell).
 - Approved wording (Zahra, Nov 2026): "A wearable solution that works without power or refrigeration." Never say "the only" wearable solution — that comparison is not verified.
-- Wash durability: "180 wash + tumble-dry cycles tested. Lifespan varies with care." Don't say infinite/unlimited washes.
+- Wash durability: "Up to 180 wash cycles tested" (machine wash + tumble dry; lifespan varies with care). Don't say infinite/unlimited washes.
 - Use "Up to" with the 10°C and 8-hour claims. Don't say "clinically measured."
 - Never show customer or partner logos or names on the site.
 - Pilots: we run short 2–4 week pilots.
