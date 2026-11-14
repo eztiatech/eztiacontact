@@ -308,7 +308,7 @@ nav.scrolled .nav-logo{font-size:36px}
 .sig{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:var(--navy);margin-top:24px}
 .sig span{display:block;font-family:'Barlow',sans-serif;font-size:14px;color:rgba(27,45,62,.65);margin-top:2px}
 .founder{position:relative;max-width:360px;justify-self:end;margin:0}
-.founder img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:54% center;background:#2a2a2a}
+.founder img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:58% center;background:#14181d}
 .quote{
   background:var(--navy);color:var(--arctic);padding:24px 26px;position:relative;
   margin:-80px 0 0 -40px;
@@ -318,6 +318,19 @@ nav.scrolled .nav-logo{font-size:36px}
   line-height:1.15;color:var(--navy);margin-top:8px;padding-top:14px;position:relative;
 }
 .story-result::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--grad)}
+.markets{margin-top:40px;padding-top:28px;border-top:1px solid rgba(27,45,62,.12)}
+.markets .eyebrow{margin-bottom:16px}
+.markets ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
+.markets li{
+  font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:22px;line-height:1;color:var(--navy);
+  padding:12px 20px 12px 18px;border:1px solid rgba(27,45,62,.18);background:#fff;
+  display:flex;align-items:center;gap:10px;
+}
+.markets li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ocean)}
+.markets li:nth-child(1)::before{background:#B34A25}
+.markets li:nth-child(2)::before{background:#9B6BB5}
+.markets li:nth-child(3)::before{background:#2A6FA3}
+@media(max-width:520px){.markets ul{gap:8px}.markets li{font-size:18px;padding:10px 14px 10px 12px;gap:8px}}
 .quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#B34A25,#9B6BB5,#2A6FA3)}
 .quote p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(20px,1.8vw,24px);line-height:1.25}
 .quote span{display:block;margin-top:12px;font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--cool-light)}
@@ -642,9 +655,17 @@ footer{background:var(--navy);padding:64px 0 32px;color:var(--arctic)}
       <p class="lead">Eztia was founded by Dr. Tiffany Yeh, who spent her career at the intersection of human performance and extreme environments. She saw an unmet need: heat kills productivity, performance, and in some cases, people. She experienced firsthand how heat compromises people's ability to operate at their best.</p>
       <p class="lead">So she built something new: a cooling gel that draws heat away from your skin and can be printed onto fabric to create cooling apparel. The clothing stays dry to the touch, and water replenishes the gel between uses. The result?</p>
       <p class="story-result">Cooling that moves with you.</p>
+      <div class="markets">
+        <p class="eyebrow">Where we operate</p>
+        <ul>
+          <li>USA</li>
+          <li>Singapore</li>
+          <li>Japan</li>
+        </ul>
+      </div>
     </div>
     <figure class="founder reveal">
-      <img src="Tiffany_Yeh_Headshot.jpg" alt="Dr. Tiffany Yeh, founder of Eztia" loading="lazy">
+      <img src="Tiffany_Yeh.jpg" alt="Dr. Tiffany Yeh holding an Eztia cooling garment" loading="lazy">
       <div class="quote">
         <p>“Evaporative cooling is not new. The material we've developed to harness it is.”</p>
         <span>— Dr. Tiffany Yeh</span>
